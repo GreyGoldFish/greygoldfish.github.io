@@ -1,0 +1,27 @@
+{
+  "name": "greygoldfish.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-gh-pages": "npx @11ty/eleventy --pathprefix=/greygoldfish.github.io/",
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GreyGoldFish/greygoldfish.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/GreyGoldFish/greygoldfish.github.io/issues"
+  },
+  "homepage": "https://github.com/GreyGoldFish/greygoldfish.github.io#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}
