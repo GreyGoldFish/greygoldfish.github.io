@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title or metadata.title }}</title>
+    </head>
+    <body>
+        <header>
+            <h1>{{ title or metadata.title }}</h1>
+            <nav>
+                <ul>
+                    {% for link in navigation %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {{ content | safe }}
+        </main>
+
+        <footer>
+            <p>&copy; {{ currentYear }} Lucas Aquino de Assis</p>
+        </footer>
+    </body>
+</html>
