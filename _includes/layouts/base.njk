@@ -8,11 +8,7 @@
     <body>
         <header>
             <nav>
-                <ul>
-                    {% for link in navigation %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {% endfor %}
-                </ul>
+                {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
             </nav>
             <h1>{{ title or metadata.title }}</h1>
         </header>

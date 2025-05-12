@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/GreyGoldFish/greygoldfish.github.io#readme",
   "dependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-navigation": "^1.0.4"
   }
 }
