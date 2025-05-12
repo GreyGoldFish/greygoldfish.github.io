@@ -1,0 +1,16 @@
+---
+layout: layouts/base.njk
+title: "Projects"
+---
+
+<h1>Projects</h1>
+<p>Here are some of the projects I have worked on:</p>
+<ul>
+    {% for project in collections.projects %}
+        <li>
+            <a href="{{ project.url }}">{{ project.data.title }}</a>
+            <p>{{ project.data.excerpt }}</p>
+        </li>
+    {% endfor %}
+</ul>
+<p>Feel free to explore and reach out if you have any questions!</p>

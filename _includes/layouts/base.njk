@@ -7,7 +7,6 @@
     </head>
     <body>
         <header>
-            <h1>{{ title or metadata.title }}</h1>
             <nav>
                 <ul>
                     {% for link in navigation %}
@@ -15,6 +14,7 @@
                     {% endfor %}
                 </ul>
             </nav>
+            <h1>{{ title or metadata.title }}</h1>
         </header>
 
         <main>
