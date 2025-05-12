@@ -1,17 +1,18 @@
 ---
-layout: layouts/base.njk
-title: "My Projects"
+layout: base
+title: "Portfolio"
 eleventyNavigation:
-    key: "Projects"
+    key: "Portfolio"
+eleventyImport:
+    collections: ["project"]
 ---
 
 <p>Here are some of the projects I have worked on:</p>
 <ul>
-    {% for project in collections.projects %}
+    {% for project in collections.project %}
         <li>
             <a href="{{ project.url }}">{{ project.data.title }}</a>
             <p>{{ project.data.excerpt }}</p>
         </li>
     {% endfor %}
 </ul>
-<p>Feel free to explore and reach out if you have any questions!</p>

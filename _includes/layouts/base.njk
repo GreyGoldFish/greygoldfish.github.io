@@ -3,14 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ title or metadata.title }}</title>
+        {% if page.url == "/" %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>{{ title }} — {{ author }}</title>
+        {% endif %}
     </head>
     <body>
         <header>
             <nav>
                 {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
             </nav>
-            <h1>{{ title or metadata.title }}</h1>
         </header>
 
         <main>
@@ -18,7 +21,7 @@
         </main>
 
         <footer>
-            <p>&copy; {{ currentYear }} Lucas Aquino de Assis</p>
+            <p>&copy; {{ currentYear }} {{ author }}</p>
         </footer>
     </body>
 </html>

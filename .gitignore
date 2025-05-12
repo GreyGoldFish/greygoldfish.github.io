@@ -11,7 +11,7 @@ yarn-error.log*
 .env.*.local # e.g., .env.development.local, .env.production.local
 
 # 11ty build output
-/_site/ # Default build output directory for 11ty
+/_site/*
 
 # Cache directories
 .cache/
