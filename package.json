@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-gh-pages": "npx @11ty/eleventy --pathprefix=/greygoldfish.github.io/",
-    "build": "npx @11ty/eleventy",
-    "serve": "npx @11ty/eleventy --serve",
+    "build:eleventy": "npx @11ty/eleventy",
+    "watch:eleventy": "npx @11ty/eleventy --serve",
+    "build": "npm run build:eleventy",
+    "serve": "npm run watch:eleventy",
+    "build-gh-pages": "npm run build --pathprefix=/greygoldfish.github.io/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
