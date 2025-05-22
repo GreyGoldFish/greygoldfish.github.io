@@ -1,17 +1,35 @@
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 
 export default async function(eleventyConfig) {
-    eleventyConfig.setInputDirectory("src");
+    const layoutAliases = {
+        "base": "layouts/base.njk",
+        "post": "layouts/posts/default.njk",
+        "project": "layouts/projects/default.njk",
+    };
 
-    eleventyConfig.addGlobalData("author", "Lucas Aquino de Assis");
-    const currentYear = new Date().getFullYear();
-    eleventyConfig.addGlobalData("currentYear", currentYear);
+    const globalPartials = {
+        paths: {
+            "metaInfo": "partials/meta-info.njk",
+            "siteHead": "partials/site-head.njk",
+            // Add other partial paths here
+        }
+    };
+    
+    for (const alias in layoutAliases) {
+        eleventyConfig.addLayoutAlias(alias, layoutAliases[alias]);
+    }
+
+    eleventyConfig.addNunjucksGlobal("partials", globalPartials.paths);
 
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
-    eleventyConfig.addPassthroughCopy("css/tailwind.css");
-
-    eleventyConfig.addLayoutAlias("base", "layouts/base.njk");
-    eleventyConfig.addLayoutAlias("post", "layouts/posts/default.njk");
-    eleventyConfig.addLayoutAlias("project", "layouts/projects/default.njk");
+    return {
+        dir: {
+            input: "src",
+        },
+        templateFormats: ["md", "njk", "html"],
+        markdownTemplateEngine: "njk",
+        htmlTemplateEngine: "njk",
+        dataTemplateEngine: "njk",
+    };
 };

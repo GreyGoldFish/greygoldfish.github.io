@@ -3,25 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% if page.url == "/" %}
-            <title>{{ title }}</title>
-        {% else %}
-            <title>{{ title }} — {{ author }}</title>
-        {% endif %}
+        {% include partials.metaInfo %}
     </head>
     <body>
-        <header>
-            <nav>
-                {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
-            </nav>
-        </header>
-
-        <main>
-            {{ content | safe }}
-        </main>
-
-        <footer>
-            <p>&copy; {{ currentYear }} {{ author }}</p>
-        </footer>
+        {% include partials.siteHead %}
     </body>
 </html>
