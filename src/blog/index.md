@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: feed
 title: "Blog"
 eleventyNavigation:
     key: "Blog"

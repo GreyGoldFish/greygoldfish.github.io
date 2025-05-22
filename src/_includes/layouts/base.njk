@@ -3,9 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% include partials.metaInfo %}
+        {% include partials.meta %}
     </head>
     <body>
-        {% include partials.siteHead %}
+        {% include partials.header %}
+		<main tabindex="-1" id="main-content">
+			{% block content %}
+			<p>
+				If you're seeing this, it means that the layout for this page is not set up correctly.
+				Please check the template files to ensure that the correct layout is being used.
+			</p>
+			{% endblock %}
+		</main>
     </body>
 </html>
