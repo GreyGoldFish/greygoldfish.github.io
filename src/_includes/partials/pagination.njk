@@ -1,40 +1,107 @@
-{% set paginationId = paginationOptions.id | default("pagination") %}
-{% set paginationLabel = paginationOptions.label | default("Pagination") %}
-{% set paginationPrevText = paginationOptions.prevText | default("Previous") %}
-{% set paginationNextText = paginationOptions.nextText | default("Next") %}
-{% set paginationFirstText = paginationOptions.firstText | default("First") %}
-{% set paginationLastText = paginationOptions.lastText | default("Last") %}
-{% set paginationPageText = paginationOptions.pageText | default("Page") %}
-{% set paginationAnchor = paginationOptions.anchor | default("") %}
+{# --- Options Setup --- #}
+{% set options = paginationOptions | default({}) %}
+{% set listId = options.id | default("pagination") %}
+{% set listNavLabel = options.navLabel | default("Pagination Navigation") %}
+{% set listHeadingText = options.headingText | default("Pagination") %}
+{% set prevText = options.prevText | default("Previous") %}
+{% set nextText = options.nextText | default("Next") %}
+{% set pageItemLabel = options.pageItemLabel | default("Go to page") %}
+{% set anchor = options.anchor | default("") %}
 
-{# Only render if there are multiple pages or specific navigation links exist #}
-{% if pagination.pages.length > 1 or pagination.href.previous or pagination.href.next %}
-<nav aria-labelledby="{{ paginationId }}">
-    <h2 id="{{ paginationId }}">{{ paginationLabel }}</h2>
-    <ol>
-        {# First Link #}
-        {% if pagination.href.previous and pagination.pages.length > 1 %}
-        <li><a href="{{ pagination.href.first }}{{ paginationAnchor }}">{{ paginationFirstText }}</a></li>
-        {% endif %}
+{# --- Pagination Data --- #}
+{% set currentPage = pagination.pageNumber %} {# 0-indexed current page #}
+{% set totalPages = pagination.pages.length %}
+{% set pageHrefs = pagination.hrefs %}
 
+{% include partials.paginationList %}
+
+{# Only render if there are multiple pages #}
+{% if totalPages > 1 %}
+<nav aria-label="{{ listNavLabel }}" class="pagination-nav">
+    <h2 id="{{ listId }}-heading" class="sr-only">{{ listHeadingText }}</h2>
+    <ol class="pagination-list" aria-labelledby="{{ listId }}-heading">
         {# Previous Link #}
         {% if pagination.href.previous %}
-        <li><a href="{{ pagination.href.previous }}{{ paginationAnchor }}">{{ paginationPrevText }}</a></li>
+        <li class="pagination-item pagination-item--prev">
+            <a href="{{ pagination.href.previous }}{{ anchor }}" class="pagination-link" rel="prev">{{ prevText }}</a>
+        </li>
         {% endif %}
 
-        {# Page Number Links #}
-        {%- for pageEntry in pagination.pages %}
-        <li><a href="{{ pagination.hrefs[ loop.index0 ] }}{{ paginationAnchor }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ paginationPageText }} {{ loop.index }}</a></li>
-        {%- endfor %}
+        {# Page 1 Link #}
+        <li class="pagination-item pagination-item--number{% if currentPage == 0 %} pagination-item--current{% endif %}">
+            <a href="{{ pageHrefs[0] }}{{ anchor }}" class="pagination-link"
+               aria-label="{{ pageItemLabel }} 1"{% if currentPage == 0 %} aria-current="page"{% endif %}>1</a>
+        </li>
+
+        {# Ellipsis after Page 1 #}
+        {% if currentPage > 2 %} {# Current page is 4 (index 3) or more. Page 2 is skipped. #}
+        <li class="pagination-item pagination-item--ellipsis" aria-hidden="true">...</li>
+        {% endif %}
+
+        {# Middle Pages (Dynamic window of up to 3 pages) #}
+        {# Iterate all potential middle page indices (from index 1 up to totalPages-2) #}
+        {% for i in range(1, totalPages - 1) %}
+            {% set pageNumToDisplay = i + 1 %}
+            {% set showThisPage = false %}
+
+            {# Logic to determine if this page 'i' should be shown in the middle block #}
+            {# Case 1: Current page is 1 (idx 0) - show page 2 (idx 1) and page 3 (idx 2) #}
+            {% if currentPage == 0 %}
+                {# Show 2; show 3 only if it's not the last page #}
+                {% if (i == 1) or (i == 2 and totalPages > 3) %}
+                    {% set showThisPage = true %}
+                {% endif %}
+            {# Case 2: Current page is 2 (idx 1) - show page 2 (idx 1) and page 3 (idx 2) #}
+            {% elif currentPage == 1 %}
+                {# Show 2 (current); show 3 only if it's not the last page #}
+                {% if (i == 1) or (i == 2 and totalPages > 3) %}
+                    {% set showThisPage = true %}
+                {% endif %}
+            {# Case 3: Current page is Last (idx totalPages - 1) - show N-1 (idx totalPages-2) and N-2 (idx totalPages-3) #}
+            {% elif currentPage == totalPages - 1 %}
+                {# Show N-1; show N-2 only if it's not page 1 #}
+                {% if (i == totalPages - 2) or (i == totalPages - 3 and totalPages > 3) %}
+                    {% set showThisPage = true %}
+                {% endif %}
+            {# Case 4: Current page is N-1 (idx totalPages - 2) - show N-1 (idx totalPages-2) and N-2 (idx totalPages-3) #}
+            {% elif currentPage == totalPages - 2 %}
+                {# Show N-1 (current); show N-2 only if it's not page 1 #}
+                {% if (i == totalPages - 2) or (i == totalPages - 3 and totalPages > 3) %}
+                    {% set showThisPage = true %}
+                {% endif %}
+            {# Case 5: General case (current page is not near the edges) - show c-1, c, c+1 #}
+            {% else %}
+                {% if i == currentPage - 1 or i == currentPage or i == currentPage + 1 %}
+                    {% set showThisPage = true %}
+                {% endif %}
+            {% endif %}
+
+            {% if showThisPage %}
+            <li class="pagination-item pagination-item--number{% if i == currentPage %} pagination-item--current{% endif %}">
+                <a href="{{ pageHrefs[i] }}{{ anchor }}" class="pagination-link"
+                   aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }}"{% if i == currentPage %} aria-current="page"{% endif %}>{{ pageNumToDisplay }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+        {# Ellipsis before Last Page #}
+        {% if currentPage < totalPages - 3 %} {# Current page is N-3 (index totalPages-4) or less. Page N-1 is skipped. #}
+        <li class="pagination-item pagination-item--ellipsis" aria-hidden="true">...</li>
+        {% endif %}
+
+        {# Last Page Link (only show if totalPages > 1, as page 1 is already handled) #}
+        {% if totalPages > 1 %}
+        <li class="pagination-item pagination-item--number{% if currentPage == totalPages - 1 %} pagination-item--current{% endif %}">
+            <a href="{{ pageHrefs[totalPages - 1] }}{{ anchor }}" class="pagination-link"
+               aria-label="{{ pageItemLabel }} {{ totalPages }}"{% if currentPage == totalPages - 1 %} aria-current="page"{% endif %}>{{ totalPages }}</a>
+        </li>
+        {% endif %}
 
         {# Next Link #}
         {% if pagination.href.next %}
-        <li><a href="{{ pagination.href.next }}{{ paginationAnchor }}">{{ paginationNextText }}</a></li>
-        {% endif %}
-
-        {# Last Link #}
-        {% if pagination.href.next and pagination.pages.length > 1 %}
-        <li><a href="{{ pagination.href.last }}{{ paginationAnchor }}">{{ paginationLastText }}</a></li>
+        <li class="pagination-item pagination-item--next">
+            <a href="{{ pagination.href.next }}{{ anchor }}" class="pagination-link" rel="next">{{ nextText }}</a>
+        </li>
         {% endif %}
     </ol>
 </nav>

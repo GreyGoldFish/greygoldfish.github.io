@@ -18,7 +18,7 @@ export default async function(eleventyConfig) {
             "sidebar": "partials/sidebar.njk",
             "cta": "partials/cta.njk",
             "pagination": "partials/pagination.njk",
-            "itemList": "partials/item-list.njk",
+            "paginationList": "partials/pagination-list.njk",
         }
     };
 
