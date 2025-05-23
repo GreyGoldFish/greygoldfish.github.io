@@ -1,0 +1,41 @@
+{% set paginationId = paginationOptions.id | default("pagination") %}
+{% set paginationLabel = paginationOptions.label | default("Pagination") %}
+{% set paginationPrevText = paginationOptions.prevText | default("Previous") %}
+{% set paginationNextText = paginationOptions.nextText | default("Next") %}
+{% set paginationFirstText = paginationOptions.firstText | default("First") %}
+{% set paginationLastText = paginationOptions.lastText | default("Last") %}
+{% set paginationPageText = paginationOptions.pageText | default("Page") %}
+{% set paginationAnchor = paginationOptions.anchor | default("") %}
+
+{# Only render if there are multiple pages or specific navigation links exist #}
+{% if pagination.pages.length > 1 or pagination.href.previous or pagination.href.next %}
+<nav aria-labelledby="{{ paginationId }}">
+    <h2 id="{{ paginationId }}">{{ paginationLabel }}</h2>
+    <ol>
+        {# First Link #}
+        {% if pagination.href.previous and pagination.pages.length > 1 %}
+        <li><a href="{{ pagination.href.first }}{{ paginationAnchor }}">{{ paginationFirstText }}</a></li>
+        {% endif %}
+
+        {# Previous Link #}
+        {% if pagination.href.previous %}
+        <li><a href="{{ pagination.href.previous }}{{ paginationAnchor }}">{{ paginationPrevText }}</a></li>
+        {% endif %}
+
+        {# Page Number Links #}
+        {%- for pageEntry in pagination.pages %}
+        <li><a href="{{ pagination.hrefs[ loop.index0 ] }}{{ paginationAnchor }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ paginationPageText }} {{ loop.index }}</a></li>
+        {%- endfor %}
+
+        {# Next Link #}
+        {% if pagination.href.next %}
+        <li><a href="{{ pagination.href.next }}{{ paginationAnchor }}">{{ paginationNextText }}</a></li>
+        {% endif %}
+
+        {# Last Link #}
+        {% if pagination.href.next and pagination.pages.length > 1 %}
+        <li><a href="{{ pagination.href.last }}{{ paginationAnchor }}">{{ paginationLastText }}</a></li>
+        {% endif %}
+    </ol>
+</nav>
+{% endif %}

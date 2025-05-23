@@ -1,1 +1,11 @@
 {% extends layouts.base %}
+
+{% block content %}
+<article>
+    {% include partials.pageHeader %}
+
+    {% include partials.itemList %}
+
+    {% include partials.pagination %}
+</article>
+{% endblock %}

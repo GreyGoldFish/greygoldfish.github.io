@@ -1,0 +1,26 @@
+<div>
+    <div>
+        {% if headline %}
+        <h2>{{ headline | safe }}</h2>
+        {% endif %}
+        {% if pagination and pagination.items.length > 0 %}
+        <div>
+            <ol>
+                {% for item in pagination.items %}
+                <li>
+                    {% set itemUrl = item.url | default("#") %}
+                    {% set itemTitle = item.data.title | default(item.title) | default("Untitled Item") %}
+                    <a href="{{ itemUrl }}">{{ itemTitle }}</a>
+                    {% set itemDescription = item.data.description | default(item.description) %}
+                    {% if itemDescription %}
+                    <p>{{ itemDescription }}</p>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        {% else %}
+        <p>No items to display.</p>
+        {% endif %}
+    </div>
+</div>
