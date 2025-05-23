@@ -1,0 +1,30 @@
+{% if hero %}
+<section>
+    <div>
+        {% if hero.eyebrow %}
+        <p>{{ hero.eyebrow | safe }}</p>
+        {% endif %}
+        <h1>{{ hero.title | default(title) | safe }}</h1>
+        {% if hero.intro %}
+        <p>{{ hero.intro | safe }}</p>
+        {% endif %}
+    </div>
+    {% if hero.summary %}
+    <div>
+        <p>{{ hero.summary | safe }}</p>
+    </div>
+    {% endif %}
+    {% if hero.media %}
+    <div>
+        {{ hero.media | safe }}
+    </div>
+    {% endif %}
+    {% if hero.buttonText and hero.buttonLink %}
+    <div>
+        <a href="{{ hero.buttonLink | url }}">
+            {{ hero.buttonText | safe }}
+        </a>
+    </div>
+    {% endif %}
+</section>
+{% endif %}

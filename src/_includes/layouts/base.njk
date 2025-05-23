@@ -3,25 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% include partials.meta %}
+        {% include partials.metaInfo %}
     </head>
     <body>
-        {% include partials.header %}
-		<main tabindex="-1" id="main-content">
-			{% block content %}
-			<p>
-				If you're seeing this, it means that the layout for this page is not set up correctly.
-				Please check the template files to ensure that the correct layout is being used.
-			</p>
-			{% endblock %}
-            {# Only include cta if it exists in the front-matter #}
-            {% if cta and ctas[cta] %}
-                {% set cta = ctas[cta] %}
-                {% include partials.cta %}
-            {% endif %}
-            {# Include default cta #}
-            {% set cta = ctas["default"] %}
+        {% include partials.banner %}
+        <main tabindex="-1" id="main-content">
+            {% block content %}
+            <p>
+                If you're seeing this, it means that the layout for this page is not set up correctly.
+                Please check the template files to ensure that the correct layout is being used.
+            </p>
+            {% endblock %}
+        </main>
+        {# Only include cta if it exists in the front-matter #}
+        {% if cta and ctas[cta] %}
+            {% set cta = ctas[cta] %}
             {% include partials.cta %}
-		</main>
+        {% endif %}
+        {# Include default cta #}
+        {% set cta = ctas["default"] %}
+        {% include partials.cta %}
     </body>
 </html>

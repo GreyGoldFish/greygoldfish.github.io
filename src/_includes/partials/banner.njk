@@ -1,0 +1,24 @@
+<a href="#main-content">{{ site.skipToContentText }}</a>
+<header role="banner">
+	<div>
+		<div>
+			<a href="/" aria-label="{{ site.name }} - home">
+				{% if site.logo %}
+				<img src="{{ site.logo }}" alt="{{ site.name }} logo" />
+				{% else %}
+					{{ site.name }}
+				{% endif %}
+			</a>
+			<nav aria-label="Primary Navigation">
+				{% set navPages = collections.all | eleventyNavigation %}
+				<ul>
+				{%- for entry in navPages %}
+				<li{% if entry.url == page.url %} class="nav-item active"{% endif %}>
+					<a href="{{ entry.url }}">{{ entry.title }}</a>
+				</li>
+				{%- endfor %}
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>

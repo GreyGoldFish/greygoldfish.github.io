@@ -3,9 +3,9 @@ layout: home
 title: "GreyGoldFish"
 eleventyNavigation:
     key: "Home"
-header:
+hero:
     title: "Lucas Aquino de Assis"
-    eyebrow: "This is my site."
+    eyebrow: "Computer Scientist"
     intro: "is a developer"
 cta: "blog"
 ---

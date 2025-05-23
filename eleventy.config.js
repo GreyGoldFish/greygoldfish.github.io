@@ -10,8 +10,10 @@ export default async function(eleventyConfig) {
             "feed": "layouts/feed.njk",
         },
         partials: {
-            "meta": "partials/meta.njk",
-            "header": "partials/header.njk",
+            "metaInfo": "partials/meta-info.njk",
+            "banner": "partials/banner.njk",
+            "hero": "partials/hero.njk",
+            "pageHeader": "partials/page-header.njk",
             "footer": "partials/footer.njk",
             "sidebar": "partials/sidebar.njk",
             "cta": "partials/cta.njk",
