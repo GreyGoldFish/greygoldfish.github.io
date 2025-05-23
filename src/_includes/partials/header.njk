@@ -1,9 +1,13 @@
-<a href="#main-content">Skip to content</a>
+<a href="#main-content">{{ site.skipToContentText }}</a>
 <header role="banner">
 	<div>
 		<div>
 			<a href="/" aria-label="{{ site.name }} - home">
-				{# TODO: Add logo #}
+				{% if site.logo %}
+				<img src="{{ site.logo }}" alt="{{ site.name }} logo" />
+				{% else %}
+					{{ site.name }}
+				{% endif %}
 			</a>
 			<nav aria-label="Primary">
 				{% set navPages = collections.all | eleventyNavigation %}
@@ -16,5 +20,35 @@
 				</ul>
 			</nav>
 		</div>
+	</div>
+	<div>
+		<section>
+			<div>
+				{% if header.eyebrow %}
+				<p>{{ header.eyebrow | safe }}</p>
+				{% endif %}
+				<h1>{{ header.title | default(title) | safe }}</h1>
+				{% if header.intro %}
+				<p>{{ header.intro | safe }}</p>
+				{% endif %}
+			</div>
+			{% if header.summary %}
+			<div>
+				<p>{{ header.summary | safe }}</p>
+			</div>
+			{% endif %}
+			{% if header.media %}
+			<div>
+				{{ header.media | safe }}
+			</div>
+			{% endif %}
+			{% if header.buttonText and header.buttonLink %}
+			<div>
+				<a href="{{ header.buttonLink | url }}">
+					{{ header.buttonText | safe }}
+				</a>
+			</div>
+			{% endif %}
+		</section>
 	</div>
 </header>
