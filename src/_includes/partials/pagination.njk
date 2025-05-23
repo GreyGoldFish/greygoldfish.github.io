@@ -21,15 +21,14 @@
     <h2 id="{{ listId }}-heading" class="sr-only">{{ listHeadingText }}</h2>
     <ol class="pagination-list" aria-labelledby="{{ listId }}-heading">
         {# Previous Link #}
-        {% if pagination.href.previous %}
+        
         <li class="pagination-item pagination-item--prev">
-            <a href="{{ pagination.href.previous }}{{ anchor }}" class="pagination-link" rel="prev">{{ prevText }}</a>
+            <a {% if pagination.href.previous %} href="{{ pagination.href.previous }}{{ anchor }}" {% endif %} class="pagination-link" rel="prev">{{ prevText }}</a>
         </li>
-        {% endif %}
 
         {# Page 1 Link #}
         <li class="pagination-item pagination-item--number{% if currentPage == 0 %} pagination-item--current{% endif %}">
-            <a href="{{ pageHrefs[0] }}{{ anchor }}" class="pagination-link"
+            <a {% if currentPage != 0 %} href="{{ pageHrefs[0] }}{{ anchor }}" {% endif %} class="pagination-link"
                aria-label="{{ pageItemLabel }} 1"{% if currentPage == 0 %} aria-current="page"{% endif %}>1</a>
         </li>
 
@@ -90,19 +89,15 @@
         {% endif %}
 
         {# Last Page Link (only show if totalPages > 1, as page 1 is already handled) #}
-        {% if totalPages > 1 %}
         <li class="pagination-item pagination-item--number{% if currentPage == totalPages - 1 %} pagination-item--current{% endif %}">
-            <a href="{{ pageHrefs[totalPages - 1] }}{{ anchor }}" class="pagination-link"
+            <a {% if currentPage != totalPages - 1 %} href="{{ pageHrefs[totalPages - 1] }}{{ anchor }}" {% endif %} class="pagination-link"
                aria-label="{{ pageItemLabel }} {{ totalPages }}"{% if currentPage == totalPages - 1 %} aria-current="page"{% endif %}>{{ totalPages }}</a>
         </li>
-        {% endif %}
 
         {# Next Link #}
-        {% if pagination.href.next %}
         <li class="pagination-item pagination-item--next">
-            <a href="{{ pagination.href.next }}{{ anchor }}" class="pagination-link" rel="next">{{ nextText }}</a>
+            <a {% if pagination.href.next %}href="{{ pagination.href.next }}{{ anchor }}"{% endif %} class="pagination-link" rel="next">{{ nextText }}</a>
         </li>
-        {% endif %}
     </ol>
 </nav>
 {% endif %}
