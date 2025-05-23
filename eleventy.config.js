@@ -14,6 +14,7 @@ export default async function(eleventyConfig) {
             "header": "partials/header.njk",
             "footer": "partials/footer.njk",
             "sidebar": "partials/sidebar.njk",
+            "cta": "partials/cta.njk",
         }
     };
 
