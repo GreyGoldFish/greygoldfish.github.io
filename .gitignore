@@ -10,6 +10,9 @@ yarn-error.log*
 .env.local
 .env.*.local # e.g., .env.development.local, .env.production.local
 
+# output directories
+/dist/*
+
 # 11ty build output
 /_site/*
 
