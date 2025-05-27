@@ -1,1 +1,15 @@
 {% extends layouts.base %}
+
+{% block content %}
+<main>
+    {% include partials.pageHeader %}
+    <section>
+        {{ content | safe }}
+    </section>
+</main>
+{% endblock %}
+
+{% block cta %}
+    {% set cta = ctas["blog"] %}
+    {% include partials.cta %}
+{% endblock %}
