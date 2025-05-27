@@ -1,1 +1,73 @@
 @import "tailwindcss";
+
+@theme {
+    --os-bg: theme('colors.gray.900'); /* Dark background */
+    --os-text: theme('colors.green.400'); /* Bright digital green text */
+    --os-accent-text: theme('colors.green.300');
+    --os-accent-hover-text: theme('colors.green.200');
+    --os-accent-bg: theme('colors.green.600');
+    --os-accent-hover-bg: theme('colors.green.700');
+    --os-border: theme('colors.green.500'); /* Border color */
+    --os-window-bg: theme('colors.gray.800'); /* Window background */
+    --os-title-bar-bg: theme('colors.gray.700'); /* Title bar background */
+    --os-title-bar-text: theme('colors.green.400'); /* Title bar text */
+}
+
+@layer base {
+    body {
+        @apply font-mono bg-[var(--os-bg)] text-[var(--os-text)] min-h-screen flex flex-col;
+    }
+    main {
+        @apply flex-grow p-4;
+    }
+    header {
+        @apply p-4 border-b border-[var(--os-border)]; /* Ensure header has a bottom border */
+    }
+    footer {
+        @apply p-4 border-t border-[var(--os-border)]; /* Ensure footer has a top border */
+    }
+    /* Consistent heading and paragraph styles */
+    /* Using Tailwind's responsive text sizes. You can adjust these as needed. */
+    h1, .h1 { @apply text-4xl font-bold mb-4 text-[var(--os-accent-text)]; }
+    h2, .h2 { @apply text-3xl font-bold mb-3 text-[var(--os-accent-text)]; }
+    h3, .h3 { @apply text-2xl font-bold mb-3 text-[var(--os-accent-text)]; }
+    h4, .h4 { @apply text-xl font-bold mb-2 text-[var(--os-accent-text)]; }
+    h5, .h5 { @apply text-lg font-bold mb-2 text-[var(--os-accent-text)]; }
+    h6, .h6 { @apply text-base font-bold mb-1 text-[var(--os-accent-text)]; }
+    p { @apply mb-4 text-base leading-relaxed; /* Added leading-relaxed */ } /* Ensure consistent paragraph text color */
+    a { @apply text-[var(--os-accent-text)] hover:text-[var(--os-accent-hover-text)] underline; } /* Added underline for better accessibility */
+    button, .button { /* Added .button for wider application */
+        @apply bg-[var(--os-accent-bg)] text-[var(--os-accent-text)] px-4 py-2 border border-[var(--os-border)] hover:bg-[var(--os-accent-hover-bg)] hover:text-[var(--os-accent-hover-text)] focus:outline-none focus:ring-2 focus:ring-[var(--os-accent-bg)]/[.5];
+        @apply no-underline; /* Ensure buttons don't have underlines from global 'a' style if they are links */
+    }
+    * {
+        @apply rounded-none; /* Enforce no rounded corners globally */
+    }
+    /* Specific component base styles */
+    .window {
+        @apply bg-[var(--os-window-bg)] border border-[var(--os-border)] shadow-lg; /* Basic window styling */
+    }
+    .title-bar {
+        @apply bg-[var(--os-title-bar-bg)] text-[var(--os-title-bar-text)] p-1 flex justify-between items-center border-b border-[var(--os-border)];
+    }
+    .btn-close {
+        @apply bg-red-500 text-white font-bold py-0 px-1 text-xs hover:bg-red-700;
+    }
+}
+
+/* Styles for elements within header and footer to ensure consistent sizing */
+header nav ul li a,
+header a,
+footer p,
+footer a {
+    @apply text-base; /* Standardized text size for navigation and footer elements */
+}
+
+footer .tech-stack p {
+    @apply text-sm; /* Smaller text for "Built with:" */
+}
+
+/* Ensure skip link is visually distinct on focus */
+.sr-only.focus\:not-sr-only { /* Escaped colon for safety in some contexts, though might not be needed for CSS content */
+    @apply p-2 bg-[var(--os-accent-bg)] text-[var(--os-accent-text)] border border-[var(--os-border)];
+}

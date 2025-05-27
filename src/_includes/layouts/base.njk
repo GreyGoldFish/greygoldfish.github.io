@@ -3,10 +3,10 @@
     <head>
         {% include partials.metaInfo %}
     </head>
-    <body>
+    <body class="bg-[var(--os-bg)] text-[var(--os-text)] min-h-screen flex flex-col">
         {% include partials.banner %}
 
-        <main tabindex="-1" id="main-content">
+        <main tabindex="-1" id="main-content" class="flex-grow p-4">
             {% block content %}
             <p>
                 If you're seeing this, it means that the layout for this page is not set up correctly.

@@ -1,27 +1,28 @@
 {% if hero %}
-<section>
-    <div>
+<section class="border border-[var(--os-border)] p-6 my-6 text-center">
+    <div class="max-w-3xl mx-auto">
         {% if hero.eyebrow %}
-        <p>{{ hero.eyebrow | safe }}</p>
+        <p class="text-sm uppercase text-[var(--os-text)] tracking-wider mb-2">{{ hero.eyebrow | safe }}</p>
         {% endif %}
-        <h1>{{ hero.title | default(title) | safe }}</h1>
+        <h1 class="text-4xl font-bold text-[var(--os-text)] mb-4">{{ hero.title | default(title) | safe }}</h1>
         {% if hero.intro %}
-        <p>{{ hero.intro | safe }}</p>
+        <p class="text-lg text-[var(--os-text)] leading-relaxed mb-6">{{ hero.intro | safe }}</p>
         {% endif %}
     </div>
     {% if hero.summary %}
-    <div>
-        <p>{{ hero.summary | safe }}</p>
+    <div class="max-w-2xl mx-auto my-6">
+        <p class="text-base text-[var(--os-text)] leading-relaxed">{{ hero.summary | safe }}</p>
     </div>
     {% endif %}
     {% if hero.media %}
-    <div>
+    <div class="my-6">
         {{ hero.media | safe }}
     </div>
     {% endif %}
     {% if hero.buttonText and hero.buttonLink %}
-    <div>
-        <a href="{{ hero.buttonLink | url }}">
+    <div class="mt-8">
+        {# Apply base button class and ensure text/padding matches global button style #}
+        <a href="{{ hero.buttonLink | url }}" class="button">
             {{ hero.buttonText | safe }}
         </a>
     </div>

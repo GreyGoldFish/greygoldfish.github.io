@@ -63,6 +63,12 @@ export default async function(eleventyConfig) {
         return d.getFullYear();
     });
 
+    eleventyConfig.addFilter("formatDateLong", (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    });
+
     // Process Tailwind CSS with PostCSS
     eleventyConfig.on("eleventy.before", async () => {
         const tailwindInputPath = path.join(dirs.input, paths.tailwind);

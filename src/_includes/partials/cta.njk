@@ -1,10 +1,12 @@
-<article>
-    <div>
-        <div>
-            <h2>{{ cta.title }}</h2>
-            <p>{{ cta.description }}</p>
-            <div>
-                <a href="{{ cta.url }}">{{ cta.buttonText }}</a>
+<article class="border border-[var(--os-border)] p-6 my-6">
+    <div class="flex flex-col items-center text-center">
+        <div class="max-w-2xl">
+            <h2 class="text-2xl font-bold text-[var(--os-text)] mb-3">{{ cta.title }}</h2>
+            <p class="text-base text-[var(--os-text)] mb-5">{{ cta.description }}</p>
+            <div class="mt-5">
+                <a href="{{ cta.url }}" class="button inline-block no-underline py-2 px-5 text-base">
+                    {{ cta.buttonText }}
+                </a>
             </div>
         </div>
     </div>

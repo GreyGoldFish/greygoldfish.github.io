@@ -1,24 +1,23 @@
-<a href="#main-content">{{ site.skipToContentText }}</a>
-<header role="banner">
-	<div>
-		<div>
-			<a href="/" aria-label="{{ site.name }} - home">
-				{% if site.logo %}
-				<img src="{{ site.logo }}" alt="{{ site.name }} logo" />
-				{% else %}
-					{{ site.name }}
-				{% endif %}
-			</a>
-			<nav aria-label="Primary Navigation">
-				{% set navPages = collections.all | eleventyNavigation %}
-				<ul>
-				{%- for entry in navPages %}
-				<li{% if entry.url == page.url %} class="nav-item active"{% endif %}>
-					<a href="{{ entry.url }}">{{ entry.title }}</a>
-				</li>
-				{%- endfor %}
-				</ul>
-			</nav>
-		</div>
-	</div>
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50">{{ site.skipToContentText }}</a>
+<header role="banner" class="flex items-center justify-between">
+	{# Site Logo/Name #}
+	<a href="/" aria-label="{{ site.name }} - home" class="font-bold hover:text-[var(--os-accent-hover-bg)]">
+		{% if site.logo %}
+		<img src="{{ site.logo }}" alt="{{ site.name }} logo" class="h-8 w-auto max-h-full" />
+		{% else %}
+			{{ site.name }}
+		{% endif %}
+	</a>
+
+	{# Primary Navigation #}
+	<nav aria-label="Primary Navigation">
+		{% set navPages = collections.all | eleventyNavigation %}
+		<ul class="flex space-x-4">
+		{%- for entry in navPages %}
+		<li class="{% if entry.url == page.url %}font-bold text-[var(--os-accent-hover-bg)]{% else %}text-[var(--os-text)]{% endif %}">
+			<a href="{{ entry.url }}">{{ entry.title }}</a>
+		</li>
+		{%- endfor %}
+		</ul>
+	</nav>
 </header>

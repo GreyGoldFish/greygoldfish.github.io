@@ -1,14 +1,14 @@
 {% if pageHeader.title or pageHeader.summary or pageHeader.eyebrow %}
-<header>
-    <div>
+<header class="page-header bg-[var(--os-bg)] text-[var(--os-text)] border-b-2 border-[var(--os-border)] p-4">
+    <div class="text-center"> {# Removed container mx-auto #}
         {% if pageHeader.eyebrow %}
         <p>{{ pageHeader.eyebrow | safe }}</p>
         {% endif %}
         {% if pageHeader.title %}
-        <h1>{{ pageHeader.title | safe }}</h1>
+        <h1 class="text-3xl font-bold text-[var(--os-accent-text)]">{{ pageHeader.title | safe }}</h1> {# Changed to --os-accent-text #}
         {% endif %}
         {% if pageHeader.summary %}
-        <p>{{ pageHeader.summary | safe }}</p>
+        <p class="text-lg text-[var(--os-text)] mt-1">{{ pageHeader.summary | safe }}</p>
         {% endif %}
     </div>
 </header>

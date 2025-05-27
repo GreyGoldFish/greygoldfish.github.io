@@ -1,9 +1,22 @@
 {% extends layouts.base %}
 
 {% block content %}
-<article>
+<article class="post-layout container mx-auto px-4 py-8 bg-[var(--os-window-bg)] border-x-2 border-b-2 border-[var(--os-border)]">
+    {# The pageHeader partial is already included and styled #}
+    {# It will use the front matter from the specific post (e.g., title from test-post.md) #}
     {% include partials.pageHeader %}
-    <div>
+
+    <div class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none 
+                prose-headings:text-[var(--os-accent-text)] 
+                prose-p:text-[var(--os-text)] 
+                prose-a:text-[var(--os-accent-text)] hover:prose-a:text-[var(--os-accent-hover-text)] 
+                prose-strong:text-[var(--os-text)] 
+                prose-em:text-[var(--os-text)] 
+                prose-code:text-[var(--os-accent-text)] prose-code:bg-gray-700 prose-code:p-1 prose-code:rounded-none
+                prose-pre:bg-gray-700 prose-pre:text-[var(--os-accent-text)] prose-pre:p-4 prose-pre:rounded-none
+                prose-blockquote:border-[var(--os-border)] prose-blockquote:text-[var(--os-text)]
+                prose-ul:text-[var(--os-text)] prose-ol:text-[var(--os-text)]
+                prose-li:marker:text-[var(--os-border)]">
         {{ content | safe }}
     </div>
 </article>
