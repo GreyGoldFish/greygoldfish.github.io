@@ -19,6 +19,7 @@ export default async function(eleventyConfig) {
             "cta": "partials/cta.njk",
             "pagination": "partials/pagination.njk",
             "paginationList": "partials/pagination-list.njk",
+            "techStack": "partials/tech-stack.njk",
         }
     };
 
@@ -29,7 +30,15 @@ export default async function(eleventyConfig) {
     eleventyConfig.addNunjucksGlobal("layouts", aliases.layouts);
     eleventyConfig.addNunjucksGlobal("partials", aliases.partials);
 
+    eleventyConfig.addFilter("justYear", (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.getFullYear();
+    });
+
     eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+    eleventyConfig.addPassthroughCopy("src/assets");
 
     return {
         dir: {

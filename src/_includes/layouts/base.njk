@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="flex flex-col min-h-screen">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% include partials.metaInfo %}
     </head>
-    <body>
+    <body class="flex-grow">
         {% include partials.banner %}
+
         <main tabindex="-1" id="main-content">
             {% block content %}
             <p>
@@ -15,16 +16,17 @@
             </p>
             {% endblock %}
         </main>
+
         {% block cta %}
-            {# Only include cta if it exists in the front-matter #}
+            {# Only include extra cta if it exists #}
             {% if cta and ctas[cta] %}
                 {% set cta = ctas[cta] %}
                 {% include partials.cta %}
             {% endif %}
-            
-            {# Include default cta #}
-            {% set cta = ctas["default"] %}
+            {% set cta = ctas[default] %}
             {% include partials.cta %}
         {% endblock %}
+
+        {% include partials.footer %}
     </body>
 </html>

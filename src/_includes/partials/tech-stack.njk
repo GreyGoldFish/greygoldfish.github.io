@@ -1,0 +1,12 @@
+<div class="tech-stack">
+    <p>Built with:</p>
+    <ul>
+        {% for tech in technologies %}
+        <li>
+            <a href="{{ tech.url }}" target="_blank" rel="noopener noreferrer" title="{{ tech.name }}">
+                <img src="{{ tech.iconSrc }}" alt="{{ tech.name }} logo">
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
