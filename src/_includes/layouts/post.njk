@@ -3,6 +3,8 @@
 {% block content %}
 <article>
     {% include partials.pageHeader %}
-    {{ content | safe }}
+    <div>
+        {{ content | safe }}
+    </div>
 </article>
 {% endblock %}

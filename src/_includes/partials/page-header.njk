@@ -1,14 +1,14 @@
-{% if pageTitle or pageSummary or pageEyebrow %}
+{% if pageHeader.title or pageHeader.summary or pageHeader.eyebrow %}
 <header>
     <div>
-        {% if pageEyebrow %}
-        <p>{{ pageEyebrow | safe }}</p>
+        {% if pageHeader.eyebrow %}
+        <p>{{ pageHeader.eyebrow | safe }}</p>
         {% endif %}
-        {% if pageTitle %}
-        <h1>{{ pageTitle | safe }}</h1>
+        {% if pageHeader.title %}
+        <h1>{{ pageHeader.title | safe }}</h1>
         {% endif %}
-        {% if pageSummary %}
-        <p>{{ pageSummary | safe }}</p>
+        {% if pageHeader.summary %}
+        <p>{{ pageHeader.summary | safe }}</p>
         {% endif %}
     </div>
 </header>
