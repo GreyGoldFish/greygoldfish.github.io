@@ -1,28 +1,28 @@
 [
     {
+        "name": "Node.js",
+        "iconSrc": "/assets/icons/Node.js.svg",
+        "url": "https://nodejs.org/"
+    },
+    {
+        "name": "Nunjucks",
+        "iconSrc": "/assets/icons/Nunjucks.svg",
+        "url": "https://mozilla.github.io/nunjucks/"
+    },
+    {
+        "name": "Tailwind CSS",
+        "iconSrc": "/assets/icons/Tailwind CSS.svg",
+        "url": "https://tailwindcss.com/"
+    },
+    {
         "name": "Eleventy",
         "iconSrc": "/assets/icons/Eleventy (11ty).svg",
         "url": "https://www.11ty.dev/"
     },
     {
-        "name": "HTML5",
-        "iconSrc": "/assets/icons/HTML5.svg",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
-    },
-    {
-        "name": "CSS3",
-        "iconSrc": "/assets/icons/CSS3.svg",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS"
-    },
-    {
         "name": "JavaScript",
         "iconSrc": "/assets/icons/JavaScript.svg",
         "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-    },
-    {
-        "name": "Node.js",
-        "iconSrc": "/assets/icons/Node.js.svg",
-        "url": "https://nodejs.org/"
     },
     {
         "name": "Git",
