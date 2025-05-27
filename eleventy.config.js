@@ -1,7 +1,9 @@
 import fs from "fs";
 import path from "path";
 
-import postcss from "postcss";
+import postcss from 'postcss';
+import tailwindcss from '@tailwindcss/postcss';
+import cssnano from 'cssnano';
 
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 
@@ -14,8 +16,8 @@ const dirs = {
     styles: "styles",
 };
 
-const files = {
-    css: path.join(dirs.styles, "index.css"),
+const paths = {
+    tailwind: "/" + path.join(dirs.styles, "index.css"),
 };
 
 const aliases = {
@@ -40,39 +42,22 @@ const aliases = {
     }
 };
 
-async function processTailwind() {
-    const cssInputPath = path.join(dirs.input, files.css);
-    const cssOutputPath = path.join(dirs.output, files.css);
+// Define the PostCSS processor
+const postcssPlugins = [
+    tailwindcss(),
+];
 
-    try {
-        const css = fs.readFile(cssInputPath, "utf8");
-
-        const result = await postcss().process(css, {
-            from: cssInputPath,
-            to: cssOutputPath,
-        });
-
-        // Ensure the output directory exists
-        fs.mkdir(path.dirname(cssOutputPath), { recursive: true });
-        // Write the processed CSS
-        fs.writeFile(cssOutputPath, result.css);
-
-        // Write the source map if it exists
-        if (result.map) {
-            fs.writeFile(`${cssOutputPath}.map`, result.map.toString());
-        }
-
-    } catch (error) {
-        console.error("Error processing Tailwind CSS with PostCSS: ", error);
-    }
+if (process.env.NODE_ENV === "production") {
+    postcssPlugins.push(cssnano({ preset: "default" }));
 }
+const processor = postcss(postcssPlugins);
 
 export default async function(eleventyConfig) {
     for (const alias in aliases.layouts) {
         eleventyConfig.addLayoutAlias(alias, aliases.layouts[alias]);
     }
 
-    eleventyConfig.addFilter("justYear", (date) => {
+    eleventyConfig.addFilter("year", (date) => {
         if (!date) return "";
         const d = new Date(date);
         return d.getFullYear();
@@ -80,11 +65,35 @@ export default async function(eleventyConfig) {
 
     // Process Tailwind CSS with PostCSS
     eleventyConfig.on("eleventy.before", async () => {
-        await processTailwind();
+        const tailwindInputPath = path.join(dirs.input, paths.tailwind);
+        const tailwindOutputPath = path.join(dirs.output, paths.tailwind);
+
+        try {
+            const css = fs.readFileSync(tailwindInputPath, "utf8");
+
+            const result = await processor.process(css, {
+                from: tailwindInputPath,
+                to: tailwindOutputPath,
+            });
+
+            const outputDir = path.dirname(tailwindOutputPath);
+            if (!fs.existsSync(outputDir)) {
+                fs.mkdirSync(outputDir, { recursive: true });
+            }
+            fs.writeFileSync(tailwindOutputPath, result.css);
+
+            if (result.map) {
+                fs.writeFileSync(`${tailwindOutputPath}.map`, result.map.toString());
+            }
+            console.log(`Successfully processed Tailwind CSS to ${tailwindOutputPath}\n`);
+        } catch (error) {
+            console.error("Error processing Tailwind CSS with PostCSS:", error);
+        }
     });
 
     eleventyConfig.addWatchTarget(path.join(dirs.input, dirs.styles));
 
+    eleventyConfig.addNunjucksGlobal("paths", paths);
     eleventyConfig.addNunjucksGlobal("layouts", aliases.layouts);
     eleventyConfig.addNunjucksGlobal("partials", aliases.partials);
 
