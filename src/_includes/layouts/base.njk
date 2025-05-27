@@ -21,7 +21,7 @@
                 {% set cta = ctas[cta] %}
                 {% include partials.cta %}
             {% endif %}
-            {% set cta = ctas[default] %}
+            {% set cta = ctas["default"] %}
             {% include partials.cta %}
         {% endblock %}
 
