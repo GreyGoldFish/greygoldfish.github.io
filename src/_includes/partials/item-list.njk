@@ -4,10 +4,8 @@
         {% if itemList.headline %}
         <h2 class="text-xl font-semibold text-[var(--os-title)] mb-3">{{ itemList.headline | safe }}</h2>
         {% endif %}
-        {% if pagination %}
-            {% set items = pagination.items %}
-        {% endif %}
-        {% set items = items | default(itemList.items | default([])) %}
+        {# If collection is set, use it, otherwise default to pagination #}
+        {% set items = collections[itemList.collection] | default(pagination.items | default([])) %}
         {% if items and items.length > 0 %}
         <div class="border-t border-b border-[var(--os-border)] bg-[var(--os-window-bg)]">
             <ol class="divide-y divide-[var(--os-border)]">

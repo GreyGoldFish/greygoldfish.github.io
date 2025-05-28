@@ -13,4 +13,7 @@ pagination:
 itemList:
     headline: "Recent Posts"
     emptyText: "No posts to display."
+sidebar:
+    itemList:
+        collection: post
 ---

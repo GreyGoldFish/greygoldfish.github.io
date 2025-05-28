@@ -1,0 +1,6 @@
+{% if sidebar %}
+<aside class="sidebar p-4 bg-gray-100 dark:bg-gray-800 w-64 space-y-4">
+    {% set itemList = sidebar.itemList %}
+    {% include partials.itemList %}
+</aside>
+{% endif %}
