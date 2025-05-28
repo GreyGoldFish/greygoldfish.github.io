@@ -1,4 +1,4 @@
-<div class="pagination-list-container text-[var(--os-text)] py-4">
+<div class="pagination-list-container py-4">
     <div class="space-y-6">
         {% if headline %}
         <h2 class="text-2xl font-semibold text-center text-[var(--os-title)] mb-6">{{ headline | safe }}</h2>
@@ -15,7 +15,7 @@
                     </a>
                     {% set itemDate = item.date %}
                     {% if itemDate %}
-                    <p class="text-sm text-[var(--os-text)] mb-2">{{ itemDate | formatDateLong }}</p>
+                    <p class="text-sm mb-2">{{ itemDate | formatDateLong }}</p>
                     {% endif %}
                     {% set itemDescription = item.data.description | default(item.description) %}
                     {% if itemDescription %}
@@ -26,7 +26,7 @@
             </ol>
         </div>
         {% else %}
-        <p class="text-center text-lg border-2 border-[var(--os-border)] p-6 bg-[var(--os-window-bg)] text-[var(--os-text)]">No items to display.</p>
+        <p class="text-center text-lg border-2 border-[var(--os-border)] p-6 bg-[var(--os-window-bg)]">No items to display.</p>
         {% endif %}
     </div>
 </div>

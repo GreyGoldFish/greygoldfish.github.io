@@ -2,16 +2,16 @@
 <section class="border border-[var(--os-border)] p-6 my-6 text-center">
     <div class="max-w-3xl mx-auto">
         {% if hero.eyebrow %}
-        <p class="text-sm uppercase text-[var(--os-text)] tracking-wider mb-2">{{ hero.eyebrow | safe }}</p>
+        <p class="text-sm uppercase tracking-wider mb-2">{{ hero.eyebrow | safe }}</p>
         {% endif %}
-        <h1 class="text-4xl font-bold text-[var(--os-text)] mb-4">{{ hero.title | default(title) | safe }}</h1>
+        <h1 class="text-4xl font-bold mb-4">{{ hero.title | default(title) | safe }}</h1>
         {% if hero.intro %}
-        <p class="text-lg text-[var(--os-text)] leading-relaxed mb-6">{{ hero.intro | safe }}</p>
+        <p class="text-lg leading-relaxed mb-6">{{ hero.intro | safe }}</p>
         {% endif %}
     </div>
     {% if hero.summary %}
     <div class="max-w-2xl mx-auto my-6">
-        <p class="text-base text-[var(--os-text)] leading-relaxed">{{ hero.summary | safe }}</p>
+        <p class="text-base leading-relaxed">{{ hero.summary | safe }}</p>
     </div>
     {% endif %}
     {% if hero.media %}

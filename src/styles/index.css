@@ -56,9 +56,7 @@
 }
 
 /* Styles for elements within header and footer to ensure consistent sizing */
-header nav ul li a,
 header a,
-footer p,
 footer a {
     @apply text-base; /* Standardized text size for navigation and footer elements */
 }

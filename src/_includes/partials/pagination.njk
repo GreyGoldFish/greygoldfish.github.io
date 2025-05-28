@@ -17,7 +17,7 @@
 
 {# Only render if there are multiple pages #}
 {% if totalPages > 1 %}
-<nav aria-label="{{ listNavLabel }}" class="pagination-nav mt-8 mb-4 text-[var(--os-text)]">
+<nav aria-label="{{ listNavLabel }}" class="pagination-nav mt-8 mb-4">
     <h2 id="{{ listId }}-heading" class="sr-only">{{ listHeadingText }}</h2>
     {# Removed outer border and bg from ol, will apply to nav or a wrapper if needed for distinct panel look #}
     <ol class="pagination-list flex justify-center items-center space-x-1" aria-labelledby="{{ listId }}-heading">
@@ -46,7 +46,7 @@
             {% if showPage %}
                 {# If there was a gap since the last shown page number, print an ellipsis #}
                 {% if lastPageShown != -1 and i > lastPageShown + 1 %}
-                    <li class="pagination-item pagination-item--ellipsis px-3 py-2 text-[var(--os-text)]" aria-hidden="true">&hellip;</li> {# Standard HTML entity for ellipsis #}
+                    <li class="pagination-item pagination-item--ellipsis px-3 py-2" aria-hidden="true">&hellip;</li> {# Standard HTML entity for ellipsis #}
                 {% endif %}
 
                 <li class="pagination-item pagination-item--number">
