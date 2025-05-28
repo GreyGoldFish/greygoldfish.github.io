@@ -8,12 +8,11 @@
             <div class="flex-1 flex flex-col">
                 {% include partials.banner %}
 
+                {% include partials.sidebar %}
+
                 <main tabindex="-1" id="main-content" class="flex-grow p-4">
                     {% block content %}
-                    <p>
-                        If you're seeing this, it means that the layout for this page is not set up correctly.
-                        Please check the template files to ensure that the correct layout is being used.
-                    </p>
+                    {{ content | safe }}
                     {% endblock %}
                 </main>
 
@@ -21,13 +20,13 @@
                     {# Only include extra cta if it exists #}
                     {% if cta and ctas[cta] %}
                         {% set cta = ctas[cta] %}
-                        {% include "partials/cta.njk" %}
+                        {% include partials.cta %}
                     {% endif %}
                     {% set cta = ctas["default"] %}
-                    {% include "partials/cta.njk" %}
+                    {% include partials.cta %}
                 {% endblock %}
 
-                {% include "partials/footer.njk" %}
+                {% include partials.footer %}
             </div>
         </div>
     </body>

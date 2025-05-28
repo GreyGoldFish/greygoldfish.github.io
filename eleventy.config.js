@@ -69,6 +69,10 @@ export default async function(eleventyConfig) {
         return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     });
 
+    eleventyConfig.addFilter("merge", (obj1, obj2) => {
+        return {...obj1, ...obj2};
+    });
+
     // Process Tailwind CSS with PostCSS
     eleventyConfig.on("eleventy.before", async () => {
         const tailwindInputPath = path.join(dirs.input, paths.tailwind);

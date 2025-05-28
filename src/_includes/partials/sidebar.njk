@@ -1,6 +1,12 @@
 {% if sidebar %}
-<aside class="sidebar p-4 bg-gray-100 dark:bg-gray-800 w-64 space-y-4">
-    {% set itemList = sidebar.itemList %}
-    {% include partials.itemList %}
+<aside class="sidebar p-4 bg-[var(--os-window-bg)] border border-[var(--os-border)] w-64 space-y-6">
+    {# Recent Posts Section #}
+    {% if sidebar.recentPosts and sidebar.recentPosts.itemList %}
+    <section class="sidebar-section">
+        {% set itemList = sidebar.recentPosts.itemList | merge({ "reverse": true }) %}
+        
+        {% include partials.itemList %}
+    </section>
+    {% endif %}
 </aside>
 {% endif %}

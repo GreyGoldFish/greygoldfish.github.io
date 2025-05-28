@@ -3,6 +3,8 @@ layout: feed
 title: "Blog"
 eleventyNavigation:
     key: "Blog"
+eleventyImport:
+  collections: ["post"]
 pagination:
     data: collections.post
     size: 5
@@ -13,7 +15,4 @@ pagination:
 itemList:
     headline: "Recent Posts"
     emptyText: "No posts to display."
-sidebar:
-    itemList:
-        collection: post
 ---

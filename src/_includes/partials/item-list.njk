@@ -6,6 +6,15 @@
         {% endif %}
         {# If collection is set, use it, otherwise default to pagination #}
         {% set items = collections[itemList.collection] | default(pagination.items | default([])) %}
+
+        {% if itemList.reverse %}
+            {% set items = items | reverse %}
+        {% endif %}
+
+        {% if itemList.size and itemList.size > 0 %}
+            {% set items = items.slice(0, itemList.size) %}
+        {% endif %}
+
         {% if items and items.length > 0 %}
         <div class="border-t border-b border-[var(--os-border)] bg-[var(--os-window-bg)]">
             <ol class="divide-y divide-[var(--os-border)]">
