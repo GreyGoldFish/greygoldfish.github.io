@@ -37,7 +37,7 @@ const aliases = {
         sidebar: dirs.partials + "/sidebar.njk",
         cta: dirs.partials + "/cta.njk",
         pagination: dirs.partials + "/pagination.njk",
-        paginationList: dirs.partials + "/pagination-list.njk",
+        itemList: dirs.partials + "/item-list.njk",
         techStack: dirs.partials + "/tech-stack.njk",
     }
 };

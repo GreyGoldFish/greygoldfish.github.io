@@ -2,20 +2,19 @@
 
 {% block content %}
 <article class="post-layout container mx-auto px-4 py-8 bg-[var(--os-window-bg)] border-x-2 border-b-2 border-[var(--os-border)]">
-    {# The pageHeader partial is already included and styled #}
-    {# It will use the front matter from the specific post (e.g., title from test-post.md) #}
     {% include partials.pageHeader %}
 
     <div class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none 
-                prose-headings:text-[var(--os-accent-text)] 
-                prose-p:text-[var(--os-text)] 
-                prose-a:text-[var(--os-accent-text)] hover:prose-a:text-[var(--os-accent-hover-text)] 
-                prose-strong:text-[var(--os-text)] 
-                prose-em:text-[var(--os-text)] 
-                prose-code:text-[var(--os-accent-text)] prose-code:bg-gray-700 prose-code:p-1 prose-code:rounded-none
-                prose-pre:bg-gray-700 prose-pre:text-[var(--os-accent-text)] prose-pre:p-4 prose-pre:rounded-none
-                prose-blockquote:border-[var(--os-border)] prose-blockquote:text-[var(--os-text)]
-                prose-ul:text-[var(--os-text)] prose-ol:text-[var(--os-text)]
+                prose-headings:text-[var(--os-accent-text)] prose-headings:[text-shadow:var(--os-accent-text-shadow)]
+                prose-p:text-[var(--os-text)] prose-p:[text-shadow:var(--os-text-shadow)]
+                prose-a:text-[var(--os-accent-text)] hover:prose-a:text-[var(--os-accent-hover-text)] prose-a:[text-shadow:var(--os-accent-text-shadow)]
+                prose-strong:text-[var(--os-text)] prose-strong:[text-shadow:var(--os-text-shadow)]
+                prose-em:text-[var(--os-text)] prose-em:[text-shadow:var(--os-text-shadow)]
+                prose-code:text-[var(--os-secondary-accent-text)] prose-code:bg-[var(--os-title-bar-bg)] prose-code:p-1 prose-code:rounded-none prose-code:font-mono prose-code:[text-shadow:none]
+                prose-pre:bg-[var(--os-title-bar-bg)] prose-pre:text-[var(--os-secondary-accent-text)] prose-pre:p-4 prose-pre:rounded-none prose-pre:font-mono prose-pre:[text-shadow:none]
+                prose-blockquote:border-[var(--os-border)] prose-blockquote:text-[var(--os-text)] prose-blockquote:[text-shadow:var(--os-text-shadow)]
+                prose-ul:text-[var(--os-text)] prose-ul:[text-shadow:var(--os-text-shadow)]
+                prose-ol:text-[var(--os-text)] prose-ol:[text-shadow:var(--os-text-shadow)]
                 prose-li:marker:text-[var(--os-border)]">
         {{ content | safe }}
     </div>

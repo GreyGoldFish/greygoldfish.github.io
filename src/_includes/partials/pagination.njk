@@ -1,25 +1,19 @@
-{# --- Options Setup --- #}
-{% set options = paginationOptions | default({}) %}
-{% set listId = options.id | default("pagination") %}
-{% set listNavLabel = options.navLabel | default("Pagination Navigation") %}
-{% set listHeadingText = options.headingText | default("Pagination") %}
-{% set prevText = options.prevText | default("Previous") %}
-{% set nextText = options.nextText | default("Next") %}
-{% set pageItemLabel = options.pageItemLabel | default("Go to page") %}
-{% set anchor = options.anchor | default("") %}
+{% set listId = pagination.id | default("pagination") %}
+{% set listNavLabel = pagination.navLabel | default("Pagination Navigation") %}
+{% set listHeadingText = pagination.headingText | default("Pagination") %}
+{% set prevText = pagination.prevText | default("Previous") %}
+{% set nextText = pagination.nextText | default("Next") %}
+{% set pageItemLabel = pagination.pageItemLabel | default("Go to page") %}
+{% set anchor = pagination.anchor | default("") %}
 
-{# --- Pagination Data --- #}
 {% set currentPage = pagination.pageNumber %} {# 0-indexed current page #}
 {% set totalPages = pagination.pages.length %}
 {% set pageHrefs = pagination.hrefs %}
-
-{% include partials.paginationList %}
 
 {# Only render if there are multiple pages #}
 {% if totalPages > 1 %}
 <nav aria-label="{{ listNavLabel }}" class="pagination-nav mt-8 mb-4">
     <h2 id="{{ listId }}-heading" class="sr-only">{{ listHeadingText }}</h2>
-    {# Removed outer border and bg from ol, will apply to nav or a wrapper if needed for distinct panel look #}
     <ol class="pagination-list flex justify-center items-center space-x-1" aria-labelledby="{{ listId }}-heading">
         {# Previous Link #}
         <li class="pagination-item pagination-item--prev{% if not pagination.href.previous %} pagination-item--disabled opacity-50 pointer-events-none{% endif %}">

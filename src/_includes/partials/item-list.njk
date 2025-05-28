@@ -1,0 +1,36 @@
+{% if itemList %}
+<div class="item-list-container py-4">
+    <div class="space-y-4">
+        {% if itemList.headline %}
+        <h2 class="text-xl font-semibold text-[var(--os-title)] mb-3">{{ itemList.headline | safe }}</h2>
+        {% endif %}
+        {% if pagination %}
+            {% set items = pagination.items %}
+        {% endif %}
+        {% set items = items | default(itemList.items | default([])) %}
+        {% if items and items.length > 0 %}
+        <div class="border-t border-b border-[var(--os-border)] bg-[var(--os-window-bg)]">
+            <ol class="divide-y divide-[var(--os-border)]">
+                {% for item in items %}
+                <li class="p-3 hover:bg-[var(--os-accent-bg)]/10">
+                    {% set itemUrl = item.url | url | default("#") %}
+                    {% set itemTitle = item.data.title | default("Untitled Item") %}
+                    <a href="{{ itemUrl }}" class="block text-base text-[var(--os-accent-text)] hover:text-[var(--os-accent-hover-text)] font-medium mb-1 focus:outline-none focus:ring-1 focus:ring-[var(--os-accent-bg)]">
+                        {{ itemTitle }}
+                    </a>
+                    {% if item.date %}
+                    <p class="text-xs mb-1 text-[var(--os-text)]/80">{{ item.date | formatDateLong }}</p>
+                    {% endif %}
+                    {% if item.data.description %}
+                    <p class="text-sm text-[var(--os-text)]/90">{{ item.data.description }}</p>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        {% else %}
+        <p class="text-center text-base border border-[var(--os-border)] p-4 bg-[var(--os-window-bg)]">{{ itemList.emptyText | default("No items to display.") }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
