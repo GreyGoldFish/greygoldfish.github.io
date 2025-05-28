@@ -1,14 +1,18 @@
-{% if pageHeader.title or pageHeader.summary or pageHeader.eyebrow %}
+{% set headerTitle = pageHeader.title | default("") %}
+{% set headerSummary = pageHeader.summary | default("") %}
+{% set headerEyebrow = pageHeader.eyebrow | default("") %}
+
+{% if headerTitle or headerSummary or headerEyebrow %}
 <header class="page-header border-b-2 border-[var(--os-border)] p-4">
-    <div class="text-center"> {# Removed container mx-auto #}
-        {% if pageHeader.eyebrow %}
-        <p>{{ pageHeader.eyebrow | safe }}</p>
+    <div class="text-center">
+        {% if headerEyebrow %}
+        <p>{{ headerEyebrow | safe }}</p>
         {% endif %}
-        {% if pageHeader.title %}
-        <h1 class="text-3xl font-bold text-[var(--os-accent-text)]">{{ pageHeader.title | safe }}</h1> {# Changed to --os-accent-text #}
+        {% if headerTitle %}
+        <h1 class="text-3xl font-bold text-[var(--os-accent-text)]">{{ headerTitle | safe }}</h1> {# Changed to --os-accent-text #}
         {% endif %}
-        {% if pageHeader.summary %}
-        <p class="text-lg mt-1">{{ pageHeader.summary | safe }}</p>
+        {% if headerSummary %}
+        <p class="text-lg mt-1">{{ headerSummary | safe }}</p>
         {% endif %}
     </div>
 </header>

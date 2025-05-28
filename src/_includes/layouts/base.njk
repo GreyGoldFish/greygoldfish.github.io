@@ -3,28 +3,32 @@
     <head>
         {% include partials.metaInfo %}
     </head>
-    <body>
-        {% include partials.banner %}
+    <body class="bg-[var(--os-bg)] text-[var(--os-text)] min-h-screen flex flex-col">
+        <div class="flex flex-1">
+            <div class="flex-1 flex flex-col">
+                {% include partials.banner %}
 
-        <main tabindex="-1" id="main-content" class="flex-grow p-4">
-            {% block content %}
-            <p>
-                If you're seeing this, it means that the layout for this page is not set up correctly.
-                Please check the template files to ensure that the correct layout is being used.
-            </p>
-            {% endblock %}
-        </main>
+                <main tabindex="-1" id="main-content" class="flex-grow p-4">
+                    {% block content %}
+                    <p>
+                        If you're seeing this, it means that the layout for this page is not set up correctly.
+                        Please check the template files to ensure that the correct layout is being used.
+                    </p>
+                    {% endblock %}
+                </main>
 
-        {% block cta %}
-            {# Only include extra cta if it exists #}
-            {% if cta and ctas[cta] %}
-                {% set cta = ctas[cta] %}
-                {% include partials.cta %}
-            {% endif %}
-            {% set cta = ctas["default"] %}
-            {% include partials.cta %}
-        {% endblock %}
+                {% block cta %}
+                    {# Only include extra cta if it exists #}
+                    {% if cta and ctas[cta] %}
+                        {% set cta = ctas[cta] %}
+                        {% include "partials/cta.njk" %}
+                    {% endif %}
+                    {% set cta = ctas["default"] %}
+                    {% include "partials/cta.njk" %}
+                {% endblock %}
 
-        {% include partials.footer %}
+                {% include "partials/footer.njk" %}
+            </div>
+        </div>
     </body>
 </html>

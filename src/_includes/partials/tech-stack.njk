@@ -2,10 +2,13 @@
     <p class="text-base mb-3">Built with:</p>
     <ul class="flex justify-center space-x-5">
         {% for tech in technologies %}
-        <li>
+        <li class="tooltip relative group">
             <a href="{{ tech.url }}" target="_blank" rel="noopener noreferrer" title="{{ tech.name }}" class="inline-block p-1 border border-transparent hover:border-[var(--os-border)]">
                 <img src="{{ tech.iconSrc }}" alt="{{ tech.name }} logo" class="h-7 w-7">
             </a>
+            <span class="tooltip-text absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {{ tech.name }}
+            </span>
         </li>
         {% endfor %}
     </ul>

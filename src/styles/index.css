@@ -1,71 +1,88 @@
 @import "tailwindcss";
 
 @theme {
-    --os-bg: theme('colors.gray.900'); /* Dark background */
-    --os-text: theme('colors.green.400'); /* Bright digital green text */
-    --os-accent-text: theme('colors.green.300');
-    --os-accent-hover-text: theme('colors.green.200');
-    --os-accent-bg: theme('colors.green.600');
-    --os-accent-hover-bg: theme('colors.green.700');
-    --os-border: theme('colors.green.500'); /* Border color */
-    --os-window-bg: theme('colors.gray.800'); /* Window background */
-    --os-title-bar-bg: theme('colors.gray.700'); /* Title bar background */
-    --os-title-bar-text: theme('colors.green.400'); /* Title bar text */
+    --os-bg: theme('colors.slate.900');
+    --os-text: theme('colors.cyan.400');
+    --os-accent-text: theme('colors.lime.400');
+    --os-accent-hover-text: theme('colors.lime.300');
+    --os-accent-bg: theme('colors.lime.600');
+    --os-accent-hover-bg: theme('colors.lime.700');
+    --os-secondary-accent-text: theme('colors.amber.400');
+    --os-secondary-accent-hover-text: theme('colors.amber.300');
+    --os-border: theme('colors.lime.500');
+    --os-window-bg: theme('colors.slate.800');
+    --os-title-bar-bg: theme('colors.slate.700');
+    --os-title-bar-text: theme('colors.lime.400');
+
+    --os-text-shadow-color: theme('colors.cyan.400');
+    --os-accent-text-shadow-color: theme('colors.lime.400');
+    --os-accent-hover-text-shadow-color: theme('colors.lime.300');
 }
 
 @layer base {
     body {
-        @apply font-mono bg-[var(--os-bg)] text-[var(--os-text)] min-h-screen flex flex-col;
+        @apply bg-[var(--os-bg)] text-[var(--os-text)] font-mono;
+        text-shadow: 0 0 5px var(--os-text-shadow-color) / 0.5;
     }
     main {
         @apply flex-grow p-4;
     }
     header {
-        @apply p-4 border-b border-[var(--os-border)]; /* Ensure header has a bottom border */
+        @apply p-4 border-b-2 border-[var(--os-border)];
     }
     footer {
-        @apply p-4 border-t border-[var(--os-border)]; /* Ensure footer has a top border */
+        @apply py-6 mt-10 border-t-2 border-[var(--os-border)];
     }
-    /* Consistent heading and paragraph styles */
-    /* Using Tailwind's responsive text sizes. You can adjust these as needed. */
-    h1, .h1 { @apply text-4xl font-bold mb-4 text-[var(--os-accent-text)]; }
-    h2, .h2 { @apply text-3xl font-bold mb-3 text-[var(--os-accent-text)]; }
-    h3, .h3 { @apply text-2xl font-bold mb-3 text-[var(--os-accent-text)]; }
-    h4, .h4 { @apply text-xl font-bold mb-2 text-[var(--os-accent-text)]; }
-    h5, .h5 { @apply text-lg font-bold mb-2 text-[var(--os-accent-text)]; }
-    h6, .h6 { @apply text-base font-bold mb-1 text-[var(--os-accent-text)]; }
-    p { @apply mb-4 text-base leading-relaxed; /* Added leading-relaxed */ } /* Ensure consistent paragraph text color */
-    a { @apply text-[var(--os-accent-text)] hover:text-[var(--os-accent-hover-text)] underline; } /* Added underline for better accessibility */
-    button, .button { /* Added .button for wider application */
-        @apply bg-[var(--os-accent-bg)] text-[var(--os-accent-text)] px-4 py-2 border border-[var(--os-border)] hover:bg-[var(--os-accent-hover-bg)] hover:text-[var(--os-accent-hover-text)] focus:outline-none focus:ring-2 focus:ring-[var(--os-accent-bg)]/[.5];
-        @apply no-underline; /* Ensure buttons don't have underlines from global 'a' style if they are links */
+    h1, .h1 {
+        @apply text-4xl font-bold mb-4 text-[var(--os-accent-text)];
+        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
     }
-    * {
-        @apply rounded-none; /* Enforce no rounded corners globally */
+    h2, .h2 {
+        @apply text-3xl font-bold mb-3 text-[var(--os-accent-text)];
+        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
     }
-    /* Specific component base styles */
-    .window {
-        @apply bg-[var(--os-window-bg)] border border-[var(--os-border)] shadow-lg; /* Basic window styling */
+    h3, .h3 {
+        @apply text-2xl font-bold mb-3 text-[var(--os-accent-text)];
+        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
     }
-    .title-bar {
-        @apply bg-[var(--os-title-bar-bg)] text-[var(--os-title-bar-text)] p-1 flex justify-between items-center border-b border-[var(--os-border)];
+    h4, .h4 {
+        @apply text-xl font-bold mb-2 text-[var(--os-accent-text)];
+        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
     }
-    .btn-close {
-        @apply bg-red-500 text-white font-bold py-0 px-1 text-xs hover:bg-red-700;
+    p {
+        @apply mb-4 leading-relaxed;
+    }
+    a {
+        @apply text-[var(--os-accent-text)] hover:text-[var(--os-accent-hover-text)] transition-colors duration-150;
+        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
+    }
+    a:hover {
+        text-shadow: 0 0 8px var(--os-accent-hover-text-shadow-color) / 0.8;
+    }
+    .button {
+        @apply inline-block py-2 px-5 bg-[var(--os-accent-bg)] text-[var(--os-bg)] font-bold no-underline transition-all duration-150 ease-in-out;
+        @apply hover:bg-[var(--os-accent-hover-bg)] hover:shadow-lg;
+        text-shadow: none;
+        border: 1px solid var(--os-border);
     }
 }
 
-/* Styles for elements within header and footer to ensure consistent sizing */
 header a,
 footer a {
-    @apply text-base; /* Standardized text size for navigation and footer elements */
+    @apply text-base;
 }
 
 footer .tech-stack p {
-    @apply text-sm; /* Smaller text for "Built with:" */
+    @apply text-base text-[var(--os-text)];
 }
 
-/* Ensure skip link is visually distinct on focus */
-.sr-only.focus\:not-sr-only { /* Escaped colon for safety in some contexts, though might not be needed for CSS content */
-    @apply p-2 bg-[var(--os-accent-bg)] text-[var(--os-accent-text)] border border-[var(--os-border)];
+// Accessibility styles
+.sr-only {
+    @apply absolute w-px h-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+    position: absolute !important;
+}
+.sr-only.focus\:not-sr-only {
+    @apply p-2 bg-[var(--os-accent-bg)] text-[var(--os-bg)] no-underline;
+    text-shadow: none;
 }
