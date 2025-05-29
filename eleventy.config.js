@@ -22,23 +22,23 @@ const paths = {
 
 const aliases = {
     layouts: {
-        base: dirs.layouts + "/base.njk",
-        home: dirs.layouts + "/home.njk",
-        about: dirs.layouts + "/about.njk",
-        post: dirs.layouts + "/post.njk",
-        feed: dirs.layouts + "/feed.njk",
+        base: `${dirs.layouts}/base.njk`,
+        home: `${dirs.layouts}/home.njk`,
+        about: `${dirs.layouts}/about.njk`,
+        post: `${dirs.layouts}/post.njk`,
+        feed: `${dirs.layouts}/feed.njk`,
     },
     partials: {
-        metaInfo: dirs.partials + "/meta-info.njk",
-        banner: dirs.partials + "/banner.njk",
-        hero: dirs.partials + "/hero.njk",
-        pageHeader: dirs.partials + "/page-header.njk",
-        footer: dirs.partials + "/footer.njk",
-        sidebar: dirs.partials + "/sidebar.njk",
-        cta: dirs.partials + "/cta.njk",
-        pagination: dirs.partials + "/pagination.njk",
-        itemList: dirs.partials + "/item-list.njk",
-        techStack: dirs.partials + "/tech-stack.njk",
+        metaInfo: `${dirs.partials}/meta-info.njk`,
+        banner: `${dirs.partials}/banner.njk`,
+        hero: `${dirs.partials}/hero.njk`,
+        pageHeader: `${dirs.partials}/page-header.njk`,
+        footer: `${dirs.partials}/footer.njk`,
+        sidebar: `${dirs.partials}/sidebar.njk`,
+        cta: `${dirs.partials}/cta.njk`,
+        pagination: `${dirs.partials}/pagination.njk`,
+        itemList: `${dirs.partials}/item-list.njk`,
+        techStack: `${dirs.partials}/tech-stack.njk`,
     }
 };
 
@@ -104,8 +104,9 @@ export default async function(eleventyConfig) {
     eleventyConfig.addWatchTarget(path.join(dirs.input, dirs.styles));
 
     eleventyConfig.addNunjucksGlobal("paths", paths);
-    eleventyConfig.addNunjucksGlobal("layouts", aliases.layouts);
-    eleventyConfig.addNunjucksGlobal("partials", aliases.partials);
+    for (const alias in aliases) {
+        eleventyConfig.addNunjucksGlobal(alias, aliases[alias]);
+    }
 
     eleventyConfig.addPassthroughCopy(path.join(dirs.input, dirs.assets));
 
@@ -116,7 +117,6 @@ export default async function(eleventyConfig) {
             input: dirs.input,
             output: dirs.output,
         },
-        templateFormats: ["md", "html", "njk"],
         markdownTemplateEngine: "njk",
         htmlTemplateEngine: "njk",
         dataTemplateEngine: "njk",
