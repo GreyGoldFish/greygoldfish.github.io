@@ -12,7 +12,9 @@
 
                 <main tabindex="-1" id="main-content" class="flex-grow p-4">
                     {% block content %}
+
                     {{ content | safe }}
+                    
                     {% endblock %}
                 </main>
 
