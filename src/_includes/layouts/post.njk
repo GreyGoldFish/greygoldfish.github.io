@@ -24,13 +24,13 @@
 
     <nav class="post-navigation flex justify-between mt-8">
         <div>
-            {% if olderPost %}
-                <a href="{{ olderPost.url }}" class="button" rel="prev">&laquo; {{ olderPost.data.title or "Previous Post" }}</a>
+            {% if newerPost %}
+                <a href="{{ newerPost.url }}" class="button" rel="next">&laquo; {{ newerPost.data.title or "Newer Post" }} </a>
             {% endif %}
         </div>
         <div>
-            {% if newerPost %}
-                <a href="{{ newerPost.url }}" class="button" rel="next">{{ newerPost.data.title or "Next Post" }} &raquo;</a>
+            {% if olderPost %}
+                <a href="{{ olderPost.url }}" class="button" rel="prev">{{ olderPost.data.title or "Older Post" }} &raquo;</a>
             {% endif %}
         </div>
     </nav>
