@@ -18,5 +18,21 @@
                 prose-li:marker:text-[var(--os-border)]">
         {{ content | safe }}
     </div>
+
+    {% set olderPost = collections.post | getPreviousCollectionItem %}
+    {% set newerPost = collections.post | getNextCollectionItem %}
+
+    <nav class="post-navigation flex justify-between mt-8">
+        <div>
+            {% if olderPost %}
+                <a href="{{ olderPost.url }}" class="button" rel="prev">&laquo; {{ olderPost.data.title or "Previous Post" }}</a>
+            {% endif %}
+        </div>
+        <div>
+            {% if newerPost %}
+                <a href="{{ newerPost.url }}" class="button" rel="next">{{ newerPost.data.title or "Next Post" }} &raquo;</a>
+            {% endif %}
+        </div>
+    </nav>
 </article>
 {% endblock %}

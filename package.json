@@ -6,10 +6,10 @@
   "scripts": {
     "build:eleventy": "npx @11ty/eleventy",
     "build:production": "NODE_ENV=production npm run build:eleventy",
-    "watch:eleventy": "npx @11ty/eleventy --serve",
+    "build:gh-pages": "npm run build:production --pathprefix=/greygoldfish.github.io/",
     "build": "npm run build:eleventy",
-    "start": "npm run watch:eleventy",
-    "build-gh-pages": "npm run build:production --pathprefix=/greygoldfish.github.io/",
+    "serve:eleventy": "npx @11ty/eleventy --serve",
+    "serve": "npm run serve:eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

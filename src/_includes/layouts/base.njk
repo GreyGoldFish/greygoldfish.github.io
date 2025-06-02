@@ -8,8 +8,6 @@
             <div class="flex-1 flex flex-col">
                 {% include partials.banner %}
 
-                {% include partials.sidebar %}
-
                 <main tabindex="-1" id="main-content" class="flex-grow p-4">
                     {% block content %}
 
@@ -30,6 +28,7 @@
 
                 {% include partials.footer %}
             </div>
+            {% include partials.sidebar %}
         </div>
     </body>
 </html>
