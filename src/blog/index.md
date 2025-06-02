@@ -12,7 +12,7 @@ pagination:
     prevText: "Newer posts"
     nextText: "Older posts"
     anchor: "#post-list"
-itemList:
+contentDisplay:
     headline: "Recent Posts"
     emptyText: "No posts to display."
 ---

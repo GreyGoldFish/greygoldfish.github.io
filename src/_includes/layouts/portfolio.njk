@@ -1,0 +1,10 @@
+{% extends layouts.base %}
+
+{% block content %}
+<section class="portfolio-layout container mx-auto px-4 py-8 bg-[var(--os-window-bg)] border-x-2 border-b-2 border-[var(--os-border)]">
+    <h2 class="text-2xl font-bold mb-4">My Portfolio</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% include partials.contentDisplay %}
+    </div>
+</section>
+{% endblock %}

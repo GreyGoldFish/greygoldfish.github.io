@@ -27,6 +27,8 @@ const aliases = {
         about: `${dirs.layouts}/about.njk`,
         post: `${dirs.layouts}/post.njk`,
         feed: `${dirs.layouts}/feed.njk`,
+        portfolio: `${dirs.layouts}/portfolio.njk`,
+        project: `${dirs.layouts}/project.njk`,
     },
     partials: {
         metaInfo: `${dirs.partials}/meta-info.njk`,
@@ -37,7 +39,7 @@ const aliases = {
         sidebar: `${dirs.partials}/sidebar.njk`,
         cta: `${dirs.partials}/cta.njk`,
         pagination: `${dirs.partials}/pagination.njk`,
-        itemList: `${dirs.partials}/item-list.njk`,
+        contentDisplay: `${dirs.partials}/content-display.njk`,
         techStack: `${dirs.partials}/tech-stack.njk`,
     }
 };

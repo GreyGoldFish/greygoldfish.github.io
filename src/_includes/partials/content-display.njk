@@ -1,18 +1,18 @@
-{% if itemList %}
-<div class="item-list-container py-4">
+{% if contentDisplay %}
+<div class="content-display-container py-4">
     <div class="space-y-4">
-        {% if itemList.headline %}
-        <h2 class="text-xl font-semibold text-[var(--os-title)] mb-3">{{ itemList.headline | safe }}</h2>
+        {% if contentDisplay.headline %}
+        <h2 class="text-xl font-semibold text-[var(--os-title)] mb-3">{{ contentDisplay.headline | safe }}</h2>
         {% endif %}
         {# If collection is set, use it, otherwise default to pagination #}
-        {% set items = collections[itemList.collection] | default(pagination.items | default([])) %}
+        {% set items = collections[contentDisplay.collection] | default(pagination.items | default([])) %}
 
-        {% if itemList.reverse %}
+        {% if contentDisplay.reverse %}
             {% set items = items | reverse %}
         {% endif %}
 
-        {% if itemList.size and itemList.size > 0 %}
-            {% set items = items.slice(0, itemList.size) %}
+        {% if contentDisplay.size and contentDisplay.size > 0 %}
+            {% set items = items.slice(0, contentDisplay.size) %}
         {% endif %}
 
         {% if items and items.length > 0 %}
@@ -36,7 +36,7 @@
             </ol>
         </div>
         {% else %}
-        <p class="text-center text-base border border-[var(--os-border)] p-4 bg-[var(--os-window-bg)]">{{ itemList.emptyText | default("No items to display.") }}</p>
+        <p class="text-center text-base border border-[var(--os-border)] p-4 bg-[var(--os-window-bg)]">{{ contentDisplay.emptyText | default("No items to display.") }}</p>
         {% endif %}
     </div>
 </div>
