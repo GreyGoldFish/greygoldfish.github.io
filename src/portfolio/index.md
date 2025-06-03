@@ -1,6 +1,6 @@
 ---
 layout: portfolio
-title: "Projects"
+title: "My Projects"
 eleventyNavigation:
     key: "Projects"
 eleventyImport:
@@ -11,7 +11,7 @@ contentDisplay:
   emptyText: "No projects available yet. Check back soon!"
 ---
 
-# Portfolio
+# My Projects
 
 Welcome to my project portfolio. Here you'll find a collection of my work, showcasing various technologies and skills I've developed over time.
 

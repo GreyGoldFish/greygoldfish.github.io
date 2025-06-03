@@ -1,9 +1,6 @@
 {% extends layouts.base %}
 
 {% block content %}
-
-{% include partials.hero %}
-
-{{ content | safe }}
-
+    {% include partials.hero %}
+    {{ content | safe }}
 {% endblock %}

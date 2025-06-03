@@ -1,6 +1,6 @@
-{% set headerTitle = pageHeader.title | default("") %}
-{% set headerSummary = pageHeader.summary | default("") %}
-{% set headerEyebrow = pageHeader.eyebrow | default("") %}
+{% set headerTitle = header.title | default("") %}
+{% set headerSummary = header.summary | default("") %}
+{% set headerEyebrow = header.eyebrow | default("") %}
 
 {% if headerTitle or headerSummary or headerEyebrow %}
 <header class="page-header border-b-2 border-[var(--os-border)] p-4">
@@ -9,7 +9,7 @@
         <p>{{ headerEyebrow | safe }}</p>
         {% endif %}
         {% if headerTitle %}
-        <h1 class="text-3xl font-bold text-[var(--os-accent-text)]">{{ headerTitle | safe }}</h1> {# Changed to --os-accent-text #}
+        <h1 class="text-3xl font-bold text-[var(--os-accent-text)]">{{ headerTitle | safe }}</h1>
         {% endif %}
         {% if headerSummary %}
         <p class="text-lg mt-1">{{ headerSummary | safe }}</p>
