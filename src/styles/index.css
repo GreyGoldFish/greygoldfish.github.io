@@ -1,72 +1,108 @@
 @import "tailwindcss";
 
 @theme {
+    /* Design System Colors */
     --os-bg: theme('colors.slate.900');
     --os-text: theme('colors.cyan.400');
-    --os-accent-text: theme('colors.lime.400');
-    --os-accent-hover-text: theme('colors.lime.300');
+    --os-accent: theme('colors.lime.400');
+    --os-accent-hover: theme('colors.lime.300');
     --os-accent-bg: theme('colors.lime.600');
-    --os-accent-hover-bg: theme('colors.lime.700');
-    --os-secondary-accent-text: theme('colors.amber.400');
-    --os-secondary-accent-hover-text: theme('colors.amber.300');
+    --os-accent-bg-hover: theme('colors.lime.700');
+    --os-secondary: theme('colors.amber.400');
+    --os-secondary-hover: theme('colors.amber.300');
     --os-border: theme('colors.lime.500');
-    --os-window-bg: theme('colors.slate.800');
-    --os-title-bar-bg: theme('colors.slate.700');
-    --os-title-bar-text: theme('colors.lime.400');
-
-    --os-text-shadow-color: theme('colors.cyan.400');
-    --os-accent-text-shadow-color: theme('colors.lime.400');
-    --os-accent-hover-text-shadow-color: theme('colors.lime.300');
+    --os-surface: theme('colors.slate.800');
+    --os-surface-alt: theme('colors.slate.700');
 }
 
 @layer base {
+    /* Core typography and layout */
     body {
-        @apply bg-[var(--os-bg)] text-[var(--os-text)] font-mono;
-        text-shadow: 0 0 5px var(--os-text-shadow-color) / 0.5;
+        @apply bg-[var(--os-bg)] text-[var(--os-text)] font-mono min-h-screen;
+        text-shadow: 0 0 5px color-mix(in srgb, var(--os-text) 50%, transparent);
     }
-    main {
-        @apply flex-grow p-4;
+
+    /* Headings with consistent glow effect */
+    h1, h2, h3, h4, h5, h6 {
+        @apply text-[var(--os-accent)] font-bold;
+        text-shadow: 0 0 5px color-mix(in srgb, var(--os-accent) 70%, transparent);
     }
-    header {
-        @apply p-4 border-b-2 border-[var(--os-border)];
-    }
-    footer {
-        @apply py-6 mt-10 border-t-2 border-[var(--os-border)];
-    }
-    h1, .h1 {
-        @apply text-4xl font-bold mb-4 text-[var(--os-accent-text)];
-        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
-    }
-    h2, .h2 {
-        @apply text-3xl font-bold mb-3 text-[var(--os-accent-text)];
-        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
-    }
-    h3, .h3 {
-        @apply text-2xl font-bold mb-3 text-[var(--os-accent-text)];
-        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
-    }
-    h4, .h4 {
-        @apply text-xl font-bold mb-2 text-[var(--os-accent-text)];
-        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
-    }
-    p {
-        @apply mb-4 leading-relaxed;
-    }
+
+    h1, .h1 { @apply text-4xl mb-4; }
+    h2, .h2 { @apply text-3xl mb-3; }
+    h3, .h3 { @apply text-2xl mb-3; }
+    h4, .h4 { @apply text-xl mb-2; }
+
+    /* Base typography */
+    p { @apply mb-4 leading-relaxed; }
+    
+    /* Links with consistent hover states */
     a {
-        @apply text-[var(--os-accent-text)] hover:text-[var(--os-accent-hover-text)] transition-colors duration-150;
-        text-shadow: 0 0 5px var(--os-accent-text-shadow-color) / 0.7;
+        @apply text-[var(--os-accent)] transition-colors duration-150;
+        text-shadow: 0 0 5px color-mix(in srgb, var(--os-accent) 70%, transparent);
     }
+    
     a:hover {
-        text-shadow: 0 0 8px var(--os-accent-hover-text-shadow-color) / 0.8;
-    }
-    .button {
-        @apply inline-block py-2 px-5 bg-[var(--os-accent-bg)] text-[var(--os-bg)] font-bold no-underline transition-all duration-150 ease-in-out;
-        @apply hover:bg-[var(--os-accent-hover-bg)] hover:shadow-lg;
-        text-shadow: none;
-        border: 1px solid var(--os-border);
+        @apply text-[var(--os-accent-hover)];
+        text-shadow: 0 0 8px color-mix(in srgb, var(--os-accent-hover) 80%, transparent);
     }
 }
 
+@layer components {
+    /* Primary button component */
+    .button {
+        @apply inline-block py-2 px-5 font-bold no-underline transition-all duration-150;
+        @apply bg-[var(--os-accent-bg)] text-[var(--os-bg)] border border-[var(--os-border)];
+        @apply hover:bg-[var(--os-accent-bg-hover)] hover:shadow-lg;
+        text-shadow: none;
+    }
+
+    /* Layout components */
+    .layout-surface {
+        @apply bg-[var(--os-surface)] border border-[var(--os-border)];
+    }
+
+    .layout-header {
+        @apply p-4 border-b-2 border-[var(--os-border)];
+    }
+
+    .layout-footer {
+        @apply py-6 mt-10 border-t-2 border-[var(--os-border)];
+    }
+
+    .layout-main {
+        @apply flex-grow p-4;
+    }
+}
+
+@layer utilities {
+    /* Accessibility utilities */
+    .sr-only {
+        @apply absolute overflow-hidden whitespace-nowrap border-0;
+        clip: rect(0, 0, 0, 0);
+        width: 1px;
+        height: 1px;
+        position: absolute !important;
+    }
+
+    .sr-only:focus {
+        @apply p-2 bg-[var(--os-accent-bg)] text-[var(--os-bg)] no-underline;
+        @apply w-auto h-auto overflow-visible whitespace-normal;
+        clip: auto;
+        text-shadow: none;
+    }
+
+    /* Text glow utilities */
+    .text-glow {
+        text-shadow: 0 0 5px color-mix(in srgb, currentColor 50%, transparent);
+    }
+
+    .text-glow-strong {
+        text-shadow: 0 0 8px color-mix(in srgb, currentColor 70%, transparent);
+    }
+}
+
+/* Scoped overrides for specific contexts */
 header a,
 footer a {
     @apply text-base;
@@ -74,15 +110,4 @@ footer a {
 
 footer .tech-stack p {
     @apply text-base text-[var(--os-text)];
-}
-
-// Accessibility styles
-.sr-only {
-    @apply absolute w-px h-px overflow-hidden whitespace-nowrap border-0;
-    clip: rect(0, 0, 0, 0);
-    position: absolute !important;
-}
-.sr-only.focus\:not-sr-only {
-    @apply p-2 bg-[var(--os-accent-bg)] text-[var(--os-bg)] no-underline;
-    text-shadow: none;
 }
