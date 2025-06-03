@@ -16,8 +16,8 @@
     <h2 id="{{ listId }}-heading" class="sr-only">{{ listHeadingText }}</h2>
     <ol class="pagination-list flex justify-center items-center space-x-1" aria-labelledby="{{ listId }}-heading">
         {# Previous Link #}
-        <li class="pagination-item pagination-item--prev{% if not pagination.href.previous %} pagination-item--disabled opacity-50 pointer-events-none{% endif %}">
-            <a {% if pagination.href.previous %} href="{{ pagination.href.previous }}{{ anchor }}" {% else %} aria-disabled="true" {% endif %} class="pagination-link button" rel="prev">{{ prevText }}</a>
+        <li class="{% if not pagination.href.previous %}opacity-50 pointer-events-none{% endif %}">
+            <a {% if pagination.href.previous %} href="{{ pagination.href.previous }}{{ anchor }}" {% else %} aria-disabled="true" {% endif %} class="button" rel="prev">{{ prevText }}</a>
         </li>
 
         {% set lastPageShown = -1 %} {# Used to determine when to show an ellipsis #}
@@ -40,24 +40,20 @@
             {% if showPage %}
                 {# If there was a gap since the last shown page number, print an ellipsis #}
                 {% if lastPageShown != -1 and i > lastPageShown + 1 %}
-                    <li class="pagination-item pagination-item--ellipsis px-3 py-2" aria-hidden="true">&hellip;</li> {# Standard HTML entity for ellipsis #}
+                    <li class="px-3 py-2" aria-hidden="true">&hellip;</li> {# Standard HTML entity for ellipsis #}
                 {% endif %}
 
-                <li class="pagination-item pagination-item--number">
-                    {% if isCurrentPage %}
-                        <span class="pagination-link button bg-[var(--os-accent-bg)] text-[var(--os-bg)] border-[var(--os-accent-bg)] pointer-events-none" aria-current="page" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }} (current page)">{{ pageNumToDisplay }}</span>
+                <li class="pagination-item">                    {% if isCurrentPage %}
+                        <span class="button bg-[var(--os-accent-bg-hover)] pointer-events-none" aria-current="page" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }} (current page)">{{ pageNumToDisplay }}</span>
                     {% else %}
-                        <a href="{{ pageHrefs[i] }}{{ anchor }}" class="pagination-link button"
-                           aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }}">{{ pageNumToDisplay }}</a>
+                        <a href="{{ pageHrefs[i] }}{{ anchor }}" class="button" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }}">{{ pageNumToDisplay }}</a>
                     {% endif %}
                 </li>
                 {% set lastPageShown = i %} {# Update the last page number that was actually rendered #}
             {% endif %}
-        {% endfor %}
-
-        {# Next Link #}
-        <li class="pagination-item pagination-item--next{% if not pagination.href.next %} pagination-item--disabled opacity-50 pointer-events-none{% endif %}">
-            <a {% if pagination.href.next %}href="{{ pagination.href.next }}{{ anchor }}"{% else %} aria-disabled="true" {% endif %} class="pagination-link button" rel="next">{{ nextText }}</a>
+        {% endfor %}        {# Next Link #}
+        <li class="{% if not pagination.href.next %}opacity-50 pointer-events-none{% endif %}">
+            <a {% if pagination.href.next %}href="{{ pagination.href.next }}{{ anchor }}"{% else %} aria-disabled="true" {% endif %} class="button" rel="next">{{ nextText }}</a>
         </li>
     </ol>
 </nav>

@@ -1,11 +1,14 @@
 {% extends layouts.base %}
 
 {% block content %}
-<article>
+<article class="layout-main container mx-auto px-4 py-8 bg-[var(--os-window-bg)] border-x-2 border-b-2 border-[var(--os-border)]">
     {% include partials.header %}
-
     {% include partials.contentDisplay %}
-
     {% include partials.pagination %}
 </article>
+{% endblock %}
+
+{% block cta %}
+    {% set cta = ctas["about"] %}
+    {% include partials.cta %}
 {% endblock %}

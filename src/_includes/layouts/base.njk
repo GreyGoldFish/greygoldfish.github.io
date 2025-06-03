@@ -22,17 +22,6 @@
 
                 {# Call-to-action section #}
                 {% block cta %}
-                    {% if cta and ctas[cta] %}
-                        {% set cta = ctas[cta] %}
-                        <section class="mt-8">
-                            {% include partials.cta %}
-                        </section>
-                    {% else %}
-                        {% set cta = ctas.default %}
-                        <section class="mt-8">
-                            {% include partials.cta %}
-                        </section>
-                    {% endif %}
                 {% endblock %}
             </main>
 

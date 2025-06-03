@@ -1,38 +1,37 @@
 {% extends layouts.base %}
 
 {% block content %}
-<article class="post-layout container mx-auto px-4 py-8 bg-[var(--os-window-bg)] border-x-2 border-b-2 border-[var(--os-border)]">
+<article class="layout-main container mx-auto px-4 py-8 bg-[var(--os-window-bg)] border-x-2 border-b-2 border-[var(--os-border)]">
     {% include partials.header %}
 
     <div class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none 
-                prose-headings:text-[var(--os-accent-text)] prose-headings:[text-shadow:var(--os-accent-text-shadow)]
+                prose-headings:text-[var(--os-accent)] prose-headings:[text-shadow:var(--os-accent-text-shadow)]
                 prose-p:text-[var(--os-text)] prose-p:[text-shadow:var(--os-text-shadow)]
-                prose-a:text-[var(--os-accent-text)] hover:prose-a:text-[var(--os-accent-hover-text)] prose-a:[text-shadow:var(--os-accent-text-shadow)]
+                prose-a:text-[var(--os-accent)] hover:prose-a:text-[var(--os-accent-hover)] prose-a:[text-shadow:var(--os-accent-text-shadow)]
                 prose-strong:text-[var(--os-text)] prose-strong:[text-shadow:var(--os-text-shadow)]
                 prose-em:text-[var(--os-text)] prose-em:[text-shadow:var(--os-text-shadow)]
                 prose-code:text-[var(--os-secondary-accent-text)] prose-code:bg-[var(--os-title-bar-bg)] prose-code:p-1 prose-code:rounded-none prose-code:font-mono prose-code:[text-shadow:none]
                 prose-pre:bg-[var(--os-title-bar-bg)] prose-pre:text-[var(--os-secondary-accent-text)] prose-pre:p-4 prose-pre:rounded-none prose-pre:font-mono prose-pre:[text-shadow:none]
                 prose-blockquote:border-[var(--os-border)] prose-blockquote:text-[var(--os-text)] prose-blockquote:[text-shadow:var(--os-text-shadow)]
-                prose-ul:text-[var(--os-text)] prose-ul:[text-shadow:var(--os-text-shadow)]
-                prose-ol:text-[var(--os-text)] prose-ol:[text-shadow:var(--os-text-shadow)]
-                prose-li:marker:text-[var(--os-border)]">
+    ">
         {{ content | safe }}
     </div>
 
     {% set olderPost = collections.post | getPreviousCollectionItem %}
     {% set newerPost = collections.post | getNextCollectionItem %}
 
-    <nav class="post-navigation flex justify-between mt-8">
-        <div>
-            {% if newerPost %}
-                <a href="{{ newerPost.url }}" class="button" rel="next">&laquo; {{ newerPost.data.title or "Newer Post" }} </a>
-            {% endif %}
-        </div>
-        <div>
-            {% if olderPost %}
-                <a href="{{ olderPost.url }}" class="button" rel="prev">{{ olderPost.data.title or "Older Post" }} &raquo;</a>
-            {% endif %}
-        </div>
+    {% if olderPost or newerPost %}
+    <nav class="flex justify-between mt-8 pt-6 border-t border-[var(--os-border)]">
+        {% if newerPost %}
+            <a href="{{ newerPost.url }}" class="button">← {{ newerPost.data.title }}</a>
+        {% else %}
+            <span></span>
+        {% endif %}
+
+        {% if olderPost %}
+            <a href="{{ olderPost.url }}" class="button">{{ olderPost.data.title }} →</a>
+        {% endif %}
     </nav>
+    {% endif %}
 </article>
 {% endblock %}

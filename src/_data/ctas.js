@@ -5,16 +5,22 @@ export default {
         url: "/contact",
         buttonText: "Contact Me",
     },
-    blog: {
-        "title": "Blog",
-        "description": "Read my latest posts.",
-        "url": "/blog",
-        "buttonText": "Read More",
-    },
     about: {
         "title": "About Me",
         "description": "Learn more about my journey and experiences.",
         "url": "/about",
         "buttonText": "Learn More",
+    },
+    portfolio: {
+        "title": "My Portfolio",
+        "description": "Explore my projects and case studies.",
+        "url": "/portfolio",
+        "buttonText": "View Portfolio",
+    },
+    blog: {
+        "title": "Blog",
+        "description": "Read my latest posts.",
+        "url": "/blog",
+        "buttonText": "Read More",
     },
 }

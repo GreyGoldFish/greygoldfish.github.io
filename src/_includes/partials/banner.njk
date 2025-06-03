@@ -1,8 +1,7 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50">{{ site.skipToContentText }}</a>
 <header role="banner" class="flex items-center justify-between sticky top-0 z-50 bg-[var(--os-bg)] p-4 shadow-md">
-	{# Skip to content link #}
 	{# Site Logo/Name #}
-	<a href="/" aria-label="{{ site.name }} - home" class="font-bold hover:text-[var(--os-accent-hover-bg)]">
+	<a href="/" aria-label="{{ site.name }} - home" class="font-bold hover:text-[var(--os-accent-hover)]">
 		{% if site.logo %}
 		<img src="{{ site.logo }}" alt="{{ site.name }} logo" class="h-8 w-auto max-h-full" />
 		{% else %}
@@ -15,7 +14,7 @@
 		{% set navPages = collections.all | eleventyNavigation %}
 		<ul class="flex space-x-4">
 		{%- for entry in navPages %}
-		<li class="{% if entry.url == page.url %}font-bold text-[var(--os-accent-hover-bg)]{% else %}text-[var(--os-text)]{% endif %}">
+		<li class="{% if entry.url == page.url %}font-bold text-[var(--os-accent-hover)]{% else %}text-[var(--os-text)]{% endif %}">
 			<a href="{{ entry.url }}">{{ entry.title }}</a>
 		</li>
 		{%- endfor %}

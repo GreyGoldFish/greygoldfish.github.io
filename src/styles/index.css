@@ -13,19 +13,28 @@
     --os-border: theme('colors.lime.500');
     --os-surface: theme('colors.slate.800');
     --os-surface-alt: theme('colors.slate.700');
+    
+    /* Window/UI System Colors */
+    --os-window-bg: theme('colors.slate.800');
+    --os-title-bar-bg: theme('colors.slate.700');
+    --os-secondary-accent-text: theme('colors.amber.400');
+    
+    /* Text Effects */
+    --os-text-shadow: 0 0 5px color-mix(in srgb, var(--os-text) 50%, transparent);
+    --os-accent-text-shadow: 0 0 5px color-mix(in srgb, var(--os-accent) 70%, transparent);
 }
 
 @layer base {
     /* Core typography and layout */
     body {
         @apply bg-[var(--os-bg)] text-[var(--os-text)] font-mono min-h-screen;
-        text-shadow: 0 0 5px color-mix(in srgb, var(--os-text) 50%, transparent);
+        text-shadow: var(--os-text-shadow);
     }
 
     /* Headings with consistent glow effect */
     h1, h2, h3, h4, h5, h6 {
         @apply text-[var(--os-accent)] font-bold;
-        text-shadow: 0 0 5px color-mix(in srgb, var(--os-accent) 70%, transparent);
+        text-shadow: var(--os-accent-text-shadow);
     }
 
     h1, .h1 { @apply text-4xl mb-4; }
@@ -39,7 +48,7 @@
     /* Links with consistent hover states */
     a {
         @apply text-[var(--os-accent)] transition-colors duration-150;
-        text-shadow: 0 0 5px color-mix(in srgb, var(--os-accent) 70%, transparent);
+        text-shadow: var(--os-accent-text-shadow);
     }
     
     a:hover {

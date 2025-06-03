@@ -1,8 +1,14 @@
 {% extends layouts.base %}
 
 {% block content %}
-<section class="portfolio-layout container mx-auto px-4 py-8 bg-[var(--os-window-bg)] border-x-2 border-b-2 border-[var(--os-border)]">
-    {{ content | safe }}
+<article class="layout-main container mx-auto px-4 py-8 bg-[var(--os-window-bg)] border-x-2 border-b-2 border-[var(--os-border)]">
+    {% include partials.header %}
+    <section class="prose prose-lg max-w-none 
+                   prose-headings:text-[var(--os-accent)] 
+                   prose-p:text-[var(--os-text)] 
+                   prose-a:text-[var(--os-accent)] hover:prose-a:text-[var(--os-accent-hover)]">
+        {{ content | safe }}
+    </section>
     {% include partials.contentDisplay %}
-</section>
+</article>
 {% endblock %}
