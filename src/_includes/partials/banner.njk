@@ -1,23 +1,33 @@
-<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50">{{ site.skipToContentText }}</a>
+{% set socials = socialData %}
+
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50">{{ siteData.skipToContentText }}</a>
 <header role="banner" class="flex items-center justify-between sticky top-0 z-50 bg-[var(--os-bg)] p-4 shadow-md">
 	{# Site Logo/Name #}
-	<a href="/" aria-label="{{ site.name }} - home" class="font-bold hover:text-[var(--os-accent-hover)]">
-		{% if site.logo %}
-		<img src="{{ site.logo }}" alt="{{ site.name }} logo" class="h-8 w-auto max-h-full" />
+	<a href="/" aria-label="{{ siteData.name }} - home" class="font-bold hover:text-[var(--os-accent-hover)]">
+		{% if siteData.logo %}
+		<img src="{{ siteData.logo }}" alt="{{ siteData.name }} logo" class="h-8 w-auto max-h-full" />
 		{% else %}
-			{{ site.name }}
+			{{ siteData.name }}
 		{% endif %}
 	</a>
 
-	{# Primary Navigation #}
-	<nav aria-label="Primary Navigation">
-		{% set navPages = collections.all | eleventyNavigation %}
-		<ul class="flex space-x-4">
-		{%- for entry in navPages %}
-		<li class="{% if entry.url == page.url %}font-bold text-[var(--os-accent-hover)]{% else %}text-[var(--os-text)]{% endif %}">
-			<a href="{{ entry.url }}">{{ entry.title }}</a>
-		</li>
-		{%- endfor %}
-		</ul>
-	</nav>
+	{# Navigation and Social Links Container #}
+	<div class="flex items-center space-x-6">
+		{# Primary Navigation #}
+		<nav aria-label="Primary Navigation">
+			{% set navPages = collections.all | eleventyNavigation %}
+			<ul class="flex space-x-4">
+			{%- for entry in navPages %}
+			<li class="{% if entry.url == page.url %}font-bold text-[var(--os-accent-hover)]{% else %}text-[var(--os-text)]{% endif %}">
+				<a href="{{ entry.url }}">{{ entry.title }}</a>
+			</li>
+			{%- endfor %}
+			</ul>
+		</nav>
+
+		{# Social Links #}
+		<div class="social-links-header">
+			{% include partials.socialLink %}
+		</div>
+	</div>
 </header>

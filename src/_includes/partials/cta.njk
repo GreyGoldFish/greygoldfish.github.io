@@ -1,12 +1,12 @@
 {% if ctas and ctas.length > 0 %}
-    {% for cta_entry in ctas %}
+    {% for cta in ctas %}
         {% set cta_data = null %}
-        {% if cta_entry is string %}
-            {# It's a key, look it up in the global cta_definitions #}
-            {% set cta_data = cta_definitions[cta_entry] %}
-        {% elif cta_entry is mapping %}
+        {% if cta is string %}
+            {# It's a key, look it up in the global ctaData #}
+            {% set cta_data = ctaData[cta] %}
+        {% elif cta is mapping %}
             {# It's a custom CTA object defined directly in front matter #}
-            {% set cta_data = cta_entry %}
+            {% set cta_data = cta %}
         {% endif %}
 
         {% if cta_data %}
@@ -44,8 +44,8 @@
             </div>
         </article>
         {% else %}
-            {% if cta_entry is string %}
-                <!-- CTA with key '{{ cta_entry }}' not found in cta_definitions. -->
+            {% if cta is string %}
+                <!-- CTA with key '{{ cta }}' not found in cta_definitions. -->
             {% else %}
                 <!-- Invalid CTA entry in front matter. -->
             {% endif %}

@@ -1,0 +1,22 @@
+{% set tooltip_text = tooltip_text | default("") %}
+{% set tooltip_position = tooltip_position | default("bottom") %}
+
+{% if tooltip_text %}
+  {% if tooltip_position == "top" %}
+    <span class="tooltip-text absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+      {{ tooltip_text }}
+    </span>
+  {% elif tooltip_position == "bottom" %}
+    <span class="tooltip-text absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+      {{ tooltip_text }}
+    </span>
+  {% elif tooltip_position == "left" %}
+    <span class="tooltip-text absolute right-full mr-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+      {{ tooltip_text }}
+    </span>
+  {% elif tooltip_position == "right" %}
+    <span class="tooltip-text absolute left-full ml-2 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+      {{ tooltip_text }}
+    </span>
+  {% endif %}
+{% endif %}

@@ -1,0 +1,29 @@
+{% if socials %}
+<ul class="social-links flex justify-center space-x-4">
+    {% for key, social_item in socials %}
+        {% if social_item %}
+            {% set social_url = social_item.url | url %}
+            {% set social_title = social_item.name | default(key | capitalize) %}
+            {% set social_aria_label = social_item.ariaLabel | default(social_title) %}
+            {% set social_icon_src = social_item.iconSrc | default("") %}
+
+            <li class="tooltip relative group">
+                <a href="{{ social_url }}" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   aria-label="{{ social_aria_label }}"
+                   title="{{ social_title }}"
+                   class="inline-block p-1 border border-transparent hover:border-[var(--os-border)] text-[var(--os-accent)] hover:text-[var(--os-accent-hover)]">
+                    {% if social_icon_src %}
+                        <img src="{{ social_icon_src | url }}" alt="{{ social_title }} logo" class="h-7 w-7">
+                    {% else %}
+                        <span class="text-sm">{{ social_title }}</span>
+                    {% endif %}                </a>
+                {% set tooltip_text = social_title %}
+                {% set tooltip_position = "bottom" %}
+                {% include partials.tooltip %}
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}

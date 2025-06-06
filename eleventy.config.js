@@ -40,8 +40,10 @@ const aliases = {
         sidebar: `${dirs.partials}/sidebar.njk`,
         cta: `${dirs.partials}/cta.njk`,
         pagination: `${dirs.partials}/pagination.njk`,
-        contentDisplay: `${dirs.partials}/content-display.njk`,
-        techStack: `${dirs.partials}/tech-stack.njk`,
+        contentDisplay: `${dirs.partials}/content-display.njk`,        techStack: `${dirs.partials}/tech-stack.njk`,
+        contactForm: `${dirs.partials}/contact-form.njk`,
+        socialLink: `${dirs.partials}/social-link.njk`,
+        tooltip: `${dirs.partials}/tooltip.njk`,
     }
 };
 
