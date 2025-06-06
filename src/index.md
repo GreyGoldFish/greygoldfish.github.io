@@ -7,5 +7,10 @@ hero:
     title: "Lucas Aquino de Assis"
     eyebrow: "Computer Scientist"
     intro: "is a developer"
-cta: "blog"
+ctas:
+    - blog
+    - work
+    - about
+    - contact
+    - subscribe
 ---

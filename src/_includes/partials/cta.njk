@@ -1,13 +1,54 @@
-<article class="border border-[var(--os-border)] p-6 my-6">
-    <div class="flex flex-col items-center text-center">
-        <div class="max-w-2xl">
-            <h2 class="text-2xl font-bold mb-3">{{ cta.title }}</h2>
-            <p class="text-base mb-5">{{ cta.description }}</p>
-            <div class="mt-5">
-                <a href="{{ cta.url }}" class="button text-base">
-                    {{ cta.buttonText }}
-                </a>
+{% if ctas and ctas.length > 0 %}
+    {% for cta_entry in ctas %}
+        {% set cta_data = null %}
+        {% if cta_entry is string %}
+            {# It's a key, look it up in the global cta_definitions #}
+            {% set cta_data = cta_definitions[cta_entry] %}
+        {% elif cta_entry is mapping %}
+            {# It's a custom CTA object defined directly in front matter #}
+            {% set cta_data = cta_entry %}
+        {% endif %}
+
+        {% if cta_data %}
+        <article class="cta border border-[var(--os-border)] p-6 my-6">
+            <div class="flex flex-col items-center text-center">
+                <div class="max-w-2xl">
+                    {% if cta_data.label %}
+                        <p class="text-sm uppercase tracking-wide text-[var(--os-secondary-text)] mb-2">{{ cta_data.label }}</p>
+                    {% endif %}
+                    
+                    {% if cta_data.title %}
+                        <h2 class="text-2xl font-bold mb-4 text-[var(--os-accent)]">{{ cta_data.title }}</h2>
+                    {% endif %}
+                    
+                    {% if cta_data.text %}
+                        <p class="text-lg mb-6 text-[var(--os-text)]">{{ cta_data.text }}</p>
+                    {% endif %}
+                    
+                    {% if cta_data.button and cta_data.url %}
+                        <a href="{{ cta_data.url | url }}" 
+                           class="button text-base {% if cta_data.style == 'secondary' %}secondary{% elif cta_data.style == 'accent' %}accent{% endif %}"
+                           {% if cta_data.external %}target="_blank" rel="noopener"{% endif %}>
+                            {{ cta_data.button }}
+                        </a>
+                    {% endif %}
+                    
+                    {% if cta_data.alt %}
+                        <a href="{{ cta_data.alt.url | url }}" 
+                           class="outline text-base ml-4"
+                           {% if cta_data.alt.external %}target="_blank" rel="noopener"{% endif %}>
+                            {{ cta_data.alt.text }}
+                        </a>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    </div>
-</article>
+        </article>
+        {% else %}
+            {% if cta_entry is string %}
+                <!-- CTA with key '{{ cta_entry }}' not found in cta_definitions. -->
+            {% else %}
+                <!-- Invalid CTA entry in front matter. -->
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
