@@ -1,17 +1,51 @@
-<form action="YOUR_FORMSPREE_ENDPOINT" method="POST" class="space-y-6">
-    <div>
-        <label for="name" class="block text-sm font-medium text-[var(--os-text)]">Full Name</label>
-        <input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 bg-[var(--os-input-bg)] border border-[var(--os-border)] rounded-md shadow-sm focus:outline-none focus:ring-[var(--os-accent)] focus:border-[var(--os-accent)] sm:text-sm text-[var(--os-text)]">
+<form action="{{ siteData.contact.form.endpoint }}" method="POST" class="space-y-6">
+    <input type="hidden" name="_subject" value="New contact from {{ siteData.name }}">
+    <input type="hidden" name="_language" value="en">
+    <input type="hidden" name="_next" value="{{ siteData.url }}/contact/?success=true">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <label for="name" class="block text-sm font-medium text-[var(--os-text)] mb-1">
+                Full Name <span class="text-red-500">*</span>
+            </label>
+            <input type="text" name="name" id="name" required 
+                   class="mt-1 block w-full px-3 py-2 bg-[var(--os-surface)] border border-[var(--os-border)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--os-accent)] focus:border-[var(--os-accent)] sm:text-sm text-[var(--os-text)]">
+        </div>
+        
+        <div>
+            <label for="email" class="block text-sm font-medium text-[var(--os-text)] mb-1">
+                Email Address <span class="text-red-500">*</span>
+            </label>
+            <input type="email" name="email" id="email" required 
+                   class="mt-1 block w-full px-3 py-2 bg-[var(--os-surface)] border border-[var(--os-border)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--os-accent)] focus:border-[var(--os-accent)] sm:text-sm text-[var(--os-text)]">
+        </div>
     </div>
+    
     <div>
-        <label for="email" class="block text-sm font-medium text-[var(--os-text)]">Email Address</label>
-        <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 bg-[var(--os-input-bg)] border border-[var(--os-border)] rounded-md shadow-sm focus:outline-none focus:ring-[var(--os-accent)] focus:border-[var(--os-accent)] sm:text-sm text-[var(--os-text)]">
+        <label for="subject" class="block text-sm font-medium text-[var(--os-text)] mb-1">
+            Subject
+        </label>
+        <input type="text" name="subject" id="subject" 
+               placeholder="What is this about?"
+               class="mt-1 block w-full px-3 py-2 bg-[var(--os-surface)] border border-[var(--os-border)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--os-accent)] focus:border-[var(--os-accent)] sm:text-sm text-[var(--os-text)]">
     </div>
+    
     <div>
-        <label for="message" class="block text-sm font-medium text-[var(--os-text)]">Message</label>
-        <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-3 py-2 bg-[var(--os-input-bg)] border border-[var(--os-border)] rounded-md shadow-sm focus:outline-none focus:ring-[var(--os-accent)] focus:border-[var(--os-accent)] sm:text-sm text-[var(--os-text)]"></textarea>
+        <label for="message" class="block text-sm font-medium text-[var(--os-text)] mb-1">
+            Message <span class="text-red-500">*</span>
+        </label>
+        <textarea id="message" name="message" rows="6" required 
+                  placeholder="Tell me about your project, question, or how I can help..."
+                  class="mt-1 block w-full px-3 py-2 bg-[var(--os-surface)] border border-[var(--os-border)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--os-accent)] focus:border-[var(--os-accent)] sm:text-sm text-[var(--os-text)]"></textarea>
+        <p class="mt-1 text-xs text-[var(--os-text)]/70">Minimum 10 characters</p>
     </div>
-    <div>
-        <button type="submit" class="button accent">Send Message</button>
+    
+    <div class="flex items-center justify-between">
+        <p class="text-xs text-[var(--os-text)]/70">
+            <span class="text-red-500">*</span> Required fields
+        </p>
+        <button type="submit" class="button accent">
+            Send Message
+        </button>
     </div>
 </form>

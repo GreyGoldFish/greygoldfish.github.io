@@ -44,10 +44,9 @@
 
     /* Base typography */
     p { @apply mb-4 leading-relaxed; }
-    
-    /* Links with consistent hover states */
+      /* Links with consistent hover states */
     a {
-        @apply text-[var(--os-accent)] transition-colors duration-150;
+        @apply text-[var(--os-accent)] transition-colors duration-150 cursor-pointer;
         text-shadow: var(--os-accent-text-shadow);
     }
     
@@ -57,13 +56,37 @@
     }
 }
 
-@layer components {
-    /* Primary button component */
+@layer components {    /* Primary button component */
     .button {
-        @apply inline-block py-2 px-5 font-bold no-underline transition-all duration-150;
+        @apply inline-block py-2 px-5 font-bold no-underline transition-all duration-150 cursor-pointer;
         @apply bg-[var(--os-accent-bg)] text-[var(--os-bg)] border border-[var(--os-border)];
         @apply hover:bg-[var(--os-accent-bg-hover)] hover:shadow-lg;
         text-shadow: none;
+    }    .button:disabled {
+        @apply opacity-60 cursor-not-allowed;
+    }
+
+    .button.accent {
+        @apply bg-[var(--os-accent)] text-[var(--os-bg)] border-[var(--os-accent)];
+        @apply hover:bg-[var(--os-accent-hover)] hover:border-[var(--os-accent-hover)];
+    }
+
+    .button.secondary {
+        @apply bg-[var(--os-secondary)] text-[var(--os-bg)] border-[var(--os-secondary)];
+        @apply hover:bg-[var(--os-secondary-hover)] hover:border-[var(--os-secondary-hover)];
+    }
+
+    /* Form elements */
+    button, 
+    input[type="submit"], 
+    input[type="button"] {
+        @apply cursor-pointer;
+    }
+
+    button:disabled,
+    input[type="submit"]:disabled,
+    input[type="button"]:disabled {
+        @apply cursor-not-allowed;
     }
 
     /* Layout components */

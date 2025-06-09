@@ -4,11 +4,10 @@ export default {
     url: "https://github.com/greygoldfish",
     ariaLabel: "My GitHub Profile",
     iconSrc: "/assets/icons/Git.svg" // Using existing Git icon as placeholder
-  },
-  linkedin: {
+  },  linkedin: {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/yourprofile", // Replace with your LinkedIn URL
+    url: "https://linkedin.com/in/lucas-aquino-de-assis", // Update with your actual LinkedIn URL
     ariaLabel: "My LinkedIn Profile",
-    iconSrc: "/assets/icons/Node.js.svg" // Placeholder - you'll need a LinkedIn icon
+    iconSrc: "/assets/icons/Git.svg" // Temporary placeholder - add a proper LinkedIn icon
   },
 };

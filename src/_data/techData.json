@@ -23,10 +23,9 @@
         "name": "JavaScript",
         "iconSrc": "/assets/icons/JavaScript.svg",
         "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-    },
-    {
+    },    {
         "name": "Git",
-        "iconSrc": "/assets/icons/git.svg",
+        "iconSrc": "/assets/icons/Git.svg",
         "url": "https://git-scm.com/"
     }
 ]
