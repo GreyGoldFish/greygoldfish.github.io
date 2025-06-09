@@ -1,31 +1,50 @@
 {% if hero %}
-<section class="border border-[var(--os-border)] p-6 my-6 text-center">
-    <div class="max-w-3xl mx-auto">
-        {% if hero.eyebrow %}
-        <p class="text-sm uppercase tracking-wider mb-2">{{ hero.eyebrow | safe }}</p>
+<section class="relative bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-bg)] border border-[var(--color-border)] rounded-lg overflow-hidden my-8">
+    <div class="relative z-10 px-8 py-16 text-center">
+        <div class="max-w-4xl mx-auto">
+            {% if hero.eyebrow %}
+            <div class="inline-block">
+                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-3 py-1 rounded-full border border-[var(--color-accent)]/20">
+                    {{ hero.eyebrow | safe }}
+                </span>
+            </div>
+            {% endif %}
+            
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--color-text)] mt-6 mb-4 leading-tight">
+                {{ hero.title | default(title) | safe }}
+            </h1>
+            
+            {% if hero.intro %}
+            <p class="text-xl md:text-2xl text-[var(--color-accent)] font-medium mb-8 leading-relaxed">
+                {{ hero.intro | safe }}
+            </p>
+            {% endif %}
+        </div>
+        
+        {% if hero.summary %}
+        <div class="max-w-2xl mx-auto mt-8">
+            <p class="text-lg text-[var(--color-secondary-text)] leading-relaxed">{{ hero.summary | safe }}</p>
+        </div>
         {% endif %}
-        <h1 class="text-4xl font-bold mb-4">{{ hero.title | default(title) | safe }}</h1>
-        {% if hero.intro %}
-        <p class="text-lg leading-relaxed mb-6">{{ hero.intro | safe }}</p>
+        
+        {% if hero.media %}
+        <div class="mt-12">
+            {{ hero.media | safe }}
+        </div>
+        {% endif %}
+        
+        {% if hero.buttonText and hero.buttonLink %}
+        <div class="mt-12">
+            <a href="{{ hero.buttonLink | url }}" class="button accent text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                {{ hero.buttonText | safe }}
+            </a>
+        </div>
         {% endif %}
     </div>
-    {% if hero.summary %}
-    <div class="max-w-2xl mx-auto my-6">
-        <p class="text-base leading-relaxed">{{ hero.summary | safe }}</p>
+    
+    <!-- Subtle background pattern -->
+    <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)] to-transparent"></div>
     </div>
-    {% endif %}
-    {% if hero.media %}
-    <div class="my-6">
-        {{ hero.media | safe }}
-    </div>
-    {% endif %}
-    {% if hero.buttonText and hero.buttonLink %}
-    <div class="mt-8">
-        {# Apply base button class and ensure text/padding matches global button style #}
-        <a href="{{ hero.buttonLink | url }}" class="button">
-            {{ hero.buttonText | safe }}
-        </a>
-    </div>
-    {% endif %}
 </section>
 {% endif %}

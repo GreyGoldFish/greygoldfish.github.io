@@ -1,114 +1,218 @@
 @import "tailwindcss";
 
 @theme {
-    /* Design System Colors */
-    --os-bg: theme('colors.slate.900');
-    --os-text: theme('colors.cyan.400');
-    --os-accent: theme('colors.lime.400');
-    --os-accent-hover: theme('colors.lime.300');
-    --os-accent-bg: theme('colors.lime.600');
-    --os-accent-bg-hover: theme('colors.lime.700');
-    --os-secondary: theme('colors.amber.400');
-    --os-secondary-hover: theme('colors.amber.300');
-    --os-border: theme('colors.lime.500');
-    --os-surface: theme('colors.slate.800');
-    --os-surface-alt: theme('colors.slate.700');
+    /* Design System - Core Colors */
+    --color-bg: theme('colors.slate.900');
+    --color-text: theme('colors.cyan.400');
+    --color-accent: theme('colors.lime.400');
+    --color-accent-hover: theme('colors.lime.300');
+    --color-accent-bg: theme('colors.lime.600');
+    --color-accent-bg-hover: theme('colors.lime.700');
+    --color-secondary: theme('colors.amber.400');
+    --color-secondary-hover: theme('colors.amber.300');
+    --color-border: theme('colors.lime.500');
+    --color-surface: theme('colors.slate.800');
+    --color-surface-alt: theme('colors.slate.700');
+    --color-window-bg: theme('colors.slate.800');
+    --color-title-bar-bg: theme('colors.slate.700');
     
-    /* Window/UI System Colors */
-    --os-window-bg: theme('colors.slate.800');
-    --os-title-bar-bg: theme('colors.slate.700');
-    --os-secondary-accent-text: theme('colors.amber.400');
+    /* Design System - Semantic Colors */
+    --color-accent-text: theme('colors.lime.400');
+    --color-accent-hover-text: theme('colors.lime.300');
+    --color-secondary-text: theme('colors.amber.300');
+    --color-secondary-accent-text: theme('colors.amber.200');
     
-    /* Text Effects */
-    --os-text-shadow: 0 0 5px color-mix(in srgb, var(--os-text) 50%, transparent);
-    --os-accent-text-shadow: 0 0 5px color-mix(in srgb, var(--os-accent) 70%, transparent);
+    /* Design System - Effects */
+    --shadow-text: 0 0 5px color-mix(in srgb, var(--color-text) 50%, transparent);
+    --shadow-accent: 0 0 5px color-mix(in srgb, var(--color-accent) 70%, transparent);
+    --shadow-accent-strong: 0 0 8px color-mix(in srgb, var(--color-accent) 80%, transparent);
+    --shadow-glow: 0 0 8px color-mix(in srgb, var(--color-accent) 50%, transparent);
+    --color-accent-text-shadow: var(--shadow-accent);
+    
+    /* Design System - Transitions */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.2s ease-in-out;
+    
+    /* Design System - Filters */
+    --filter-invert-light: brightness(0) saturate(100%) invert(0);
+    --filter-invert-dark: brightness(0) saturate(100%) invert(1);
 }
 
 @layer base {
-    /* Core typography and layout */
+    /* Core Typography & Layout */
     body {
-        @apply bg-[var(--os-bg)] text-[var(--os-text)] font-mono min-h-screen;
-        text-shadow: var(--os-text-shadow);
+        @apply bg-[var(--color-bg)] text-[var(--color-text)] font-mono min-h-screen;
+        text-shadow: var(--shadow-text);
     }
 
-    /* Headings with consistent glow effect */
+    /* Consistent heading hierarchy with glow effect */
     h1, h2, h3, h4, h5, h6 {
-        @apply text-[var(--os-accent)] font-bold;
-        text-shadow: var(--os-accent-text-shadow);
+        @apply text-[var(--color-accent)] font-bold;
+        text-shadow: var(--shadow-accent);
     }
 
-    h1, .h1 { @apply text-4xl mb-4; }
-    h2, .h2 { @apply text-3xl mb-3; }
-    h3, .h3 { @apply text-2xl mb-3; }
-    h4, .h4 { @apply text-xl mb-2; }
+    h1, .heading-1 { @apply text-4xl mb-4; }
+    h2, .heading-2 { @apply text-3xl mb-3; }
+    h3, .heading-3 { @apply text-2xl mb-3; }
+    h4, .heading-4 { @apply text-xl mb-2; }
 
     /* Base typography */
-    p { @apply mb-4 leading-relaxed; }
-      /* Links with consistent hover states */
+    p { 
+        @apply mb-4 leading-relaxed; 
+    }
+    
+    /* Universal link styling with consistent hover states */
     a {
-        @apply text-[var(--os-accent)] transition-colors duration-150 cursor-pointer;
-        text-shadow: var(--os-accent-text-shadow);
+        @apply text-[var(--color-accent)] cursor-pointer;
+        text-shadow: var(--shadow-accent);
+        transition: all var(--transition-fast);
     }
     
     a:hover {
-        @apply text-[var(--os-accent-hover)];
-        text-shadow: 0 0 8px color-mix(in srgb, var(--os-accent-hover) 80%, transparent);
+        @apply text-[var(--color-accent-hover)];
+        text-shadow: var(--shadow-accent-strong);
     }
 }
 
-@layer components {    /* Primary button component */
-    .button {
-        @apply inline-block py-2 px-5 font-bold no-underline transition-all duration-150 cursor-pointer;
-        @apply bg-[var(--os-accent-bg)] text-[var(--os-bg)] border border-[var(--os-border)];
-        @apply hover:bg-[var(--os-accent-bg-hover)] hover:shadow-lg;
+@layer components {
+    /* Button System - Primary Component */
+    .btn {
+        @apply inline-block py-2 px-5 font-bold no-underline cursor-pointer;
+        @apply bg-[var(--color-accent-bg)] text-[var(--color-bg)] border border-[var(--color-border)];
         text-shadow: none;
-    }    .button:disabled {
+        transition: all var(--transition-fast);
+    }
+    
+    .btn:hover {
+        @apply bg-[var(--color-accent-bg-hover)] shadow-lg;
+    }
+    
+    .btn:disabled {
         @apply opacity-60 cursor-not-allowed;
     }
 
-    .button.accent {
-        @apply bg-[var(--os-accent)] text-[var(--os-bg)] border-[var(--os-accent)];
-        @apply hover:bg-[var(--os-accent-hover)] hover:border-[var(--os-accent-hover)];
+    /* Button Variants */
+    .btn--accent {
+        @apply bg-[var(--color-accent)] text-[var(--color-bg)] border-[var(--color-accent)];
+    }
+    
+    .btn--accent:hover {
+        @apply bg-[var(--color-accent-hover)] border-[var(--color-accent-hover)];
     }
 
-    .button.secondary {
-        @apply bg-[var(--os-secondary)] text-[var(--os-bg)] border-[var(--os-secondary)];
-        @apply hover:bg-[var(--os-secondary-hover)] hover:border-[var(--os-secondary-hover)];
+    .btn--secondary {
+        @apply bg-[var(--color-secondary)] text-[var(--color-bg)] border-[var(--color-secondary)];
+    }
+    
+    .btn--secondary:hover {
+        @apply bg-[var(--color-secondary-hover)] border-[var(--color-secondary-hover)];
     }
 
-    /* Form elements */
-    button, 
-    input[type="submit"], 
-    input[type="button"] {
-        @apply cursor-pointer;
+    /* Button Outline Variant */
+    .btn--outline {
+        @apply bg-transparent text-[var(--color-accent)] border-[var(--color-accent)];
+    }
+    
+    .btn--outline:hover {
+        @apply bg-[var(--color-accent)] text-[var(--color-bg)] border-[var(--color-accent)];
     }
 
-    button:disabled,
-    input[type="submit"]:disabled,
-    input[type="button"]:disabled {
-        @apply cursor-not-allowed;
+    /* Layout System */
+    .surface {
+        @apply bg-[var(--color-surface)] border border-[var(--color-border)];
     }
 
-    /* Layout components */
-    .layout-surface {
-        @apply bg-[var(--os-surface)] border border-[var(--os-border)];
+    .surface__header {
+        @apply p-4 border-b-2 border-[var(--color-border)];
     }
 
-    .layout-header {
-        @apply p-4 border-b-2 border-[var(--os-border)];
+    .surface__footer {
+        @apply py-6 mt-10 border-t-2 border-[var(--color-border)];
     }
 
-    .layout-footer {
-        @apply py-6 mt-10 border-t-2 border-[var(--os-border)];
-    }
-
-    .layout-main {
+    .surface__main {
         @apply flex-grow p-4;
+    }
+
+    /* Form Components */
+    .form-group {
+        @apply space-y-1;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium text-[var(--color-text)];
+    }
+
+    .form-input {
+        @apply mt-1 block w-full px-3 py-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-sm;
+        @apply focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)];
+        @apply sm:text-sm text-[var(--color-text)] transition-colors;
+    }
+
+    .form-input:disabled {
+        @apply opacity-60 cursor-not-allowed;
+    }
+
+    .form-help-text {
+        @apply text-xs text-[var(--color-text)]/70;
+    }
+
+    .form-required {
+        @apply text-red-500;
+    }    /* Banner/Header Component */
+    .banner {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    .banner__nav-link {
+        position: relative;
+        transition: all var(--transition-normal);
+    }
+    
+    .banner__nav-link:hover {
+        transform: translateY(-1px);
+    }
+
+    /* Logo Component */
+    .logo {
+        min-width: 0; /* Prevents flex overflow */
+    }
+    
+    .logo__icon {
+        filter: var(--filter-invert-dark);
+        border-radius: 6px;
+        transition: all var(--transition-normal);
+    }
+    
+    @media (prefers-color-scheme: light) {
+        .logo__icon {
+            filter: var(--filter-invert-light);
+        }
+    }
+    
+    .logo:hover .logo__icon {
+        filter: var(--filter-invert-dark) drop-shadow(var(--shadow-glow));
+    }
+    
+    @media (prefers-color-scheme: light) {
+        .logo:hover .logo__icon {
+            filter: var(--filter-invert-light) drop-shadow(var(--shadow-glow));
+        }
+    }
+
+    /* Social Links Component */
+    .social-links--compact img {
+        @apply h-5 w-5;
+    }
+    
+    .social-links--compact a {
+        @apply p-1.5;
     }
 }
 
 @layer utilities {
-    /* Accessibility utilities */
+    /* Accessibility Utilities */
     .sr-only {
         @apply absolute overflow-hidden whitespace-nowrap border-0;
         clip: rect(0, 0, 0, 0);
@@ -118,28 +222,73 @@
     }
 
     .sr-only:focus {
-        @apply p-2 bg-[var(--os-accent-bg)] text-[var(--os-bg)] no-underline;
+        @apply p-2 bg-[var(--color-accent-bg)] text-[var(--color-bg)] no-underline;
         @apply w-auto h-auto overflow-visible whitespace-normal;
         clip: auto;
         text-shadow: none;
     }
 
-    /* Text glow utilities */
+    /* Text Effect Utilities */
     .text-glow {
-        text-shadow: 0 0 5px color-mix(in srgb, currentColor 50%, transparent);
+        text-shadow: var(--shadow-text);
     }
 
-    .text-glow-strong {
-        text-shadow: 0 0 8px color-mix(in srgb, currentColor 70%, transparent);
+    .text-glow--strong {
+        text-shadow: var(--shadow-accent);
+    }
+
+    /* Interactive Link Utilities */
+    .link-hover {
+        @apply transition-colors duration-200;
+    }
+
+    .link-hover:hover {
+        @apply text-[var(--color-accent-hover)];
+    }
+
+    /* Tooltip Utilities */
+    .tooltip-base {
+        @apply absolute bg-gray-800 text-white text-xs rounded py-1 px-2;
+        @apply opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10;
+    }
+
+    .tooltip-top {
+        @apply bottom-full mb-2 left-1/2 transform -translate-x-1/2;
+    }
+
+    .tooltip-bottom {
+        @apply top-full mt-2 left-1/2 transform -translate-x-1/2;
+    }
+
+    .tooltip-left {
+        @apply right-full mr-2 top-1/2 transform -translate-y-1/2;
+    }
+
+    .tooltip-right {
+        @apply left-full ml-2 top-1/2 transform -translate-y-1/2;
+    }
+
+    /* Form Control Utilities */
+    .form-control {
+        @apply cursor-pointer;
+    }
+    
+    .form-control:disabled {
+        @apply cursor-not-allowed;
     }
 }
 
-/* Scoped overrides for specific contexts */
-header a,
-footer a {
+/* Context-Specific Overrides */
+.banner a,
+.surface__footer a {
     @apply text-base;
 }
 
-footer .tech-stack p {
-    @apply text-base text-[var(--os-text)];
+.surface__footer .tech-stack p {
+    @apply text-base text-[var(--color-text)];
+}
+
+/* Focus Enhancement for Skip Links */
+.banner a[href="#main-content"]:focus {
+    @apply text-[var(--color-accent)] border border-[var(--color-accent)];
 }

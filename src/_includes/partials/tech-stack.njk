@@ -3,7 +3,7 @@
     <ul class="flex justify-center space-x-5">
         {% for tech in techData %}
         <li class="tooltip relative group">
-            <a href="{{ tech.url }}" target="_blank" rel="noopener noreferrer" title="{{ tech.name }}" class="inline-block p-1 border border-transparent hover:border-[var(--os-border)]">
+            <a href="{{ tech.url }}" target="_blank" rel="noopener noreferrer" title="{{ tech.name }}" class="inline-block p-1 border border-transparent hover:border-[var(--color-border)]">
                 <img src="{{ tech.iconSrc }}" alt="{{ tech.name }} logo" class="h-7 w-7">            </a>
             {% set tooltip_text = tech.name %}
             {% set tooltip_position = "bottom" %}
@@ -12,3 +12,4 @@
         {% endfor %}
     </ul>
 </div>
+

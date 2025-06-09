@@ -1,32 +1,53 @@
 {% set socials = socialData %}
 
-<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50">{{ siteData.skipToContentText }}</a>
-<header role="banner" class="flex items-center justify-between sticky top-0 z-50 bg-[var(--os-bg)] p-4 shadow-md">
-	{# Site Logo/Name #}
-	<a href="/" aria-label="{{ siteData.name }} - home" class="font-bold hover:text-[var(--os-accent-hover)]">
-		{% if siteData.logo %}
-		<img src="{{ siteData.logo }}" alt="{{ siteData.name }} logo" class="h-8 w-auto max-h-full" />
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 bg-[var(--color-bg)] px-4 py-2 rounded-md">{{ siteData.skipToContentText }}</a>
+<header role="banner" class="banner flex items-center justify-between sticky top-0 z-50 bg-[var(--color-bg)] border-b border-[var(--color-border)] px-4 py-3 shadow-sm">	{# Site Logo/Name #}	<a href="/" aria-label="{{ siteData.name }} - home" class="logo flex items-center space-x-3 group">
+		{% if siteData.logo %}		<div class="flex-shrink-0">
+			<img src="{{ siteData.logo }}" 
+				 alt="{{ siteData.name }} logo" 
+				 class="logo__icon h-10 sm:h-12 w-auto transition-all duration-200 group-hover:scale-105" 
+				 loading="eager"
+				 decoding="async" />
+		</div>
+		<span class="font-bold text-lg sm:text-xl text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors duration-200 truncate">{{ siteData.name }}</span>
 		{% else %}
-			{{ siteData.name }}
+		<span class="font-bold text-lg sm:text-xl text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors duration-200">{{ siteData.name }}</span>
 		{% endif %}
 	</a>
-
 	{# Navigation and Social Links Container #}
-	<div class="flex items-center space-x-6">
+	<div class="flex items-center space-x-4 sm:space-x-6">
 		{# Primary Navigation #}
-		<nav aria-label="Primary Navigation">
+		<nav aria-label="Primary Navigation" class="hidden sm:block">
 			{% set navPages = collections.all | eleventyNavigation %}
-			<ul class="flex space-x-4">
+			<ul class="flex space-x-2 sm:space-x-4">
 			{%- for entry in navPages %}
-			<li class="{% if entry.url == page.url %}font-bold text-[var(--os-accent-hover)]{% else %}text-[var(--os-text)]{% endif %}">
-				<a href="{{ entry.url }}">{{ entry.title }}</a>
+			<li>
+				<a href="{{ entry.url }}" 
+				   class="banner__nav-link px-2 py-1 rounded-md text-sm sm:text-base transition-colors duration-200
+				          {% if entry.url == page.url %}
+				          bg-[var(--color-accent)] text-white font-medium
+				          {% else %}
+				          text-[var(--color-text)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10
+				          {% endif %}">
+					{{ entry.title }}
+				</a>
 			</li>
 			{%- endfor %}
 			</ul>
 		</nav>
 
+		{# Mobile Navigation Toggle (for future implementation) #}
+		<button type="button" 
+				class="sm:hidden p-2 rounded-md text-[var(--color-text)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 transition-colors duration-200"
+				aria-label="Toggle navigation menu"
+				aria-expanded="false">
+			<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+			</svg>
+		</button>
+
 		{# Social Links #}
-		<div class="social-links-header">
+		<div class="social-links--compact hidden sm:block">
 			{% include partials.socialLink %}
 		</div>
 	</div>

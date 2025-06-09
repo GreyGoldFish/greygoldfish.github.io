@@ -10,32 +10,31 @@
         {% endif %}
 
         {% if cta_data %}
-        <article class="cta border border-[var(--os-border)] p-6 my-6">
+        <article class="cta border border-[var(--color-border)] p-6 my-6">
             <div class="flex flex-col items-center text-center">
                 <div class="max-w-2xl">
                     {% if cta_data.label %}
-                        <p class="text-sm uppercase tracking-wide text-[var(--os-secondary-text)] mb-2">{{ cta_data.label }}</p>
+                        <p class="text-sm uppercase tracking-wide text-[var(--color-secondary)] mb-2">{{ cta_data.label }}</p>
                     {% endif %}
                     
                     {% if cta_data.title %}
-                        <h2 class="text-2xl font-bold mb-4 text-[var(--os-accent)]">{{ cta_data.title }}</h2>
+                        <h2 class="text-2xl font-bold mb-4 text-[var(--color-accent)]">{{ cta_data.title }}</h2>
                     {% endif %}
                     
                     {% if cta_data.text %}
-                        <p class="text-lg mb-6 text-[var(--os-text)]">{{ cta_data.text }}</p>
+                        <p class="text-lg mb-6 text-[var(--color-text)]">{{ cta_data.text }}</p>
                     {% endif %}
                     
                     {% if cta_data.button and cta_data.url %}
                         <a href="{{ cta_data.url | url }}" 
-                           class="button text-base {% if cta_data.style == 'secondary' %}secondary{% elif cta_data.style == 'accent' %}accent{% endif %}"
+                           class="btn text-base {% if cta_data.style == 'secondary' %}btn--secondary{% elif cta_data.style == 'accent' %}btn--accent{% endif %}"
                            {% if cta_data.external %}target="_blank" rel="noopener"{% endif %}>
                             {{ cta_data.button }}
                         </a>
                     {% endif %}
-                    
-                    {% if cta_data.alt %}
+                      {% if cta_data.alt %}
                         <a href="{{ cta_data.alt.url | url }}" 
-                           class="outline text-base ml-4"
+                           class="btn btn--outline text-base ml-4"
                            {% if cta_data.alt.external %}target="_blank" rel="noopener"{% endif %}>
                             {{ cta_data.alt.text }}
                         </a>
