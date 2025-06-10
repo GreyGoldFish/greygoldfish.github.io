@@ -2,7 +2,7 @@
 
 @theme {
     /* ==========================================================================
-       DESIGN SYSTEM TOKENS
+       DESIGN TOKENS
        ========================================================================== */
     
     /* Base Colors */
@@ -35,7 +35,7 @@
 
 @layer base {
     /* ==========================================================================
-       BASE STYLES
+       GLOBAL BASE STYLES
        ========================================================================== */
     
     body {
@@ -60,7 +60,7 @@
         @apply mb-4 leading-relaxed; 
     }
     
-    /* Link Styles */
+    /* Global Link Styles */
     a {
         @apply text-[var(--color-accent)] cursor-pointer no-underline;
         text-shadow: var(--shadow-accent);
@@ -75,14 +75,13 @@
 
 @layer components {
     /* ==========================================================================
-       BUTTON COMPONENT
+       BUTTON COMPONENT STYLES
        ========================================================================== */
     
     .btn {
         @apply inline-flex items-center justify-center px-6 py-3 font-bold border;
         @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-accent)];
         @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none;
-        @apply transition-all;
         text-shadow: none;
         transition: all var(--transition-fast);
     }
@@ -128,8 +127,8 @@
         @apply bg-[var(--color-accent)]/10 border-[var(--color-accent)];
     }
 
-    /* ==========================================================================
-       SURFACE/LAYOUT SYSTEM
+    /* ==========================================================================%
+       SURFACE & LAYOUT COMPONENT STYLES
        ========================================================================== */
     
     .surface {
@@ -149,7 +148,7 @@
     }
 
     /* ==========================================================================
-       FORM SYSTEM
+       FORM COMPONENT STYLES
        ========================================================================== */
     
     .form {
@@ -180,7 +179,14 @@
     }
 
     /* ==========================================================================
-       NAVIGATION SYSTEM
+       CONTENT ARTICLE COMPONENT STYLES
+       ========================================================================== */
+    .content-article {
+        @apply container mx-auto px-4 py-8 bg-[var(--color-surface)] border-x-2 border-b-2 border-[var(--color-border)];
+    }
+
+    /* ==========================================================================
+       NAVIGATION COMPONENT STYLES
        ========================================================================== */
     
     .nav {
@@ -191,7 +197,6 @@
     
     .nav__link {
         @apply relative px-2 py-1 rounded-md text-sm sm:text-base;
-        @apply transition-all;
         transition: all var(--transition-normal);
     }
     
@@ -208,12 +213,12 @@
     }
 
     /* ==========================================================================
-       LOGO COMPONENT
+       LOGO COMPONENT STYLES
        ========================================================================== */
       .logo {
         @apply flex items-center space-x-3 min-w-0;
     }    .logo__icon {
-        @apply h-10 sm:h-12 w-auto transition-all duration-200 rounded-md;
+        @apply h-10 sm:h-12 w-auto rounded-md;
         @apply group-hover:scale-105;
         filter: var(--filter-invert);
         transition: all var(--transition-normal);
@@ -227,7 +232,7 @@
     }
 
     /* ==========================================================================
-       SOCIAL LINKS COMPONENT
+       SOCIAL LINKS COMPONENT STYLES
        ========================================================================== */
     
     .social-links {
@@ -257,7 +262,7 @@
 
 @layer utilities {
     /* ==========================================================================
-       ACCESSIBILITY UTILITIES
+       ACCESSIBILITY UTILITY CLASSES
        ========================================================================== */
     
     .sr-only {
@@ -276,7 +281,7 @@
     }
 
     /* ==========================================================================
-       TEXT UTILITIES
+       TEXT EFFECT UTILITY CLASSES
        ========================================================================== */
     
     .text-glow {
@@ -292,7 +297,7 @@
     }
 
     /* ==========================================================================
-       INTERACTIVE UTILITIES
+       INTERACTIVE ELEMENT UTILITY CLASSES
        ========================================================================== */
     
     .interactive {
@@ -305,7 +310,7 @@
     }
 
     /* ==========================================================================
-       TOOLTIP SYSTEM
+       TOOLTIP COMPONENT UTILITY CLASSES
        ========================================================================== */
       .tooltip {
         @apply relative;
@@ -334,7 +339,7 @@
     }
 
     /* ==========================================================================
-       SPACING UTILITIES
+       SPACING UTILITY CLASSES
        ========================================================================== */
     
     .section-spacing {
@@ -348,23 +353,4 @@
     .content-spacing {
         @apply space-y-6;
     }
-}
-
-/* ==========================================================================
-   LEGACY SUPPORT & SPECIFIC OVERRIDES
-   ========================================================================== */
-
-/* Navigation legacy support */
-.nav a,
-.surface--footer a {
-    @apply text-base;
-}
-
-.surface--footer .tech-stack p {
-    @apply text-base text-[var(--color-text)];
-}
-
-/* Skip link enhancement */
-.nav a[href="#main-content"]:focus {
-    @apply text-[var(--color-accent)] border border-[var(--color-accent)] rounded-md;
 }
