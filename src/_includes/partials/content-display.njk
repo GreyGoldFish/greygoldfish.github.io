@@ -23,7 +23,7 @@
             {% if layout == "list" or columns == 1 %}
                 {% set gridCols = "grid-cols-1" %}
                 {% set cardClass = "border-b border-[var(--color-border)] last:border-b-0" %}
-                {% set containerClass = "border-t border-b border-[var(--color-border)] bg-[var(--color-window-bg)]" %}
+                {% set containerClass = "border-t border-b border-[var(--color-border)] bg-[var(--color-surface)]" %}
             {% elif columns == 2 %}
                 {% set gridCols = "grid-cols-1 sm:grid-cols-2" %}
                 {% set cardClass = "border border-[var(--color-border)]" %}
@@ -45,11 +45,11 @@
             <div class="{{ containerClass }}">
                 <div class="grid {{ gridCols }} {% if columns > 1 %}gap-4{% endif %}">
                     {% for item in items %}
-                    <div class="{{ cardClass }} bg-[var(--color-window-bg)] hover:bg-[var(--color-accent-bg)]/10 transition-colors duration-200 flex flex-col">
+                    <div class="{{ cardClass }} bg-[var(--color-surface)] hover:bg-[var(--color-accent-strong)]/10 transition-colors duration-200 flex flex-col">
                         {% set itemUrl = item.url | url | default("#") %}
                         {% set itemTitle = item.data.title | default("Untitled Item") %}
-                        <a href="{{ itemUrl }}" class="block p-{% if columns == 1 %}3{% else %}4{% endif %} h-full flex flex-col focus:outline-none focus:ring-1 focus:ring-[var(--color-accent-bg)]">
-                            <h3 class="{% if columns == 1 %}text-base{% else %}text-lg{% endif %} font-medium text-[var(--color-accent-text)] hover:text-[var(--color-accent-hover-text)] mb-{% if columns == 1 %}1{% else %}2{% endif %} {% if columns > 1 %}line-clamp-2{% endif %}">
+                        <a href="{{ itemUrl }}" class="block p-{% if columns == 1 %}3{% else %}4{% endif %} h-full flex flex-col focus:outline-none focus:ring-1 focus:ring-[var(--color-accent-strong)]">
+                            <h3 class="{% if columns == 1 %}text-base{% else %}text-lg{% endif %} font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] mb-{% if columns == 1 %}1{% else %}2{% endif %} {% if columns > 1 %}line-clamp-2{% endif %}">
                                 {{ itemTitle }}
                             </h3>
                             {% if item.date %}
@@ -64,7 +64,7 @@
                 </div>
             </div>
         {% else %}
-        <p class="text-center text-base border border-[var(--color-border)] p-4 bg-[var(--color-window-bg)]">{{ contentDisplay.emptyText | default("No items to display.") }}</p>
+        <p class="text-center text-base border border-[var(--color-border)] p-4 bg-[var(--color-surface)]">{{ contentDisplay.emptyText | default("No items to display.") }}</p>
         {% endif %}
     </div>
 </div>

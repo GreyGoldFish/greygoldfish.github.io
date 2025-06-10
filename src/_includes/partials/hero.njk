@@ -9,8 +9,7 @@
                 </span>
             </div>
             {% endif %}
-            
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--color-text)] mt-6 mb-4 leading-tight">
+              <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--color-text)] mt-6 mb-4 leading-tight">
                 {{ hero.title | default(title) | safe }}
             </h1>
             
@@ -23,7 +22,7 @@
         
         {% if hero.summary %}
         <div class="max-w-2xl mx-auto mt-8">
-            <p class="text-lg text-[var(--color-secondary-text)] leading-relaxed">{{ hero.summary | safe }}</p>
+            <p class="text-lg text-[var(--color-text-secondary)] leading-relaxed">{{ hero.summary | safe }}</p>
         </div>
         {% endif %}
         
@@ -35,7 +34,7 @@
         
         {% if hero.buttonText and hero.buttonLink %}
         <div class="mt-12">
-            <a href="{{ hero.buttonLink | url }}" class="button accent text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+            <a href="{{ hero.buttonLink | url }}" class="btn btn--accent text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
                 {{ hero.buttonText | safe }}
             </a>
         </div>

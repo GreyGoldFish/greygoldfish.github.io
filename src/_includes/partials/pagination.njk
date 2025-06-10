@@ -44,7 +44,7 @@
                 {% endif %}
 
                 <li class="pagination-item">                    {% if isCurrentPage %}
-                        <span class="btn bg-[var(--color-accent-bg-hover)] pointer-events-none" aria-current="page" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }} (current page)">{{ pageNumToDisplay }}</span>
+                        <span class="btn bg-[var(--color-accent-strong-hover)] pointer-events-none" aria-current="page" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }} (current page)">{{ pageNumToDisplay }}</span>
                     {% else %}
                         <a href="{{ pageHrefs[i] }}{{ anchor }}" class="btn" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }}">{{ pageNumToDisplay }}</a>
                     {% endif %}

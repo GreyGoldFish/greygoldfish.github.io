@@ -1,69 +1,68 @@
 @import "tailwindcss";
 
 @theme {
-    /* Design System - Core Colors */
-    --color-bg: theme('colors.slate.900');
+    /* ==========================================================================
+       DESIGN SYSTEM TOKENS
+       ========================================================================== */
+    
+    /* Base Colors */
+    --color-primary: theme('colors.slate.900');
+    --color-surface: theme('colors.slate.800');
+    --color-surface-secondary: theme('colors.slate.700');
+    
+    /* Text Colors */
     --color-text: theme('colors.cyan.400');
+    --color-text-secondary: theme('colors.amber.300');
+    --color-text-muted: theme('colors.amber.200');
+    
+    /* Accent & Interactive Colors */
     --color-accent: theme('colors.lime.400');
     --color-accent-hover: theme('colors.lime.300');
-    --color-accent-bg: theme('colors.lime.600');
-    --color-accent-bg-hover: theme('colors.lime.700');
+    --color-accent-strong: theme('colors.lime.600');
+    --color-accent-strong-hover: theme('colors.lime.700');
     --color-secondary: theme('colors.amber.400');
     --color-secondary-hover: theme('colors.amber.300');
     --color-border: theme('colors.lime.500');
-    --color-surface: theme('colors.slate.800');
-    --color-surface-alt: theme('colors.slate.700');
-    --color-window-bg: theme('colors.slate.800');
-    --color-title-bar-bg: theme('colors.slate.700');
     
-    /* Design System - Semantic Colors */
-    --color-accent-text: theme('colors.lime.400');
-    --color-accent-hover-text: theme('colors.lime.300');
-    --color-secondary-text: theme('colors.amber.300');
-    --color-secondary-accent-text: theme('colors.amber.200');
-    
-    /* Design System - Effects */
+    /* Effects & Animations */
     --shadow-text: 0 0 5px color-mix(in srgb, var(--color-text) 50%, transparent);
     --shadow-accent: 0 0 5px color-mix(in srgb, var(--color-accent) 70%, transparent);
     --shadow-accent-strong: 0 0 8px color-mix(in srgb, var(--color-accent) 80%, transparent);
-    --shadow-glow: 0 0 8px color-mix(in srgb, var(--color-accent) 50%, transparent);
-    --color-accent-text-shadow: var(--shadow-accent);
-    
-    /* Design System - Transitions */
     --transition-fast: 0.15s ease-in-out;
     --transition-normal: 0.2s ease-in-out;
-    
-    /* Design System - Filters */
-    --filter-invert-light: brightness(0) saturate(100%) invert(0);
-    --filter-invert-dark: brightness(0) saturate(100%) invert(1);
+    --filter-invert: brightness(0) saturate(100%) invert(1);
 }
 
 @layer base {
-    /* Core Typography & Layout */
+    /* ==========================================================================
+       BASE STYLES
+       ========================================================================== */
+    
     body {
-        @apply bg-[var(--color-bg)] text-[var(--color-text)] font-mono min-h-screen;
+        @apply bg-[var(--color-primary)] text-[var(--color-text)] font-mono min-h-screen;
         text-shadow: var(--shadow-text);
     }
 
-    /* Consistent heading hierarchy with glow effect */
+    /* Typography Hierarchy */
     h1, h2, h3, h4, h5, h6 {
         @apply text-[var(--color-accent)] font-bold;
         text-shadow: var(--shadow-accent);
     }
 
-    h1, .heading-1 { @apply text-4xl mb-4; }
-    h2, .heading-2 { @apply text-3xl mb-3; }
-    h3, .heading-3 { @apply text-2xl mb-3; }
-    h4, .heading-4 { @apply text-xl mb-2; }
+    h1 { @apply text-4xl mb-4; }
+    h2 { @apply text-3xl mb-3; }
+    h3 { @apply text-2xl mb-3; }
+    h4 { @apply text-xl mb-2; }
+    h5 { @apply text-lg mb-2; }
+    h6 { @apply text-base mb-1; }
 
-    /* Base typography */
     p { 
         @apply mb-4 leading-relaxed; 
     }
     
-    /* Universal link styling with consistent hover states */
+    /* Link Styles */
     a {
-        @apply text-[var(--color-accent)] cursor-pointer;
+        @apply text-[var(--color-accent)] cursor-pointer no-underline;
         text-shadow: var(--shadow-accent);
         transition: all var(--transition-fast);
     }
@@ -75,144 +74,192 @@
 }
 
 @layer components {
-    /* Button System - Primary Component */
+    /* ==========================================================================
+       BUTTON COMPONENT
+       ========================================================================== */
+    
     .btn {
-        @apply inline-block py-2 px-5 font-bold no-underline cursor-pointer;
-        @apply bg-[var(--color-accent-bg)] text-[var(--color-bg)] border border-[var(--color-border)];
+        @apply inline-flex items-center justify-center px-6 py-3 font-bold border;
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-accent)];
+        @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none;
+        @apply transition-all;
         text-shadow: none;
         transition: all var(--transition-fast);
     }
     
-    .btn:hover {
-        @apply bg-[var(--color-accent-bg-hover)] shadow-lg;
-    }
-    
-    .btn:disabled {
-        @apply opacity-60 cursor-not-allowed;
-    }
-
     /* Button Variants */
-    .btn--accent {
-        @apply bg-[var(--color-accent)] text-[var(--color-bg)] border-[var(--color-accent)];
+    .btn--primary {
+        @apply bg-[var(--color-accent-strong)] text-[var(--color-primary)] border-[var(--color-accent-strong)];
     }
     
-    .btn--accent:hover {
-        @apply bg-[var(--color-accent-hover)] border-[var(--color-accent-hover)];
+    .btn--primary:hover:not(:disabled) {
+        @apply bg-[var(--color-accent-strong-hover)] border-[var(--color-accent-strong-hover)] shadow-lg;
+    }
+    
+    .btn--accent {
+        @apply bg-[var(--color-accent)] text-[var(--color-primary)] border-[var(--color-accent)];
+    }
+    
+    .btn--accent:hover:not(:disabled) {
+        @apply bg-[var(--color-accent-hover)] border-[var(--color-accent-hover)] shadow-lg;
     }
 
     .btn--secondary {
-        @apply bg-[var(--color-secondary)] text-[var(--color-bg)] border-[var(--color-secondary)];
+        @apply bg-[var(--color-secondary)] text-[var(--color-primary)] border-[var(--color-secondary)];
     }
     
-    .btn--secondary:hover {
-        @apply bg-[var(--color-secondary-hover)] border-[var(--color-secondary-hover)];
+    .btn--secondary:hover:not(:disabled) {
+        @apply bg-[var(--color-secondary-hover)] border-[var(--color-secondary-hover)] shadow-lg;
     }
 
-    /* Button Outline Variant */
     .btn--outline {
         @apply bg-transparent text-[var(--color-accent)] border-[var(--color-accent)];
     }
     
-    .btn--outline:hover {
-        @apply bg-[var(--color-accent)] text-[var(--color-bg)] border-[var(--color-accent)];
+    .btn--outline:hover:not(:disabled) {
+        @apply bg-[var(--color-accent)] text-[var(--color-primary)];
     }
 
-    /* Layout System */
+    .btn--ghost {
+        @apply bg-transparent text-[var(--color-accent)] border-transparent;
+    }
+    
+    .btn--ghost:hover:not(:disabled) {
+        @apply bg-[var(--color-accent)]/10 border-[var(--color-accent)];
+    }
+
+    /* ==========================================================================
+       SURFACE/LAYOUT SYSTEM
+       ========================================================================== */
+    
     .surface {
         @apply bg-[var(--color-surface)] border border-[var(--color-border)];
     }
 
-    .surface__header {
-        @apply p-4 border-b-2 border-[var(--color-border)];
+    .surface--header {
+        @apply p-6 border-b-2 border-[var(--color-border)];
     }
 
-    .surface__footer {
-        @apply py-6 mt-10 border-t-2 border-[var(--color-border)];
+    .surface--footer {
+        @apply py-8 mt-12 border-t-2 border-[var(--color-border)];
     }
 
-    .surface__main {
-        @apply flex-grow p-4;
+    .surface--main {
+        @apply flex-grow p-6;
     }
 
-    /* Form Components */
-    .form-group {
-        @apply space-y-1;
+    /* ==========================================================================
+       FORM SYSTEM
+       ========================================================================== */
+    
+    .form {
+        @apply space-y-6;
     }
 
-    .form-label {
+    .form__group {
+        @apply space-y-2;
+    }
+
+    .form__label {
         @apply block text-sm font-medium text-[var(--color-text)];
     }
 
-    .form-input {
-        @apply mt-1 block w-full px-3 py-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md shadow-sm;
+    .form__input {
+        @apply mt-1 block w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)];
+        @apply rounded-md shadow-sm text-[var(--color-text)] transition-colors;
         @apply focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)];
-        @apply sm:text-sm text-[var(--color-text)] transition-colors;
+        @apply disabled:opacity-50 disabled:cursor-not-allowed;
     }
 
-    .form-input:disabled {
-        @apply opacity-60 cursor-not-allowed;
+    .form__help-text {
+        @apply text-xs text-[var(--color-text)]/70 mt-1;
     }
 
-    .form-help-text {
-        @apply text-xs text-[var(--color-text)]/70;
+    .form__required {
+        @apply text-red-400;
     }
 
-    .form-required {
-        @apply text-red-500;
-    }    /* Banner/Header Component */
-    .banner {
+    /* ==========================================================================
+       NAVIGATION SYSTEM
+       ========================================================================== */
+    
+    .nav {
+        @apply sticky top-0 z-50 border-b border-[var(--color-border)];
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
     }
     
-    .banner__nav-link {
-        position: relative;
+    .nav__link {
+        @apply relative px-2 py-1 rounded-md text-sm sm:text-base;
+        @apply transition-all;
         transition: all var(--transition-normal);
     }
     
-    .banner__nav-link:hover {
+    .nav__link:hover {
         transform: translateY(-1px);
     }
 
-    /* Logo Component */
-    .logo {
-        min-width: 0; /* Prevents flex overflow */
+    .nav__link--active {
+        @apply bg-[var(--color-accent)] text-white font-medium;
     }
-    
-    .logo__icon {
-        filter: var(--filter-invert-dark);
-        border-radius: 6px;
+
+    .nav__link--inactive {
+        @apply text-[var(--color-text)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10;
+    }
+
+    /* ==========================================================================
+       LOGO COMPONENT
+       ========================================================================== */
+      .logo {
+        @apply flex items-center space-x-3 min-w-0;
+    }    .logo__icon {
+        @apply h-10 sm:h-12 w-auto transition-all duration-200 rounded-md;
+        @apply group-hover:scale-105;
+        filter: var(--filter-invert);
         transition: all var(--transition-normal);
     }
     
-    @media (prefers-color-scheme: light) {
-        .logo__icon {
-            filter: var(--filter-invert-light);
-        }
-    }
-    
     .logo:hover .logo__icon {
-        filter: var(--filter-invert-dark) drop-shadow(var(--shadow-glow));
-    }
-    
-    @media (prefers-color-scheme: light) {
-        .logo:hover .logo__icon {
-            filter: var(--filter-invert-light) drop-shadow(var(--shadow-glow));
-        }
+        filter: var(--filter-invert) drop-shadow(var(--shadow-accent-strong));
+    }    .logo__text {
+        @apply font-bold text-lg sm:text-xl text-[var(--color-text)] truncate;
+        @apply group-hover:text-[var(--color-accent)] transition-colors duration-200;
     }
 
-    /* Social Links Component */
-    .social-links--compact img {
+    /* ==========================================================================
+       SOCIAL LINKS COMPONENT
+       ========================================================================== */
+    
+    .social-links {
+        @apply flex justify-center space-x-4;
+    }
+      .social-links__item {
+        @apply relative;
+    }
+
+    .social-links__link {
+        @apply inline-block p-1 border border-transparent transition-colors;
+        @apply hover:border-[var(--color-border)] text-[var(--color-accent)] hover:text-[var(--color-accent-hover)];
+    }
+
+    .social-links__icon {
+        @apply h-7 w-7;
+    }
+    
+    .social-links--compact .social-links__icon {
         @apply h-5 w-5;
     }
     
-    .social-links--compact a {
+    .social-links--compact .social-links__link {
         @apply p-1.5;
     }
 }
 
 @layer utilities {
-    /* Accessibility Utilities */
+    /* ==========================================================================
+       ACCESSIBILITY UTILITIES
+       ========================================================================== */
+    
     .sr-only {
         @apply absolute overflow-hidden whitespace-nowrap border-0;
         clip: rect(0, 0, 0, 0);
@@ -222,73 +269,102 @@
     }
 
     .sr-only:focus {
-        @apply p-2 bg-[var(--color-accent-bg)] text-[var(--color-bg)] no-underline;
-        @apply w-auto h-auto overflow-visible whitespace-normal;
+        @apply p-3 bg-[var(--color-accent-strong)] text-[var(--color-primary)] no-underline;
+        @apply w-auto h-auto overflow-visible whitespace-normal rounded-md;
         clip: auto;
         text-shadow: none;
     }
 
-    /* Text Effect Utilities */
+    /* ==========================================================================
+       TEXT UTILITIES
+       ========================================================================== */
+    
     .text-glow {
         text-shadow: var(--shadow-text);
     }
 
-    .text-glow--strong {
+    .text-glow--accent {
         text-shadow: var(--shadow-accent);
     }
 
-    /* Interactive Link Utilities */
-    .link-hover {
-        @apply transition-colors duration-200;
+    .text-glow--strong {
+        text-shadow: var(--shadow-accent-strong);
     }
 
-    .link-hover:hover {
+    /* ==========================================================================
+       INTERACTIVE UTILITIES
+       ========================================================================== */
+    
+    .interactive {
+        @apply transition-colors cursor-pointer;
+        transition: all var(--transition-fast);
+    }
+
+    .interactive:hover {
         @apply text-[var(--color-accent-hover)];
     }
 
-    /* Tooltip Utilities */
-    .tooltip-base {
-        @apply absolute bg-gray-800 text-white text-xs rounded py-1 px-2;
-        @apply opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10;
+    /* ==========================================================================
+       TOOLTIP SYSTEM
+       ========================================================================== */
+      .tooltip {
+        @apply relative;
+    }
+      .tooltip__content {
+        @apply absolute bg-gray-900 text-white text-xs rounded-md py-2 px-3;
+        @apply opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50;
+        @apply pointer-events-none;
+        transition: opacity var(--transition-normal);
     }
 
-    .tooltip-top {
+    .tooltip__content--top {
         @apply bottom-full mb-2 left-1/2 transform -translate-x-1/2;
     }
 
-    .tooltip-bottom {
+    .tooltip__content--bottom {
         @apply top-full mt-2 left-1/2 transform -translate-x-1/2;
     }
 
-    .tooltip-left {
+    .tooltip__content--left {
         @apply right-full mr-2 top-1/2 transform -translate-y-1/2;
     }
 
-    .tooltip-right {
+    .tooltip__content--right {
         @apply left-full ml-2 top-1/2 transform -translate-y-1/2;
     }
 
-    /* Form Control Utilities */
-    .form-control {
-        @apply cursor-pointer;
+    /* ==========================================================================
+       SPACING UTILITIES
+       ========================================================================== */
+    
+    .section-spacing {
+        @apply py-12;
     }
     
-    .form-control:disabled {
-        @apply cursor-not-allowed;
+    .section-spacing--large {
+        @apply py-16;
+    }
+    
+    .content-spacing {
+        @apply space-y-6;
     }
 }
 
-/* Context-Specific Overrides */
-.banner a,
-.surface__footer a {
+/* ==========================================================================
+   LEGACY SUPPORT & SPECIFIC OVERRIDES
+   ========================================================================== */
+
+/* Navigation legacy support */
+.nav a,
+.surface--footer a {
     @apply text-base;
 }
 
-.surface__footer .tech-stack p {
+.surface--footer .tech-stack p {
     @apply text-base text-[var(--color-text)];
 }
 
-/* Focus Enhancement for Skip Links */
-.banner a[href="#main-content"]:focus {
-    @apply text-[var(--color-accent)] border border-[var(--color-accent)];
+/* Skip link enhancement */
+.nav a[href="#main-content"]:focus {
+    @apply text-[var(--color-accent)] border border-[var(--color-accent)] rounded-md;
 }

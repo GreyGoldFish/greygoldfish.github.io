@@ -10,12 +10,10 @@
         </a>
 
         {# Site header with navigation #}
-        {% include partials.banner %}
-
-        {# Main layout container using CSS Grid for flexible layout #}
+        {% include partials.banner %}        {# Main layout container using CSS Grid for flexible layout #}
         <div class="flex-1 {% if sidebar %}grid grid-cols-1 lg:grid-cols-[1fr_16rem] gap-0{% else %}flex flex-col{% endif %}">
             {# Main content area #}
-            <main id="main-content" class="surface__main" tabindex="-1">
+            <main id="main-content" class="surface--main" tabindex="-1">
                 {% block content %}
                     {{ content | safe }}
                 {% endblock %}
@@ -33,7 +31,7 @@
         </div>
 
         {# Site footer #}
-        <footer class="surface__footer">
+        <footer class="surface--footer">
             {% include partials.footer %}
         </footer>
     </body>

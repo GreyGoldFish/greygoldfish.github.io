@@ -1,17 +1,18 @@
 {% set socials = socialData %}
 
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 bg-[var(--color-bg)] px-4 py-2 rounded-md">{{ siteData.skipToContentText }}</a>
-<header role="banner" class="banner flex items-center justify-between sticky top-0 z-50 bg-[var(--color-bg)] border-b border-[var(--color-border)] px-4 py-3 shadow-sm">	{# Site Logo/Name #}	<a href="/" aria-label="{{ siteData.name }} - home" class="logo flex items-center space-x-3 group">
-		{% if siteData.logo %}		<div class="flex-shrink-0">
+<header role="banner" class="nav flex items-center justify-between bg-[var(--color-primary)] px-4 py-3 shadow-sm">	{# Site Logo/Name #}	<a href="/" aria-label="{{ siteData.name }} - home" class="logo group">
+		{% if siteData.logo %}
+		<div class="flex-shrink-0">
 			<img src="{{ siteData.logo }}" 
 				 alt="{{ siteData.name }} logo" 
-				 class="logo__icon h-10 sm:h-12 w-auto transition-all duration-200 group-hover:scale-105" 
+				 class="logo__icon" 
 				 loading="eager"
 				 decoding="async" />
 		</div>
-		<span class="font-bold text-lg sm:text-xl text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors duration-200 truncate">{{ siteData.name }}</span>
+		<span class="logo__text">{{ siteData.name }}</span>
 		{% else %}
-		<span class="font-bold text-lg sm:text-xl text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors duration-200">{{ siteData.name }}</span>
+		<span class="logo__text">{{ siteData.name }}</span>
 		{% endif %}
 	</a>
 	{# Navigation and Social Links Container #}
@@ -20,15 +21,9 @@
 		<nav aria-label="Primary Navigation" class="hidden sm:block">
 			{% set navPages = collections.all | eleventyNavigation %}
 			<ul class="flex space-x-2 sm:space-x-4">
-			{%- for entry in navPages %}
-			<li>
+			{%- for entry in navPages %}			<li>
 				<a href="{{ entry.url }}" 
-				   class="banner__nav-link px-2 py-1 rounded-md text-sm sm:text-base transition-colors duration-200
-				          {% if entry.url == page.url %}
-				          bg-[var(--color-accent)] text-white font-medium
-				          {% else %}
-				          text-[var(--color-text)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10
-				          {% endif %}">
+				   class="nav__link {% if entry.url == page.url %}nav__link--active{% else %}nav__link--inactive{% endif %}">
 					{{ entry.title }}
 				</a>
 			</li>
@@ -36,8 +31,7 @@
 			</ul>
 		</nav>
 
-		{# Mobile Navigation Toggle (for future implementation) #}
-		<button type="button" 
+		{# Mobile Navigation Toggle (for future implementation) #}		<button type="button" 
 				class="sm:hidden p-2 rounded-md text-[var(--color-text)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 transition-colors duration-200"
 				aria-label="Toggle navigation menu"
 				aria-expanded="false">
