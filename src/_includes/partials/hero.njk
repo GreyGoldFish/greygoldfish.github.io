@@ -1,49 +1,44 @@
 {% if hero %}
-<section class="relative bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-bg)] border border-[var(--color-border)] rounded-lg overflow-hidden my-8">
-    <div class="relative z-10 px-8 py-16 text-center">
-        <div class="max-w-4xl mx-auto">
+<section>
+    <div>
+        <div>
             {% if hero.eyebrow %}
-            <div class="inline-block">
-                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-3 py-1 rounded-full border border-[var(--color-accent)]/20">
+            <div>
+                <span>
                     {{ hero.eyebrow | safe }}
                 </span>
             </div>
             {% endif %}
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--color-text)] mt-6 mb-4 leading-tight">
+              <h1>
                 {{ hero.title | default(title) | safe }}
             </h1>
             
             {% if hero.intro %}
-            <p class="text-xl md:text-2xl text-[var(--color-accent)] font-medium mb-8 leading-relaxed">
+            <p>
                 {{ hero.intro | safe }}
             </p>
             {% endif %}
         </div>
         
         {% if hero.summary %}
-        <div class="max-w-2xl mx-auto mt-8">
-            <p class="text-lg text-[var(--color-text-secondary)] leading-relaxed">{{ hero.summary | safe }}</p>
+        <div>
+            <p>{{ hero.summary | safe }}</p>
         </div>
         {% endif %}
         
         {% if hero.media %}
-        <div class="mt-12">
+        <div>
             {{ hero.media | safe }}
         </div>
         {% endif %}
         
         {% if hero.buttonText and hero.buttonLink %}
-        <div class="mt-12">
-            <a href="{{ hero.buttonLink | url }}" class="btn btn--accent text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+        <div>
+            <a href="{{ hero.buttonLink | url }}">
                 {{ hero.buttonText | safe }}
             </a>
         </div>
         {% endif %}
-    </div>
-    
-    <!-- Subtle background pattern -->
-    <div class="absolute inset-0 opacity-5">
-        <div class="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)] to-transparent"></div>
     </div>
 </section>
 {% endif %}

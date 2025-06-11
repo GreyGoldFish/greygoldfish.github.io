@@ -1,5 +1,5 @@
 {% if socials %}
-<ul class="social-links">
+<ul>
     {% for key, social_item in socials %}
         {% if social_item %}
             {% set social_url = social_item.url | url %}
@@ -7,20 +7,19 @@
             {% set social_aria_label = social_item.ariaLabel | default(social_title) %}
             {% set social_icon_src = social_item.iconSrc | default("") %}
 
-            <li class="social-links__item tooltip group">
+            <li>
                 <a href="{{ social_url }}" 
                    target="_blank" 
                    rel="noopener noreferrer" 
                    aria-label="{{ social_aria_label }}"
-                   title="{{ social_title }}"
-                   class="social-links__link">
+                   title="{{ social_title }}">
                     {% if social_icon_src %}
-                        <img src="{{ social_icon_src | url }}" alt="{{ social_title }} logo" class="social-links__icon">
+                        <img src="{{ social_icon_src | url }}" alt="{{ social_title }} logo">
                     {% else %}
-                        <span class="text-sm">{{ social_title }}</span>
+                        <span>{{ social_title }}</span>
                     {% endif %}
                 </a>
-                <span class="tooltip__content tooltip__content--bottom">
+                <span>
                     {{ social_title }}
                 </span>
             </li>

@@ -1,8 +1,8 @@
 {% if sidebar %}
-<aside class="sidebar surface p-4 w-64 space-y-6">
+<aside>
     {# Recent Posts Section #}
     {% if sidebar.recentPosts and sidebar.recentPosts.contentDisplay %}
-    <section class="sidebar-section">
+    <section>
         {% set contentDisplay = sidebar.recentPosts.contentDisplay | merge({ "reverse": true }) %}
         
         {% include partials.contentDisplay %}

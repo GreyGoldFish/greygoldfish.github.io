@@ -1,19 +1,10 @@
 {% extends layouts.base %}
 
 {% block content %}
-<article class="content-article">
+<article>
     {% include partials.header %}
 
-    <div class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none 
-                prose-headings:text-[var(--color-accent)] prose-headings:[text-shadow:var(--shadow-accent)]
-                prose-p:text-[var(--color-text)] prose-p:[text-shadow:var(--shadow-text)]
-                prose-a:text-[var(--color-accent)] hover:prose-a:text-[var(--color-accent-hover)] prose-a:[text-shadow:var(--shadow-accent)]
-                prose-strong:text-[var(--color-text)] prose-strong:[text-shadow:var(--shadow-text)]
-                prose-em:text-[var(--color-text)] prose-em:[text-shadow:var(--shadow-text)]
-                prose-code:text-[var(--color-text-muted)] prose-code:bg-[var(--color-surface-secondary)] prose-code:p-1 prose-code:rounded-none prose-code:font-mono prose-code:[text-shadow:none]
-                prose-pre:bg-[var(--color-surface-secondary)] prose-pre:text-[var(--color-text-muted)] prose-pre:p-4 prose-pre:rounded-none prose-pre:font-mono prose-pre:[text-shadow:none]
-                prose-blockquote:border-[var(--color-border)] prose-blockquote:text-[var(--color-text)] prose-blockquote:[text-shadow:var(--shadow-text)]
-    ">
+    <div>
         {{ content | safe }}
     </div>
 
@@ -21,7 +12,7 @@
     {% set newerPost = collections.post | getNextCollectionItem %}
 
     {% if olderPost or newerPost %}
-    <nav class="flex justify-between mt-8 pt-6 border-t border-[var(--color-border)]">
+    <nav>
         {% if newerPost %}
             <a href="{{ newerPost.url }}" class="btn">← {{ newerPost.data.title }}</a>
         {% else %}

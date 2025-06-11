@@ -3,17 +3,17 @@
     <head>
         {% include partials.metaInfo %}
     </head>
-    <body class="min-h-screen flex flex-col">
+    <body>
         {# Skip to content link (accessibility) #}
-        <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50">
+        <a href="#main-content">
             {{ site.skipToContentText }}
         </a>
 
         {# Site header with navigation #}
-        {% include partials.banner %}        {# Main layout container using CSS Grid for flexible layout #}
-        <div class="flex-1 {% if sidebar %}grid grid-cols-1 lg:grid-cols-[1fr_16rem] gap-0{% else %}flex flex-col{% endif %}">
+        {% include partials.banner %}
+        <div>
             {# Main content area #}
-            <main id="main-content" class="surface--main" tabindex="-1">
+            <main id="main-content" tabindex="-1">
                 {% block content %}
                     {{ content | safe }}
                 {% endblock %}
@@ -24,14 +24,14 @@
 
             {# Sidebar - only shows on larger screens #}
             {% if sidebar %}
-                <aside class="surface p-4 lg:block hidden">
+                <aside>
                     {% include partials.sidebar %}
                 </aside>
             {% endif %}
         </div>
 
         {# Site footer #}
-        <footer class="surface--footer">
+        <footer>
             {% include partials.footer %}
         </footer>
     </body>

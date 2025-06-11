@@ -1,26 +1,25 @@
 {% set socials = socialData %}
 
-<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 bg-[var(--color-bg)] px-4 py-2 rounded-md">{{ siteData.skipToContentText }}</a>
-<header role="banner" class="nav flex items-center justify-between bg-[var(--color-primary)] px-4 py-3 shadow-sm">	{# Site Logo/Name #}	<a href="/" aria-label="{{ siteData.name }} - home" class="logo group">
+<a href="#main-content">{{ siteData.skipToContentText }}</a>
+<header role="banner">	{# Site Logo/Name #}	<a href="/" aria-label="{{ siteData.name }} - home">
 		{% if siteData.logo %}
-		<div class="flex-shrink-0">
+		<div>
 			<img src="{{ siteData.logo }}" 
 				 alt="{{ siteData.name }} logo" 
-				 class="logo__icon" 
 				 loading="eager"
 				 decoding="async" />
 		</div>
-		<span class="logo__text">{{ siteData.name }}</span>
+		<span>{{ siteData.name }}</span>
 		{% else %}
-		<span class="logo__text">{{ siteData.name }}</span>
+		<span>{{ siteData.name }}</span>
 		{% endif %}
 	</a>
 	{# Navigation and Social Links Container #}
-	<div class="flex items-center space-x-4 sm:space-x-6">
+	<div>
 		{# Primary Navigation #}
-		<nav aria-label="Primary Navigation" class="hidden sm:block">
+		<nav aria-label="Primary Navigation">
 			{% set navPages = collections.all | eleventyNavigation %}
-			<ul class="flex space-x-2 sm:space-x-4">
+			<ul>
 			{%- for entry in navPages %}			<li>
 				<a href="{{ entry.url }}" 
 				   class="nav__link {% if entry.url == page.url %}nav__link--active{% else %}nav__link--inactive{% endif %}">
@@ -32,7 +31,6 @@
 		</nav>
 
 		{# Mobile Navigation Toggle (for future implementation) #}		<button type="button" 
-				class="sm:hidden p-2 rounded-md text-[var(--color-text)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 transition-colors duration-200"
 				aria-label="Toggle navigation menu"
 				aria-expanded="false">
 			<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,7 +39,7 @@
 		</button>
 
 		{# Social Links #}
-		<div class="social-links--compact hidden sm:block">
+		<div>
 			{% include partials.socialLink %}
 		</div>
 	</div>

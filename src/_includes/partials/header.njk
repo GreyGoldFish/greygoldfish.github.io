@@ -3,16 +3,16 @@
 {% set headerEyebrow = header.eyebrow | default("") %}
 
 {% if headerTitle or headerSummary or headerEyebrow %}
-<header class="page-header border-b-2 border-[var(--color-border)] p-4">
-    <div class="text-center">
+<header>
+    <div>
         {% if headerEyebrow %}
         <p>{{ headerEyebrow | safe }}</p>
         {% endif %}
         {% if headerTitle %}
-        <h1 class="text-3xl font-bold text-[var(--color-accent)]">{{ headerTitle | safe }}</h1>
+        <h1>{{ headerTitle | safe }}</h1>
         {% endif %}
         {% if headerSummary %}
-        <p class="text-lg mt-1">{{ headerSummary | safe }}</p>
+        <p>{{ headerSummary | safe }}</p>
         {% endif %}
     </div>
 </header>

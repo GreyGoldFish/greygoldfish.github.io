@@ -10,18 +10,18 @@
         {% endif %}
 
         {% if cta_data %}
-        <article class="cta border border-[var(--color-border)] p-6 my-6">
-            <div class="flex flex-col items-center text-center">
-                <div class="max-w-2xl">
+        <article>
+            <div>
+                <div>
                     {% if cta_data.label %}
-                        <p class="text-sm uppercase tracking-wide text-[var(--color-secondary)] mb-2">{{ cta_data.label }}</p>
+                        <p>{{ cta_data.label }}</p>
                     {% endif %}
                     
                     {% if cta_data.title %}
-                        <h2 class="text-2xl font-bold mb-4 text-[var(--color-accent)]">{{ cta_data.title }}</h2>
+                        <h2>{{ cta_data.title }}</h2>
                     {% endif %}
                       {% if cta_data.text %}
-                        <p class="text-lg mb-6 text-[var(--color-text)]">{{ cta_data.text }}</p>
+                        <p>{{ cta_data.text }}</p>
                     {% endif %}
                     
                     {% if cta_data.button and cta_data.url %}
