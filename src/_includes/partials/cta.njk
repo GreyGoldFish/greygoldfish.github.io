@@ -7,9 +7,7 @@
         {% elif cta is mapping %}
             {# It's a custom CTA object defined directly in front matter #}
             {% set cta_data = cta %}
-        {% endif %}
-
-        {% if cta_data %}
+        {% endif %}        {% if cta_data %}
         <article>
             <div>
                 <div>
@@ -24,20 +22,20 @@
                         <p>{{ cta_data.text }}</p>
                     {% endif %}
                     
-                    {% if cta_data.button and cta_data.url %}
-                        <a href="{{ cta_data.url | url }}" 
-                           class="btn text-base {% if cta_data.style == 'secondary' %}btn--secondary{% elif cta_data.style == 'accent' %}btn--accent{% endif %}"
-                           {% if cta_data.external %}target="_blank" rel="noopener"{% endif %}>
-                            {{ cta_data.button }}
-                        </a>
-                    {% endif %}
-                      {% if cta_data.alt %}
-                        <a href="{{ cta_data.alt.url | url }}" 
-                           class="btn btn--outline text-base ml-4"
-                           {% if cta_data.alt.external %}target="_blank" rel="noopener"{% endif %}>
-                            {{ cta_data.alt.text }}
-                        </a>
-                    {% endif %}
+                    <div>
+                        {% if cta_data.button and cta_data.url %}
+                            <a href="{{ cta_data.url | url }}" 
+                               {% if cta_data.external %}target="_blank" rel="noopener"{% endif %}>
+                                {{ cta_data.button }}
+                            </a>
+                        {% endif %}
+                        {% if cta_data.alt %}
+                            <a href="{{ cta_data.alt.url | url }}" 
+                               {% if cta_data.alt.external %}target="_blank" rel="noopener"{% endif %}>
+                                {{ cta_data.alt.text }}
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </article>

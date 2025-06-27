@@ -1,11 +1,11 @@
 {% if sidebar %}
 <aside>
     {# Recent Posts Section #}
-    {% if sidebar.recentPosts and sidebar.recentPosts.contentDisplay %}
+    {% if sidebar.recentPosts and sidebar.recentPosts.listing %}
     <section>
-        {% set contentDisplay = sidebar.recentPosts.contentDisplay | merge({ "reverse": true }) %}
+        {% set listing = sidebar.recentPosts.listing | merge({ "reverse": true }) %}
         
-        {% include partials.contentDisplay %}
+        {% include partials.listing %}
     </section>
     {% endif %}
 </aside>

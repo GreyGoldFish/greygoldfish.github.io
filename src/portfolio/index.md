@@ -5,14 +5,16 @@ eleventyNavigation:
     key: "Portfolio"
 eleventyImport:
   collections: ["project"]
-contentDisplay:
+listing:
   collection: "project"
   reverse: true
+  type: "grid"
+  columns: 3
+  headline: "Featured Projects"
   emptyText: "No projects available yet. Check back soon!"
-header:
-    title: "My Portfolio"
-    summary: "A showcase of my work and technical projects"
-showCtas: true
+intro:
+  title: "My Portfolio"
+  summary: "A showcase of my work and technical projects"
 ctas:
     - contact
     - blog

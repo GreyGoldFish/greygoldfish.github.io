@@ -12,6 +12,7 @@ const dirs = {
     output: "dist",
     layouts: "layouts",
     partials: "partials",
+    components: "components",
     assets: "assets",
     styles: "styles",
 };
@@ -32,18 +33,26 @@ const aliases = {
         contact: `${dirs.layouts}/contact.njk`,
     },
     partials: {
-        metaInfo: `${dirs.partials}/meta-info.njk`,
+        meta: `${dirs.partials}/meta.njk`,
         banner: `${dirs.partials}/banner.njk`,
         hero: `${dirs.partials}/hero.njk`,
-        header: `${dirs.partials}/header.njk`,
+        intro: `${dirs.partials}/intro.njk`,
         footer: `${dirs.partials}/footer.njk`,
         sidebar: `${dirs.partials}/sidebar.njk`,
         cta: `${dirs.partials}/cta.njk`,
         pagination: `${dirs.partials}/pagination.njk`,
-        contentDisplay: `${dirs.partials}/content-display.njk`,        techStack: `${dirs.partials}/tech-stack.njk`,
-        contactForm: `${dirs.partials}/contact-form.njk`,
-        socialLink: `${dirs.partials}/social-link.njk`,
-        tooltip: `${dirs.partials}/tooltip.njk`,
+        listing: `${dirs.partials}/listing.njk`,
+        tech: `${dirs.partials}/tech.njk`,
+    },
+    components: {
+        button: `${dirs.components}/button.njk`,
+        logo: `${dirs.components}/logo.njk`,
+        navbar: `${dirs.components}/navbar.njk`,
+        socials: `${dirs.components}/socials.njk`,
+        card: `${dirs.components}/card.njk`,
+        item: `${dirs.components}/item.njk`,
+        form: `${dirs.components}/form.njk`,
+        tooltip: `${dirs.components}/tooltip.njk`,
     }
 };
 

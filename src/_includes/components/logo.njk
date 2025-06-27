@@ -1,0 +1,13 @@
+<a href="/" aria-label="{{ siteData.name }} - home">
+    {% if siteData.logo %}
+    <div>
+        <img src="{{ siteData.logo }}" 
+             alt="{{ siteData.name }} logo" 
+             loading="eager"
+             decoding="async" />
+    </div>
+    <span>{{ siteData.name }}</span>
+    {% else %}
+    <span>{{ siteData.name }}</span>
+    {% endif %}
+</a>

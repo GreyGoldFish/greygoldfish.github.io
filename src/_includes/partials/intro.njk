@@ -1,0 +1,20 @@
+{% set introTitle = intro.title | default("") %}
+{% set introSummary = intro.summary | default("") %}
+{% set introEyebrow = intro.eyebrow | default("") %}
+
+{% if introTitle or introSummary or introEyebrow %}
+<header>
+    <div>
+        {% if introEyebrow %}
+        <p>{{ introEyebrow | safe }}</p>
+        {% endif %}
+        {% if introTitle %}
+        <h1>{{ introTitle | safe }}</h1>
+        {% endif %}
+        {% if introSummary %}
+        <p>{{ introSummary | safe }}</p>
+        {% endif %}
+    </div>
+</header>
+{% endif %}
+

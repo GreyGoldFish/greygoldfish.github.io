@@ -2,11 +2,11 @@
 
 {% block content %}
 <article>
-    {% include partials.header %}
+    {% include partials.intro %}
     <section>
         {{ content | safe }}
     </section>
 
-    {% include partials.contactForm %}
+    {% include components.form %}
 </article>
 {% endblock %}

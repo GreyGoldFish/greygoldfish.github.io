@@ -1,46 +1,30 @@
+{# Site header #}
 {% set socials = socialData %}
+<header role="banner">
+    <div>
+        <div>
+			{# Skip to content link (accessibility) #}
+			<a href="#main-content">
+				{{ siteData.skipToContentText }}
+			</a>
 
-<a href="#main-content">{{ siteData.skipToContentText }}</a>
-<header role="banner">	{# Site Logo/Name #}	<a href="/" aria-label="{{ siteData.name }} - home">
-		{% if siteData.logo %}
-		<div>
-			<img src="{{ siteData.logo }}" 
-				 alt="{{ siteData.name }} logo" 
-				 loading="eager"
-				 decoding="async" />
-		</div>
-		<span>{{ siteData.name }}</span>
-		{% else %}
-		<span>{{ siteData.name }}</span>
-		{% endif %}
-	</a>
-	{# Navigation and Social Links Container #}
-	<div>
-		{# Primary Navigation #}
-		<nav aria-label="Primary Navigation">
-			{% set navPages = collections.all | eleventyNavigation %}
-			<ul>
-			{%- for entry in navPages %}			<li>
-				<a href="{{ entry.url }}" 
-				   class="nav__link {% if entry.url == page.url %}nav__link--active{% else %}nav__link--inactive{% endif %}">
-					{{ entry.title }}
-				</a>
-			</li>
-			{%- endfor %}
-			</ul>
-		</nav>
+            {# Site Logo/Name #}
+            {% include components.logo %}
+            
+            {# Navigation and Social Links Container #}
+            <div>
+                
+                {# Primary Navigation - Hidden on mobile #}
+                <div>
+                    {% include components.navbar %}
+                </div>
 
-		{# Mobile Navigation Toggle (for future implementation) #}		<button type="button" 
-				aria-label="Toggle navigation menu"
-				aria-expanded="false">
-			<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-			</svg>
-		</button>
+                {# Social Links #}
+                <div>
+                    {% include components.socials %}
+                </div>
 
-		{# Social Links #}
-		<div>
-			{% include partials.socialLink %}
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </header>

@@ -12,7 +12,10 @@ pagination:
     prevText: "Newer posts"
     nextText: "Older posts"
     anchor: "#post-list"
-contentDisplay:
+listing:
+    collection: "post"
+    reverse: true
+    type: "list"
     headline: "Recent Posts"
     emptyText: "No posts to display."
 ---

@@ -2,7 +2,7 @@
 
 {% block content %}
 <article>
-    {% include partials.header %}
+    {% include partials.intro %}
 
     <div>
         {{ content | safe }}
@@ -14,13 +14,13 @@
     {% if olderPost or newerPost %}
     <nav>
         {% if newerPost %}
-            <a href="{{ newerPost.url }}" class="btn">← {{ newerPost.data.title }}</a>
+            <a href="{{ newerPost.url }}"> {{ newerPost.data.title }}</a>
         {% else %}
             <span></span>
         {% endif %}
 
         {% if olderPost %}
-            <a href="{{ olderPost.url }}" class="btn">{{ olderPost.data.title }} →</a>
+            <a href="{{ olderPost.url }}"> {{ olderPost.data.title }} →</a>
         {% endif %}
     </nav>
     {% endif %}

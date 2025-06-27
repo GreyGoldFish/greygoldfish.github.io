@@ -8,8 +8,7 @@
 {% set siteTitle = site.name %}
 {% set currentUrl = site.url + page.url %}
 
-{# If the page’s Front Matter has specific metaTitle and/or metaDesc items, switch 
-  them into the mix. #}
+{# If the page’s Front Matter has specific metaTitle and/or metaDesc items, switch them into the mix. #}
 {% if metaTitle %}
   {% set pageTitle = metaTitle %}
 {% endif %}

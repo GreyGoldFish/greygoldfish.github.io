@@ -1,0 +1,41 @@
+{% if listing %}
+{% set type = listing.type | default("list") %}
+{% set columns = listing.columns | default(1) %}
+
+<div>
+    <div>
+        {% if listing.headline %}
+        <h2>{{ listing.headline | safe }}</h2>
+        {% endif %}
+        
+        {# If collection is set, use it, otherwise default to pagination #}
+        {% set items = collections[listing.collection] | default(pagination.items | default([])) %}
+
+        {% if listing.reverse %}
+            {% set items = items | reverse %}
+        {% endif %}
+
+        {% if listing.size and listing.size > 0 %}
+            {% set items = items.slice(0, listing.size) %}
+        {% endif %}
+
+        {% if items and items.length > 0 %}
+            {% if type == "grid" %}
+            <div>
+                {% for item in items %}
+                    {% include components.card %}
+                {% endfor %}
+            </div>
+            {% elif type == "list" %}
+            <div>
+                {% for item in items %}
+                    {% include components.item %}
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% else %}
+        <p>{{ listing.emptyText | default("No items to display.") }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endif %}

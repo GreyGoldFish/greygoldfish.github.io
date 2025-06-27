@@ -2,10 +2,10 @@
 
 {% block content %}
 <article>
-    {% include partials.header %}
+    {% include partials.intro %}
     <section>
         {{ content | safe }}
     </section>
-    {% include partials.contentDisplay %}
+    {% include partials.listing %}
 </article>
 {% endblock %}

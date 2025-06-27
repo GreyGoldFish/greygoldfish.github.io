@@ -1,0 +1,28 @@
+{% set cardUrl = item.url | url | default("#") %}
+{% set cardTitle = item.data.title | default("Untitled Item") %}
+{% set cardDescription = item.data.description %}
+{% set cardDate = item.date %}
+
+<div>
+    {% if item.data.image %}
+    <img decoding="async" src="{{ item.data.image | url }}" alt="{{ cardTitle }} image" loading="lazy" />
+    {% endif %}
+    <div>
+        <a href="{{ cardUrl }}">
+
+            <h3>
+                {{ cardTitle }}
+            </h3>
+
+            {% if cardDate %}
+            <p>{{ cardDate | formatDateLong }}</p>
+            {% endif %}
+            
+            {% if cardDescription %}
+            <p>
+                {{ cardDescription }}
+            </p>
+            {% endif %}
+        </a>
+    </div>
+</div>

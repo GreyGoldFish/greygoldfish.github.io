@@ -16,8 +16,8 @@
     <h2 id="{{ listId }}-heading">{{ listHeadingText }}</h2>
     <ol aria-labelledby="{{ listId }}-heading">
         {# Previous Link #}
-        <li class="{% if not pagination.href.previous %}opacity-50 pointer-events-none{% endif %}">
-            <a {% if pagination.href.previous %} href="{{ pagination.href.previous }}{{ anchor }}" {% else %} aria-disabled="true" {% endif %} class="btn" rel="prev">{{ prevText }}</a>
+        <li>
+            <a {% if pagination.href.previous %} href="{{ pagination.href.previous }}{{ anchor }}" {% else %} aria-disabled="true" {% endif %} rel="prev">{{ prevText }}</a>
         </li>
 
         {% set lastPageShown = -1 %} {# Used to determine when to show an ellipsis #}
@@ -40,10 +40,11 @@
             {% if showPage %}
                 {# If there was a gap since the last shown page number, print an ellipsis #}
                 {% if lastPageShown != -1 and i > lastPageShown + 1 %}
-                    <li aria-hidden="true">&hellip;</li> {# Standard HTML entity for ellipsis #}
+                    <li aria-hidden="true">&hellip;</li>
                 {% endif %}
 
-                <li>                    {% if isCurrentPage %}
+                <li>
+                    {% if isCurrentPage %}
                         <span aria-current="page" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }} (current page)">{{ pageNumToDisplay }}</span>
                     {% else %}
                         <a href="{{ pageHrefs[i] }}{{ anchor }}" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }}">{{ pageNumToDisplay }}</a>
@@ -52,8 +53,8 @@
                 {% set lastPageShown = i %} {# Update the last page number that was actually rendered #}
             {% endif %}
         {% endfor %}        {# Next Link #}
-        <li class="{% if not pagination.href.next %}opacity-50 pointer-events-none{% endif %}">
-            <a {% if pagination.href.next %}href="{{ pagination.href.next }}{{ anchor }}"{% else %} aria-disabled="true" {% endif %} class="btn" rel="next">{{ nextText }}</a>
+        <li>
+            <a {% if pagination.href.next %}href="{{ pagination.href.next }}{{ anchor }}"{% else %} aria-disabled="true" {% endif %} rel="next">{{ nextText }}</a>
         </li>
     </ol>
 </nav>

@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {% include partials.metaInfo %}
+        {% include partials.meta %}
     </head>
     <body>
-        {# Skip to content link (accessibility) #}
-        <a href="#main-content">
-            {{ site.skipToContentText }}
-        </a>
-
         {# Site header with navigation #}
         {% include partials.banner %}
+        
         <div>
             {# Main content area #}
             <main id="main-content" tabindex="-1">
@@ -22,17 +18,17 @@
                 {% endif %}
             </main>
 
-            {# Sidebar - only shows on larger screens #}
             {% if sidebar %}
-                <aside>
-                    {% include partials.sidebar %}
-                </aside>
+            <aside>
+                {% include partials.sidebar %}
+            </aside>
             {% endif %}
         </div>
 
-        {# Site footer #}
         <footer>
-            {% include partials.footer %}
+            <div>
+                {% include partials.footer %}
+            </div>
         </footer>
     </body>
 </html>
