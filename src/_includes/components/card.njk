@@ -3,23 +3,23 @@
 {% set cardDescription = item.data.description %}
 {% set cardDate = item.date %}
 
-<div>
+<div class="border rounded-lg overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl h-full flex flex-col">
     {% if item.data.image %}
-    <img decoding="async" src="{{ item.data.image | url }}" alt="{{ cardTitle }} image" loading="lazy" />
+    <img class="w-full h-48 object-cover" decoding="async" src="{{ item.data.image | url }}" alt="{{ cardTitle }} image" loading="lazy" />
     {% endif %}
-    <div>
-        <a href="{{ cardUrl }}">
+    <div class="p-6 flex-grow">
+        <a href="{{ cardUrl }}" class="no-underline text-current group">
 
-            <h3>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-blue-600 transition-colors duration-300">
                 {{ cardTitle }}
             </h3>
 
             {% if cardDate %}
-            <p>{{ cardDate | formatDateLong }}</p>
+            <p class="text-gray-600 text-sm mb-4">{{ cardDate | formatDateLong }}</p>
             {% endif %}
             
             {% if cardDescription %}
-            <p>
+            <p class="text-gray-700">
                 {{ cardDescription }}
             </p>
             {% endif %}

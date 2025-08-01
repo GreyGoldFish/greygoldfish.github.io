@@ -3,15 +3,6 @@ layout: portfolio
 title: "My Projects"
 eleventyNavigation:
     key: "Portfolio"
-eleventyImport:
-  collections: ["project"]
-listing:
-  collection: "project"
-  reverse: true
-  type: "grid"
-  columns: 3
-  headline: "Featured Projects"
-  emptyText: "No projects available yet. Check back soon!"
 intro:
   title: "My Portfolio"
   summary: "A showcase of my work and technical projects"

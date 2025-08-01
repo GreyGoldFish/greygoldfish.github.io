@@ -21,7 +21,7 @@
 
         {% if items and items.length > 0 %}
             {% if type == "grid" %}
-            <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ columns | default(3) }} gap-8">
                 {% for item in items %}
                     {% include components.card %}
                 {% endfor %}

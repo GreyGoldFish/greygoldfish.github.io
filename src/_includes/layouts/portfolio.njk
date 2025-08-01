@@ -6,6 +6,14 @@
     <section>
         {{ content | safe }}
     </section>
+    {% set listing = {
+        collection: "project",
+        reverse: true,
+        type: "grid",
+        columns: 3,
+        headline: "Featured Projects",
+        emptyText: "No projects available yet. Check back soon!"
+    } %}
     {% include partials.listing %}
 </article>
 {% endblock %}
