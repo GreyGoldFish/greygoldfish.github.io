@@ -12,6 +12,7 @@ export default {
         },
         form: {
             endpoint: "https://formspree.io/f/mdkzedal"
-        }
+        },
+        requiredText: "* Required fields"
     }
 }

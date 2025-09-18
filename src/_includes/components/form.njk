@@ -3,46 +3,45 @@
     <input type="hidden" name="_language" value="en">
     <input type="hidden" name="_next" value="{{ siteData.url }}/contact/?success=true">
     
-    <div>
-        <div>
-            <label for="name">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="c-form__group">
+            <label for="name" class="c-form__label">
                 Full Name <span>*</span>
             </label>
-            <input type="text" name="name" id="name" required>
+            <input type="text" name="name" id="name" required class="c-form__input">
         </div>
         
-        <div>
-            <label for="email">
+        <div class="c-form__group">
+            <label for="email" class="c-form__label">
                 Email Address <span>*</span>
             </label>
-            <input type="email" name="email" id="email" required>
+            <input type="email" name="email" id="email" required class="c-form__input">
         </div>
     </div>
     
-    <div>
-        <label for="subject">
+    <div class="c-form__group mt-6">
+        <label for="subject" class="c-form__label">
             Subject
         </label>
-        <input type="text" name="subject" id="subject"
+        <input type="text" name="subject" id="subject" class="c-form__input"
                placeholder="What is this about?">
     </div>
     
-    <div>
-        <label for="message">
+    <div class="c-form__group mt-6">
+        <label for="message" class="c-form__label">
             Message <span>*</span>
         </label>
-        <textarea id="message" name="message" rows="6" required
+        <textarea id="message" name="message" rows="6" required class="c-form__textarea"
                   placeholder="Tell me about your project, question, or how I can help..."></textarea>
-        <p>Minimum 10 characters</p>
+        <p class="c-form__helper">Minimum 10 characters</p>
     </div>
     
-    <div>
-        <p>
-            <span>*</span> Required fields
+    <div class="mt-8 flex justify-between items-center">
+        <p class="c-form__helper">
+            {{ siteData.contact.requiredText }}
         </p>
-        <button type="submit">
+        <button type="submit" class="c-button">
             Send Message
         </button>
     </div>
 </form>
-

@@ -1,8 +1,7 @@
 {% if sidebar %}
-<aside>
-    {# Recent Posts Section #}
+<aside class="p-sidebar">
     {% if sidebar.recentPosts and sidebar.recentPosts.listing %}
-    <section>
+    <section class="p-sidebar__section">
         {% set listing = sidebar.recentPosts.listing | merge({ "reverse": true }) %}
         
         {% include partials.listing %}
@@ -10,3 +9,4 @@
     {% endif %}
 </aside>
 {% endif %}
+

@@ -1,44 +1,25 @@
 {% if hero %}
-<section>
-    <div>
-        <div>
+<section class="p-hero">
+    <div class="p-hero__container">
+        <div class="p-hero__content">
             {% if hero.eyebrow %}
-            <div>
-                <span>
-                    {{ hero.eyebrow | safe }}
-                </span>
+            <div class="p-hero__eyebrow">
+                <span>{{ hero.eyebrow | safe }}</span>
             </div>
             {% endif %}
-              <h1>
+            <h1 class="p-hero__title">
                 {{ hero.title | default(title) | safe }}
             </h1>
             
             {% if hero.intro %}
-            <p>
+            <p class="p-hero__intro">
                 {{ hero.intro | safe }}
             </p>
             {% endif %}
         </div>
-        
-        {% if hero.summary %}
-        <div>
-            <p>{{ hero.summary | safe }}</p>
+        <div class="p-hero__image-wrapper">
+            <img src="/assets/icons/logo.svg" alt="Site Logo" class="p-hero__image">
         </div>
-        {% endif %}
-        
-        {% if hero.media %}
-        <div>
-            {{ hero.media | safe }}
-        </div>
-        {% endif %}
-        
-        {% if hero.buttonText and hero.buttonLink %}
-        <div>
-            <a href="{{ hero.buttonLink | url }}">
-                {{ hero.buttonText | safe }}
-            </a>
-        </div>
-        {% endif %}
     </div>
 </section>
 {% endif %}

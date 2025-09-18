@@ -3,32 +3,16 @@
     <head>
         {% include partials.meta %}
     </head>
-    <body>
+    <body class="flex flex-col min-h-screen">
         {# Site header with navigation #}
         {% include partials.banner %}
         
-        <div>
-            {# Main content area #}
-            <main id="main-content" tabindex="-1">
-                {% block content %}
-                    {{ content | safe }}
-                {% endblock %}
-                {% if not hero %}
-                    {% include partials.cta %}
-                {% endif %}
-            </main>
+        <main id="main-content" tabindex="-1" class="flex-grow">
+            {% block content %}{% endblock %}
+        </main>
 
-            {% if sidebar %}
-            <aside>
-                {% include partials.sidebar %}
-            </aside>
-            {% endif %}
-        </div>
+        {% include partials.footer %}
 
-        <footer>
-            <div>
-                {% include partials.footer %}
-            </div>
-        </footer>
+        <script src="/assets/js/main.js" defer></script>
     </body>
 </html>

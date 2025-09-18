@@ -1,13 +1,12 @@
-<div>
-    <p>Built with:</p>
-    <ul>
+<div class="p-tech">
+    <h3 class="font-bold text-lg mb-4 text-heading">Built with</h3>
+    <ul class="p-tech__list">
         {% for tech in techData %}
         <li>
             <a href="{{ tech.url }}" target="_blank" rel="noopener noreferrer" title="{{ tech.name }}">
-                <img src="{{ tech.iconSrc }}" alt="{{ tech.name }} logo">
+                <img src="{{ tech.iconSrc }}" alt="{{ tech.name }} logo" class="p-tech__icon">
             </a>
         </li>
         {% endfor %}
     </ul>
 </div>
-

@@ -1,9 +1,12 @@
 {% extends layouts.base %}
 
 {% block content %}
-<article>
-    {% include partials.intro %}
-    {% include partials.listing %}
-    {% include partials.pagination %}
-</article>
+<div class="l-main py-16">
+    <article>
+        {% include partials.intro %}
+        {% set listing = { collection: "post", type: "list" } %}
+        {% include partials.listing %}
+        {% include partials.pagination %}
+    </article>
+</div>
 {% endblock %}

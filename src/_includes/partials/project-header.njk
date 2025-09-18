@@ -1,0 +1,34 @@
+<header class="p-project-header not-prose">
+    <div class="p-project-header__meta">
+        {% if date %}
+        <div class="p-project-header__meta-item">
+            <strong>Date:</strong> {{ date | formatDateLong }}
+        </div>
+        {% endif %}
+        {% if status %}
+        <div class="p-project-header__meta-item">
+            <strong>Status:</strong> <span class="p-project-header__status p-project-header__status--{{ status | slugify }}">{{ status }}</span>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if technologies %}
+    <div class="p-project-header__tech">
+        <strong>Built with:</strong>
+        <ul class="p-project-header__tech-list">
+            {% for tech in technologies %}
+            <li>{{ tech }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="p-project-header__links">
+        {% if github %}
+        <a href="{{ github }}" class="c-button" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        {% endif %}
+        {% if demo %}
+        <a href="{{ demo }}" class="c-button c-button--secondary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+        {% endif %}
+    </div>
+</header>

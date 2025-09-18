@@ -1,21 +1,27 @@
 {% extends layouts.base %}
 
 {% block content %}
-<div>
-    <div>
-        {% include partials.hero %}
-        
-        {% if ctas and ctas.length > 0 %}
-        <section>
-            {% include partials.cta %}
-        </section>
-        {% endif %}
-        
+    {% include partials.hero %}
+    
+    <div class="l-main py-16">
+        {% set featuredListing = {
+            collection: "featuredProjects",
+            size: 3,
+            reverse: true,
+            type: "grid",
+            columns: 3,
+            headline: "Featured Projects"
+        } %}
+        {% include partials.listing %}
+
         {% if content.trim() %}
-        <section>
+        <div class="prose max-w-none mt-16 text-center">
             {{ content | safe }}
-        </section>
+        </div>
+        {% endif %}
+
+        {% if ctas and ctas.length > 0 %}
+            {% include partials.cta %}
         {% endif %}
     </div>
-</div>
 {% endblock %}

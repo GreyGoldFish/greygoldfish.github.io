@@ -1,15 +1,12 @@
 ---
 layout: contact
-title: "Contact Me"
+title: "Contact"
+intro:
+    title: "Get In Touch"
+    summary: "Have a project in mind or just want to say hello? I'd love to hear from you."
 eleventyNavigation:
     key: "Contact"
-header:
-    title: "Get In Touch"
-    summary: "I'd love to hear from you! Whether you have a question, project idea, or just want to connect."
+    order: 5
 ---
 
-## Send a Message
-
-Fill out the form below, and I'll get back to you as soon as possible.
-
-*I respect your privacy - any information you share will only be used to respond to your inquiry.*
+Please fill out the form below, and I'll get back to you as soon as possible.

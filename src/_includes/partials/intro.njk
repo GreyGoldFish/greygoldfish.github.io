@@ -3,16 +3,16 @@
 {% set introEyebrow = intro.eyebrow | default("") %}
 
 {% if introTitle or introSummary or introEyebrow %}
-<header>
-    <div>
+<header class="p-intro">
+    <div class="p-intro__container">
         {% if introEyebrow %}
-        <p>{{ introEyebrow | safe }}</p>
+        <p class="p-intro__eyebrow">{{ introEyebrow | safe }}</p>
         {% endif %}
         {% if introTitle %}
-        <h1>{{ introTitle | safe }}</h1>
+        <h1 class="p-intro__title">{{ introTitle | safe }}</h1>
         {% endif %}
         {% if introSummary %}
-        <p>{{ introSummary | safe }}</p>
+        <p class="p-intro__summary">{{ introSummary | safe }}</p>
         {% endif %}
     </div>
 </header>

@@ -1,42 +1,42 @@
+<section class="p-cta">
+<div class="p-cta__container">
 {% if ctas and ctas.length > 0 %}
     {% for cta in ctas %}
         {% set cta_data = null %}
         {% if cta is string %}
-            {# It's a key, look it up in the global ctaData #}
             {% set cta_data = ctaData[cta] %}
         {% elif cta is mapping %}
-            {# It's a custom CTA object defined directly in front matter #}
             {% set cta_data = cta %}
-        {% endif %}        {% if cta_data %}
-        <article>
-            <div>
-                <div>
-                    {% if cta_data.label %}
-                        <p>{{ cta_data.label }}</p>
-                    {% endif %}
-                    
-                    {% if cta_data.title %}
-                        <h2>{{ cta_data.title }}</h2>
-                    {% endif %}
-                      {% if cta_data.text %}
-                        <p>{{ cta_data.text }}</p>
-                    {% endif %}
-                    
-                    <div>
-                        {% if cta_data.button and cta_data.url %}
-                            <a href="{{ cta_data.url | url }}" 
-                               {% if cta_data.external %}target="_blank" rel="noopener"{% endif %}>
-                                {{ cta_data.button }}
-                            </a>
-                        {% endif %}
-                        {% if cta_data.alt %}
-                            <a href="{{ cta_data.alt.url | url }}" 
-                               {% if cta_data.alt.external %}target="_blank" rel="noopener"{% endif %}>
-                                {{ cta_data.alt.text }}
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
+        {% endif %}
+        {% if cta_data %}
+        <article class="p-cta__article">
+            <div class="p-cta__content">
+                {% if cta_data.label %}
+                    <p class="p-cta__label">{{ cta_data.label }}</p>
+                {% endif %}
+                
+                {% if cta_data.title %}
+                    <h2 class="p-cta__title">{{ cta_data.title }}</h2>
+                {% endif %}
+                
+                {% if cta_data.text %}
+                    <p class="p-cta__text">{{ cta_data.text }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="p-cta__actions">
+                {% if cta_data.button and cta_data.url %}
+                    <a href="{{ cta_data.url | url }}" class="c-button c-button--{{ cta_data.style | default('primary') }}"
+                       {% if cta_data.external %}target="_blank" rel="noopener"{% endif %}>
+                        {{ cta_data.button }}
+                    </a>
+                {% endif %}
+                {% if cta_data.alt %}
+                    <a href="{{ cta_data.alt.url | url }}" class="c-button c-button--secondary"
+                       {% if cta_data.alt.external %}target="_blank" rel="noopener"{% endif %}>
+                        {{ cta_data.alt.text }}
+                    </a>
+                {% endif %}
             </div>
         </article>
         {% else %}
@@ -48,3 +48,5 @@
         {% endif %}
     {% endfor %}
 {% endif %}
+</div>
+</section>

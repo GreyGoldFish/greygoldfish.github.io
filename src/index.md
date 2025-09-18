@@ -1,16 +1,18 @@
 ---
 layout: home
-title: "GreyGoldFish"
-eleventyNavigation:
-    key: "Home"
+title: "Home"
 hero:
+    eyebrow: "COMPUTER SCIENTIST"
     title: "Lucas Aquino de Assis"
-    eyebrow: "Computer Scientist"
     intro: "is a developer"
 ctas:
-    - blog
-    - work
     - about
     - contact
-    - subscribe
+eleventyNavigation:
+    key: "Home"
+    order: 1
 ---
+
+## My Latest Work
+
+Check out my latest projects and case studies.

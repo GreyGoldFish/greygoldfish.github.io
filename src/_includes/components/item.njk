@@ -1,25 +1,12 @@
-{% set itemUrl = item.url | url | default("#") %}
-{% set itemTitle = item.data.title | default("Untitled Item") %}
-{% set itemDescription = item.data.description %}
-{% set itemDate = item.date %}
-
-{# A container for each list item with a bottom border #}
-<article>
-    <a href="{{ itemUrl }}">
-        <h3>
-            {{ itemTitle }}
-        </h3>
-
-        <div>
-            {% if itemDate %}
-            <p>{{ itemDate | formatDateLong }}</p>
-            {% endif %}
-            
-            {% if itemDescription and itemDate %}<span>&bull;</span>{% endif %}
-
-            {% if itemDescription %}
-            <p>{{ itemDescription }}</p>
-            {% endif %}
-        </div>
-    </a>
+{% if item %}
+<article class="c-item">
+	<a href="{{ item.url }}" class="c-item__link">
+		<h3 class="c-item__title">
+			{{ item.data.title if item.data.title else 'Untitled Item' }}
+		</h3>
+		<p class="c-item__meta">
+			<time datetime="{{ item.date | htmlDateString }}">{{ item.date | formatDateLong }}</time>
+		</p>
+	</a>
 </article>
+{% endif %}

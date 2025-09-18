@@ -6,56 +6,48 @@
 {% set pageItemLabel = pagination.pageItemLabel | default("Go to page") %}
 {% set anchor = pagination.anchor | default("") %}
 
-{% set currentPage = pagination.pageNumber %} {# 0-indexed current page #}
+{% set currentPage = pagination.pageNumber %}
 {% set totalPages = pagination.pages.length %}
 {% set pageHrefs = pagination.hrefs %}
 
-{# Only render if there are multiple pages #}
 {% if totalPages > 1 %}
-<nav aria-label="{{ listNavLabel }}">
-    <h2 id="{{ listId }}-heading">{{ listHeadingText }}</h2>
-    <ol aria-labelledby="{{ listId }}-heading">
-        {# Previous Link #}
-        <li>
+<nav class="p-pagination" aria-label="{{ listNavLabel }}">
+    <h2 id="{{ listId }}-heading" class="p-pagination__heading">{{ listHeadingText }}</h2>
+    <ol class="p-pagination__list" aria-labelledby="{{ listId }}-heading">
+        <li class="p-pagination__item">
             <a {% if pagination.href.previous %} href="{{ pagination.href.previous }}{{ anchor }}" {% else %} aria-disabled="true" {% endif %} rel="prev">{{ prevText }}</a>
         </li>
 
-        {% set lastPageShown = -1 %} {# Used to determine when to show an ellipsis #}
+        {% set lastPageShown = -1 %}
         {% for i in range(0, totalPages) %}
             {% set pageNumToDisplay = i + 1 %}
             {% set isCurrentPage = (i == currentPage) %}
 
-            {# Determine if this page number should be displayed
-                Show page if it's:
-                1. The first page (i == 0)
-                2. The last page (i == totalPages - 1)
-                3. The current page or its immediate neighbors (i >= currentPage - 1 and i <= currentPage + 1)
-            #}
             {% set showPage = (
                 i == 0 or
                 i == totalPages - 1 or
-                (i >= currentPage - 1 and i <= currentPage + 1)
+                (i >= currentPage - 2 and i <= currentPage + 2)
             ) %}
 
             {% if showPage %}
-                {# If there was a gap since the last shown page number, print an ellipsis #}
                 {% if lastPageShown != -1 and i > lastPageShown + 1 %}
-                    <li aria-hidden="true">&hellip;</li>
+                    <li class="p-pagination__ellipsis" aria-hidden="true">&hellip;</li>
                 {% endif %}
 
-                <li>
+                <li class="p-pagination__item">
                     {% if isCurrentPage %}
                         <span aria-current="page" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }} (current page)">{{ pageNumToDisplay }}</span>
                     {% else %}
                         <a href="{{ pageHrefs[i] }}{{ anchor }}" aria-label="{{ pageItemLabel }} {{ pageNumToDisplay }}">{{ pageNumToDisplay }}</a>
                     {% endif %}
                 </li>
-                {% set lastPageShown = i %} {# Update the last page number that was actually rendered #}
+                {% set lastPageShown = i %}
             {% endif %}
-        {% endfor %}        {# Next Link #}
-        <li>
+        {% endfor %}
+        <li class="p-pagination__item">
             <a {% if pagination.href.next %}href="{{ pagination.href.next }}{{ anchor }}"{% else %} aria-disabled="true" {% endif %} rel="next">{{ nextText }}</a>
         </li>
     </ol>
 </nav>
 {% endif %}
+

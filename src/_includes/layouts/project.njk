@@ -1,10 +1,13 @@
 {% extends layouts.base %}
 
 {% block content %}
-<article>
-    {% include partials.intro %}
-    <section>
-        {{ content | safe }}
-    </section>
-</article>
+<div class="l-main py-12">
+    <article class="prose max-w-none">
+        {% include partials.intro %}
+        {% include "partials/project-header.njk" %}
+        <section>
+            {{ content | safe }}
+        </section>
+    </article>
+</div>
 {% endblock %}

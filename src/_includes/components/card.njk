@@ -1,26 +1,21 @@
-{% set cardUrl = item.url | url | default("#") %}
-{% set cardTitle = item.data.title | default("Untitled Item") %}
-{% set cardDescription = item.data.description %}
-{% set cardDate = item.date %}
-
-<div class="border rounded-lg overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl h-full flex flex-col">
+<div class="c-card">
     {% if item.data.image %}
-    <img class="w-full h-48 object-cover" decoding="async" src="{{ item.data.image | url }}" alt="{{ cardTitle }} image" loading="lazy" />
+    <img class="c-card__image" decoding="async" src="{{ item.data.image | url }}" alt="{{ item.data.title }} image" loading="lazy" />
     {% endif %}
-    <div class="p-6 flex-grow">
-        <a href="{{ cardUrl }}" class="no-underline text-current group">
+    <div class="c-card__body">
+        <a href="{{ item.url | url }}" class="c-card__link group">
 
-            <h3 class="font-bold text-xl mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                {{ cardTitle }}
+            <h3 class="c-card__title">
+                {{ item.data.title | default("Untitled Item") }}
             </h3>
 
-            {% if cardDate %}
-            <p class="text-gray-600 text-sm mb-4">{{ cardDate | formatDateLong }}</p>
+            {% if item.date %}
+            <p class="c-card__date">{{ item.date | formatDateLong }}</p>
             {% endif %}
             
-            {% if cardDescription %}
-            <p class="text-gray-700">
-                {{ cardDescription }}
+            {% if item.data.description %}
+            <p class="c-card__description">
+                {{ item.data.description }}
             </p>
             {% endif %}
         </a>

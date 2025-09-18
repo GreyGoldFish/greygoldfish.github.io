@@ -1,0 +1,54 @@
+@layer base {
+  :root {
+    /* Color Palette (Light Theme) */
+    --color-primary: 243 75% 59%;    /* Indigo 600 */
+    --color-secondary: 262 83% 58%;   /* Violet 600 */
+    --color-text: 75 8% 40%;       /* Slate 600 */
+    --color-heading: 75 14% 15%;    /* Slate 800 */
+    --color-background: 75 20% 98%;   /* Slate 50 */
+    --color-surface: 255 255% 255%; /* White */
+
+    /* Typography */
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: 'Lora', serif;
+
+    /* Sizing & Spacing */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem;  /* 8px */
+    --spacing-md: 1rem;    /* 16px */
+    --spacing-lg: 2rem;    /* 32px */
+    --spacing-xl: 4rem;    /* 64px */
+
+    /* Borders */
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 1rem;
+
+    /* Transitions */
+    --transition-duration: 300ms;
+    --transition-timing: ease-in-out;
+  }
+
+  [data-theme="dark"] {
+    --color-primary: 240 85% 72%;    /* Indigo 400 */
+    --color-secondary: 262 83% 78%;   /* Violet 400 */
+    --color-text: 75 8% 75%;       /* Slate 300 */
+    --color-heading: 75 20% 98%;    /* Slate 50 */
+    --color-background: 75 14% 10%;    /* Slate 900 */
+    --color-surface: 75 14% 15%;    /* Slate 800 */
+  }
+}
+
+@theme {
+  /* Extending Colors */
+  --color-primary: hsl(var(--color-primary));
+  --color-secondary: hsl(var(--color-secondary));
+  --color-text: hsl(var(--color-text));
+  --color-heading: hsl(var(--color-heading));
+  --color-background: hsl(var(--color-background));
+  --color-surface: hsl(var(--color-surface));
+
+  /* Extending Fonts */
+  --font-family-sans: var(--font-sans);
+  --font-family-serif: var(--font-serif);
+}

@@ -3,7 +3,8 @@ layout: about
 title: "About Me"
 eleventyNavigation:
     key: "About"
-header:
+    order: 2
+intro:
     title: "About Me"
     summary: "Computer Scientist & Developer"
 showCtas: true

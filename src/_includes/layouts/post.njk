@@ -1,28 +1,30 @@
 {% extends layouts.base %}
 
 {% block content %}
-<article>
-    {% include partials.intro %}
+    <div class="l-main py-12">
+        <article>
+            {% include partials.intro %}
 
-    <div>
-        {{ content | safe }}
+            <div class="prose max-w-none">
+                {{ content | safe }}
+            </div>
+
+            {% set olderPost = collections.post | getPreviousCollectionItem %}
+            {% set newerPost = collections.post | getNextCollectionItem %}
+
+            {% if olderPost or newerPost %}
+            <nav class="l-post-nav">
+                {% if newerPost %}
+                    <a href="{{ newerPost.url }}" class="l-post-nav__link">&larr; {{ newerPost.data.title }}</a>
+                {% else %}
+                    <span></span>
+                {% endif %}
+
+                {% if olderPost %}
+                    <a href="{{ olderPost.url }}" class="l-post-nav__link">{{ olderPost.data.title }} &rarr;</a>
+                {% endif %}
+            </nav>
+            {% endif %}
+        </article>
     </div>
-
-    {% set olderPost = collections.post | getPreviousCollectionItem %}
-    {% set newerPost = collections.post | getNextCollectionItem %}
-
-    {% if olderPost or newerPost %}
-    <nav>
-        {% if newerPost %}
-            <a href="{{ newerPost.url }}"> {{ newerPost.data.title }}</a>
-        {% else %}
-            <span></span>
-        {% endif %}
-
-        {% if olderPost %}
-            <a href="{{ olderPost.url }}"> {{ olderPost.data.title }} →</a>
-        {% endif %}
-    </nav>
-    {% endif %}
-</article>
 {% endblock %}

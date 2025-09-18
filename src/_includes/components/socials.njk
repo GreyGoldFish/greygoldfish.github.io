@@ -1,5 +1,5 @@
 {% if socials %}
-<ul>
+<ul class="c-socials">
     {% for key, social_item in socials %}
         {% if social_item %}
             {% set social_url = social_item.url | url %}
@@ -9,12 +9,13 @@
 
             <li>
                 <a href="{{ social_url }}" 
+                   class="c-socials__link"
                    target="_blank" 
                    rel="noopener noreferrer" 
                    aria-label="{{ social_aria_label }}"
                    title="{{ social_title }}">
                     {% if social_icon_src %}
-                        <img src="{{ social_icon_src | url }}" alt="{{ social_title }} logo">
+                        <img src="{{ social_icon_src | url }}" alt="{{ social_title }} logo" class="c-socials__icon">
                     {% else %}
                         <span>{{ social_title }}</span>
                     {% endif %}

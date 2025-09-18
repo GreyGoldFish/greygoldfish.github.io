@@ -1,21 +1,15 @@
 ---
 layout: feed
 title: "Blog"
-eleventyNavigation:
-    key: "Blog"
-eleventyImport:
-  collections: ["post"]
+intro:
+    title: "My Blog"
+    summary: "Here are my latest posts on web development, technology, and design."
 pagination:
-    data: collections.post
+    data: "collections.post"
     size: 5
     reverse: true
-    prevText: "Newer posts"
-    nextText: "Older posts"
-    anchor: "#post-list"
-listing:
-    collection: "post"
-    reverse: true
-    type: "list"
-    headline: "Recent Posts"
-    emptyText: "No posts to display."
+    alias: "posts"
+eleventyNavigation:
+    key: "Blog"
+    order: 3
 ---

@@ -1,12 +1,12 @@
-{% set pageTitle = title + ' - ' + site.name %}
+{% set pageTitle = title + ' - ' + siteData.name %}
 
 {# We don't want any duplication. This is likely for the home page. #}
-{% if site.name === title %} 
+{% if siteData.name === title %} 
   {% set pageTitle = title %}
 {% endif %}
 
-{% set siteTitle = site.name %}
-{% set currentUrl = site.url + page.url %}
+{% set siteTitle = siteData.name %}
+{% set currentUrl = siteData.url + page.url %}
 
 {# If the page’s Front Matter has specific metaTitle and/or metaDesc items, switch them into the mix. #}
 {% if metaTitle %}
@@ -19,8 +19,8 @@
 
 <title>{{ pageTitle }}</title>
 
-{% if site.authorName %}
-<meta name="author" content="{{ site.authorName }}">
+{% if siteData.authorName %}
+<meta name="author" content="{{ siteData.authorName }}">
 {% endif %}
 
 {% if metaDesc %}
@@ -46,14 +46,14 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="og:image" content="{{ socialImage }}" />
 <meta name="twitter:image" content="{{ socialImage }}" />
-<meta property="og:image:alt" content="Page image for {{ site.name }}" />
-<meta name="twitter:image:alt" content="Page image for {{ site.name }}" />
+<meta property="og:image:alt" content="Page image for {{ siteData.name }}" />
+<meta name="twitter:image:alt" content="Page image for {{ siteData.name }}" />
 {% endif %}
 
 {# --- Font Preconnects and Stylesheets --- #}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 
 {# --- Main Stylesheet --- #}
 <link rel="stylesheet" href="{{ paths.tailwind }}">

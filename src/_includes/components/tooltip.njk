@@ -2,22 +2,10 @@
 {% set tooltip_position = tooltip_position | default("bottom") %}
 
 {% if tooltip_text %}
-  {% if tooltip_position == "top" %}
-    <span>
-      {{ tooltip_text }}
-    </span>
-  {% elif tooltip_position == "bottom" %}
-    <span>
-      {{ tooltip_text }}
-    </span>
-  {% elif tooltip_position == "left" %}
-    <span>
-      {{ tooltip_text }}
-    </span>
-  {% elif tooltip_position == "right" %}
-    <span>
-      {{ tooltip_text }}
-    </span>
-  {% endif %}
+  {# The element that triggers the tooltip on hover would wrap this include #}
+  {# Example: <div class="c-tooltip-container"> Hover me {% include 'tooltip.njk', ... %} </div> #}
+  <span class="c-tooltip c-tooltip--{{ tooltip_position }}">
+    {{ tooltip_text }}
+  </span>
 {% endif %}
 
